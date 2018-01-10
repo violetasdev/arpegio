@@ -5,7 +5,7 @@ body {
 }
 
 #marcoGeneral {
-	width: 95%;
+	width: 99%;
 	margin: 0 auto;
 	border: 1px solid #EEEEEE;
 	background-color: #FFFFFF;
@@ -60,16 +60,13 @@ body {
 
 
 .listaMenu{
-	
+
 	list-style-type:none;
-	
+
 }
 
 a.enlaceMenu{
-    
-     text-decoration:none; 
-    
+
+     text-decoration:none;
+
 }
-
-
-

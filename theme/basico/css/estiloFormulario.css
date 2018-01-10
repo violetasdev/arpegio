@@ -98,7 +98,8 @@ div.mensajeAlerta {
 }
 
 div.formulario {
-	width: 98%;
+	/*width: 98%;*/
+	width: 100%;
 	margin: 0px auto 0 auto;
 	float: left;
 	border-collapse: collapse;
@@ -362,7 +363,7 @@ div.campoTextoContenido {
 }
 
 div.campoTextoContenidoSolo {
-	
+
 }
 
 div.campoMarcador {

@@ -1,0 +1,15 @@
+#caja {
+  background-image: url("../images/wallpaper_vector_violeta2.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+@media (max-height: 720px) {
+
+
+#caja {
+  background-image: url("../images/opmovil.svg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+}

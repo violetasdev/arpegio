@@ -1,0 +1,53 @@
+.nav-img {
+	float: left;
+	margin: auto  0 ;
+	padding: 0.5em;
+}
+
+.nav-redes {
+	max-width: 1920px;
+	width: 100%;
+	margin: 0 0;
+	padding: 0 2%;
+	display: flex;
+	justify-content: space-between;
+	background-color: #e6e6e6;
+	height: 40px;
+}
+
+.red-item{
+	box-sizing: border-box;
+color: #ababab;
+justify-content: center;
+padding: 0 2em;
+max-width: 100%;
+text-align: center;
+}
+
+.red-item a{
+color: #ababab;
+}
+
+.red-list{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	list-style: none;
+	padding: 0;
+	margin: auto;
+}
+
+.footer{
+	margin-top: 1px;
+	padding: 0 0;
+	background-color: black;
+	width: 100%;
+}
+
+.footer-inner{
+max-width: 90%;
+margin: 0 auto;
+padding: 0 5%;
+display: flex;
+justify-content: space-between;
+}
