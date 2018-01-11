@@ -98,6 +98,20 @@ class FormularioMenuUsuario {
 		echo '
 
 		<div class="footer">
+
+      <div class="contactar">
+					<h4>¿No encontraste lo que buscabas?</h4>
+       		<h3>Contactar un agente</h3>
+
+     					<ul class="contacto-list">
+							<i class="fa fa-handshake-o" aria-hidden="true"></i>
+
+							<li class="red-item"> <a target="_blank" href="https://es-la.facebook.com/LanixColombia/"><i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i></a></li>
+							<li class="contacto-item"> <a target="_blank" href="https://soporte.lanix.co/hc/es/requests/new"><i class="fa fa-handshake fa-lg" aria-hidden="true"></i></a></li>
+							</ul>
+
+    	</div>
+
 				<div class="nav-redes">
 						<ul class="red-list">
 								<li class="red-item"> <a target="_blank" href="https://es-la.facebook.com/LanixColombia/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
