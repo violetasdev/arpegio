@@ -108,15 +108,8 @@ class Formulario {
 
 		echo "<div class='modalLoad'></div>";
 
-		$esteCampo = 'ficheros';
+			$esteCampo = 'Agrupacionfiltros';
 		$atributos ['id'] = $esteCampo;
-		$atributos ['leyenda'] = "";
-		echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
-		unset ( $atributos );
-
-		$esteCampo = 'Agrupacionfiltros';
-		$atributos ['id'] = $esteCampo;
-		$atributos ['leyenda'] = "";
 		echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
 		unset ( $atributos );
 
@@ -129,7 +122,7 @@ class Formulario {
 			$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 			$atributos ["etiquetaObligatorio"] = true;
 			$atributos ['tab'] = $tab ++;
-			$atributos ['anchoEtiqueta'] = 2;
+			$atributos ['anchoEtiqueta'] = 1;
 			$atributos ['estilo'] = "bootstrap";
 			$atributos ['evento'] = '';
 			$atributos ['deshabilitado'] = false;
@@ -141,7 +134,7 @@ class Formulario {
 			$atributos ['ajax_function'] = "";
 			$atributos ['ajax_control'] = $esteCampo;
 			$atributos ['limitar'] = false;
-			$atributos ['anchoCaja'] = 10;
+			$atributos ['anchoCaja'] = 8;
 			$atributos ['miEvento'] = '';
 			// $atributos ['validar'] = 'required';
 			// Aplica atributos globales al control
@@ -165,10 +158,6 @@ class Formulario {
 			echo $this->miFormulario->campoCuadroTexto ( $atributos );
 			unset ( $atributos );
 
-
-
-		echo $this->miFormulario->agrupacion ( 'fin' );
-		unset ( $atributos );
 
 		// ----------------FIN CONTROL: Fecha de Agendamiento--------------------------------------------------------
 
