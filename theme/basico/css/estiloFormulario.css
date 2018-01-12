@@ -15,11 +15,11 @@ form fieldset legend {
 	width: 90%;
 }
 
-form fieldset:hover {
+/*form fieldset:hover {
 	border-color: #AAAAAA;
 	border-width: 1px 1px 1px 1px;
 	border-style: solid solid solid solid;
-}
+}*/
 
 form div label {
 	font-size: 15px;
@@ -98,7 +98,8 @@ div.mensajeAlerta {
 }
 
 div.formulario {
-	width: 98%;
+	/*width: 98%;*/
+	width: 100%;
 	margin: 0px auto 0 auto;
 	float: left;
 	border-collapse: collapse;
@@ -362,7 +363,7 @@ div.campoTextoContenido {
 }
 
 div.campoTextoContenidoSolo {
-	
+
 }
 
 div.campoMarcador {

@@ -1,35 +1,32 @@
 <?php
-require_once ("core/manager/Configurador.class.php");
-require_once ("core/builder/builderSql.class.php");
+require_once "core/manager/Configurador.class.php";
+require_once "core/builder/builderSql.class.php";
 class ArmadorPagina {
-	var $miConfigurador;
-	var $generadorClausulas;
-	var $host;
-	var $sitio;
-	var $raizDocumentos;
-	var $bloques;
-	var $seccionesDeclaradas;
+	public $miConfigurador;
+	public $generadorClausulas;
+	public $host;
+	public $sitio;
+	public $raizDocumentos;
+	public $bloques;
+	public $seccionesDeclaradas;
 	const SECCION = 'seccion';
 	const GRUPO = 'grupo';
 	const BLOQUEGRUPO = 'bloqueGrupo';
 	const NOMBRE = 'nombre';
 	const ARCHIVOBLOQUE = '/bloque.php';
 	const CARPETABLOQUES = '/blocks/';
-	function __construct() {
+	public function __construct() {
 		$this->miConfigurador = Configurador::singleton ();
 		$this->generadorClausulas = BuilderSql::singleton ();
 		$this->host = $this->miConfigurador->getVariableConfiguracion ( "host" );
 		$this->sitio = $this->miConfigurador->getVariableConfiguracion ( "site" );
 		$this->raizDocumentos = $this->miConfigurador->getVariableConfiguracion ( "raizDocumento" );
 	}
-	function armarHTML($registroBloques) {
+	public function armarHTML($registroBloques) {
 		$this->bloques = $registroBloques;
 		
 		if ($this->miConfigurador->getVariableConfiguracion ( "cache" )) {
-			
-			// De forma predeterminada las paginas del aplicativo no tienen cache
-			header ( "Cache-Control: cache" );
-		} else {
+			// Si la variable CACHE de configurador está configurada SE ELIMINA TODO EL CACHE
 			if (! (isset ( $_REQUEST ['opcion'] ) && $_REQUEST ['opcion'] == 'mostrarMensaje')) {
 				header ( "Expires: Tue, 03 Jul 2001 06:00:00 GMT" );
 				header ( "Last-Modified: " . gmdate ( "D, d M Y H:i:s" ) . " GMT" );
@@ -37,6 +34,9 @@ class ArmadorPagina {
 				header ( "Cache-Control: post-check=0, pre-check=0", false );
 				header ( "Pragma: no-cache" );
 			}
+		} else {
+			// De forma predeterminada las paginas del aplicativo tienen cache
+			header ("Cache-Control: cache");
 		}
 		
 		$this->raizDocumento = $this->miConfigurador->getVariableConfiguracion ( "raizDocumento" );
@@ -51,11 +51,12 @@ class ArmadorPagina {
 		$htmlPagina = "<head>\n";
 		$htmlPagina .= "<title>" . $this->miConfigurador->getVariableConfiguracion ( "nombreAplicativo" ) . "</title>\n";
 		$htmlPagina .= "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' >\n";
+		$htmlPagina .= "<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' >\n";
 		$htmlPagina .= "<link rel='shortcut icon' href='" . $this->host . $this->sitio . "/" . "favicon.ico' >\n";
 		echo $htmlPagina;
 		
 		// Incluir estilos
-		include_once ("theme/basico/Estilo.php");
+		include_once "theme/basico/Estilo.php";
 		
 		// Enlazar los estilos definidos en cada bloque
 		foreach ( $this->bloques as $unBloque ) {
@@ -105,7 +106,7 @@ class ArmadorPagina {
 	}
 	private function piePagina() {
 		// Funciones javascript globales del aplicativo
-		include_once ("plugin/scripts/Script.php");
+		include_once "plugin/scripts/Script.php";
 		
 		// Insertar las funciones js definidas en cada bloque
 		foreach ( $this->bloques as $unBloque ) {
@@ -192,7 +193,7 @@ class ArmadorPagina {
 			} else {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . self::ARCHIVOBLOQUE;
 			}
-			include ($archivo);
+			include $archivo;
 			
 			return true;
 		} else {
@@ -206,11 +207,11 @@ class ArmadorPagina {
 				$unBloque [self::NOMBRE] = $_REQUEST ['actionBloque'];
 				$_REQUEST ['action'] = $_REQUEST ['actionBloque'];
 				$unBloque ["id_bloque"] = $_REQUEST ["bloque"];
-				include_once ($this->raizDocumentos . self::CARPETABLOQUES . $carpeta . $unBloque [self::NOMBRE] . self::ARCHIVOBLOQUE);
+				include_once $this->raizDocumentos . self::CARPETABLOQUES . $carpeta . $unBloque [self::NOMBRE] . self::ARCHIVOBLOQUE;
 				unset ( $_REQUEST ['action'] );
 			} elseif (isset ( $_REQUEST ["procesarAjax"] )) {
 				
-				include_once ($this->raizDocumentos . self::CARPETABLOQUES . $carpeta . $_REQUEST ["bloqueNombre"] . self::ARCHIVOBLOQUE);
+				include_once $this->raizDocumentos . self::CARPETABLOQUES . $carpeta . $_REQUEST ["bloqueNombre"] . self::ARCHIVOBLOQUE;
 			}
 		}
 	}
@@ -220,17 +221,23 @@ class ArmadorPagina {
 		}
 		
 		if ($unBloque [self::GRUPO] == "") {
+			
 			$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/css/Estilo.php";
-			if (! file_exists ( $archivo ))
+			
+			if (! file_exists ( $archivo )) {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/frontera/css/Estilo.php";
+			}
 		} else {
+			
 			$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/css/Estilo.php";
-			if (! file_exists ( $archivo ))
+			
+			if (! file_exists ( $archivo )) {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/frontera/css/Estilo.php";
+			}
 		}
 		
 		if (file_exists ( $archivo )) {
-			include_once ($archivo);
+			include_once $archivo;
 		}
 	}
 	private function incluirFuncionesBloque($esteBloque) {
@@ -240,21 +247,23 @@ class ArmadorPagina {
 		
 		if ($esteBloque [self::GRUPO] == "") {
 			$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $esteBloque [self::NOMBRE] . "/script/Script.php";
-			if (! file_exists ( $archivo ))
+			if (! file_exists ( $archivo )) {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $esteBloque [self::NOMBRE] . "/frontera/script/Script.php";
+			}
 		} else {
 			$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $esteBloque [self::GRUPO] . "/" . $esteBloque [self::NOMBRE] . "/script/Script.php";
 			
-			if (! file_exists ( $archivo ))
+			if (! file_exists ( $archivo )) {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $esteBloque [self::GRUPO] . "/" . $esteBloque [self::NOMBRE] . "/frontera/script/Script.php";
+			}
 		}
 		
 		if (file_exists ( $archivo )) {
 			
-			include_once ($archivo);
+			include_once $archivo;
 		}
 	}
-	function incluirFuncionReady($unBloque) {
+	public function incluirFuncionReady($unBloque) {
 		
 		/**
 		 * Esta función registra funciones las opciones de la función ready (jquery) para la página
@@ -276,12 +285,14 @@ class ArmadorPagina {
 			if ($unBloque [self::GRUPO] == "") {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/script/ready.js";
 				$archivoPHP = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/script/ready.php";
+				
 				if (! file_exists ( $archivo ) && ! file_exists ( $archivoPHP )) {
 					
 					$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/frontera/script/ready.js";
 					$archivoPHP = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/frontera/script/ready.php";
 				}
 			} else {
+				
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/script/ready.js";
 				$archivoPHP = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/script/ready.php";
 				
@@ -293,12 +304,12 @@ class ArmadorPagina {
 			}
 			
 			if (file_exists ( $archivo )) {
-				include ($archivo);
+				include $archivo;
 				echo "\n";
 			}
 			
 			if (file_exists ( $archivoPHP )) {
-				include ($archivoPHP);
+				include $archivoPHP;
 				echo "\n";
 			}
 		}
@@ -316,7 +327,7 @@ class ArmadorPagina {
 				
 				$this->id_bloque = $this->armar_registro [$this->contador] [0];
 				$this->incluir = $this->armar_registro [$this->contador] [4];
-				include ($this->miConfigurador->configuracion ["raiz_documento"] . $this->miConfigurador->configuracion ["bloques"] . "/" . $this->incluir . self::ARCHIVOBLOQUE);
+				include $this->miConfigurador->configuracion ["raiz_documento"] . $this->miConfigurador->configuracion ["bloques"] . "/" . $this->incluir . self::ARCHIVOBLOQUE;
 			}
 		}
 		return TRUE;

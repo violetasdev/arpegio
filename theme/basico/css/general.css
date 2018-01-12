@@ -5,11 +5,11 @@ body {
 }
 
 #marcoGeneral {
-	width: 95%;
+	width: 100%;
 	margin: 0 auto;
-	border: 1px solid #EEEEEE;
+	/*border: 1px solid #EEEEEE;*/
 	background-color: #FFFFFF;
-	padding: 0px 10px;
+	/*padding: 0px 10px;*/
 	display: table;
 }
 
@@ -60,16 +60,13 @@ body {
 
 
 .listaMenu{
-	
+
 	list-style-type:none;
-	
+
 }
 
 a.enlaceMenu{
-    
-     text-decoration:none; 
-    
+
+     text-decoration:none;
+
 }
-
-
-

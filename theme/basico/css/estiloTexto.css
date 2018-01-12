@@ -30,14 +30,14 @@
 .textoSubtitulo {
 	border-width: 0px;
 	font-size: 14px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 	text-align: left;
 }
 
 .textoElegante {
 	border-width: 0px;
 	font-size: 14px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 	text-align: left;
 }
 
@@ -48,8 +48,7 @@
 .textoTitulo {
 	border-width: 0px;
 	font-size: 18px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
-	text-align: left;
+font-family: "Century Gothic", "AppleGothic", sans-serif;	text-align: left;
 	font-weight: bold;
 }
 
@@ -60,22 +59,22 @@
 
 .textoPequenno {
 	font-size: 13px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
 .textoMediano {
 	font-size: 14px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
 .textoGrande {
 	font-size: 16px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
 .textoEnorme {
 	font-size: 20px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
 .textoGris {
