@@ -3,7 +3,7 @@ $indice = 0;
 // $estilo[$indice++]="bootstrap.min.css";
 
 $estilo[$indice++] = "estiloBloque.css";
-$estilo[$indice++]="contenido/font-awesome.css";
+$estilo[$indice++]="contenido/font-awesome.min.css";
 
 $rutaBloque = $this->miConfigurador->getVariableConfiguracion("host");
 $rutaBloque .= $this->miConfigurador->getVariableConfiguracion("site");

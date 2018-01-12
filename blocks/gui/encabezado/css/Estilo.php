@@ -5,8 +5,6 @@ $indice=0;
 // $estilo[$indice++]="bootstrap.css";
 $estilo[$indice++]="elegant-icons.css";
 $estilo[$indice++]="estiloBloque.css";
-$estilo[$indice++]="contenido/font-awesome.min.css";
-$estilo[$indice++]="contenido/font-awesome.css";
 
 //$estilo[$indice++]="AdminLTE.min.css";
 
