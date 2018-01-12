@@ -24,11 +24,8 @@
 }
 
 .contacto-list{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
 	list-style: none;
-	padding: 0;
+	padding: 2em;
 	margin: auto;
 }
 

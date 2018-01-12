@@ -89,7 +89,7 @@ class FormularioMenuUsuario {
 		// ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		// $atributos = array_merge ( $atributos, $atributosGlobales );
-		echo $this->miFormulario->formulario ( $atributos );
+		//echo $this->miFormulario->formulario ( $atributos );
 		unset ( $atributos );
 		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
 
@@ -103,7 +103,8 @@ class FormularioMenuUsuario {
 					<h4>¿No encontraste lo que buscabas?</h4>
        		<h3>Contactar un agente</h3>
      					<ul class="contacto-list">
-							<li class="contacto-item"> <a target="_blank" href="https://soporte.lanix.co/hc/es/requests/new"><i class="fa fa-handshake fa-lg" aria-hidden="true"></i></a></li>
+							<li class="contacto-item"> <a target="_blank" href="https://soporte.lanix.co/hc/es/requests/new">
+												<i class="fa fa-handshake-o fa-4x" aria-hidden="true"></i></a></li>
 							</ul>
     	</div>
 
@@ -116,7 +117,7 @@ class FormularioMenuUsuario {
 					</div>
 				<div class="footer-inner">
 					<div class="nav-img">
-							<img height="50px" src="'.$url.'/blocks/gui/pie/css/imagenes/pie.png">
+							<a target="_blank" href="https://soporte.lanix.co/hc/es/"><img height="50px" src="'.$url.'/blocks/gui/pie/css/imagenes/pie.png"></a>
 					</div>
 			 	</div>
 		</div>';

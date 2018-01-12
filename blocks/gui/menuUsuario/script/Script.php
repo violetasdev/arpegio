@@ -26,5 +26,3 @@ if (isset ( $funcion [0] )) {
 }
 
 ?>
-
-

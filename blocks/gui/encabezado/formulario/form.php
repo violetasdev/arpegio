@@ -89,7 +89,7 @@ class FormularioMenuUsuario {
 		// ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		// $atributos = array_merge ( $atributos, $atributosGlobales );
-		echo $this->miFormulario->formulario ( $atributos );
+		//echo $this->miFormulario->formulario ( $atributos );
 		unset ( $atributos );
 		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
 
@@ -109,7 +109,7 @@ class FormularioMenuUsuario {
 		echo '
 		<div class="marco-navegacion">
 		<div class="navbar-custom-menu">
-         <img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.png">
+         <a target="_blank" href="https://soporte.lanix.co/hc/es/"><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.png"></a>
 				 </div>
       </div>';
 

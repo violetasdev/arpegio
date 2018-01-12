@@ -17,11 +17,7 @@ if (isset ( $_REQUEST ['jquery'] )) {
 	}
 	$indice ++;
 }
-if (isset ( $_REQUEST ['jquery-ui'] )) {
-    $funcion [$indice] = 'javascript/jquery-ui/jquery-ui.js';
-    $estilo [$indice] = 'javascript/jquery-ui/jquery-ui-themes/themes/' . $estiloPredeterminado . '/jquery-ui.css';
-    $indice ++;
-}
+
 if (isset ( $_REQUEST ['jquery-validation'] )) {
     $funcion [$indice] = "javascript/jquery.validationEngine.js";
     $indice ++;
@@ -35,18 +31,22 @@ if (isset ( $_REQUEST ['bootstrap'] )) {
 			$funcion [$indice] = 'bootstrap/bootstrap-'. $boostrap[0] .'-dist/js/bootstrap.js';
 		} else {
 			$funcion [$indice] = 'bootstrap/bootstrap-'. $boostrap[0] .'-dist/js/bootstrap.min.js';
-		}		
+		}
 	} else {
 		$funcion [$indice] = 'bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js';
 	}
-	$indice ++;	
+	$indice ++;
 }
 
 if (isset ( $_REQUEST ['bootstrap-validation'] ) ) {
 	$funcion [$indice] = 'bootstrap/bootstrap-3.3.5-dist/js/validator.js';
 	$indice ++;
 }
-
+if (isset ( $_REQUEST ['jquery-ui'] )) {
+    $funcion [$indice] = 'javascript/jquery-ui/jquery-ui.js';
+    $estilo [$indice] = 'javascript/jquery-ui/jquery-ui-themes/themes/' . $estiloPredeterminado . '/jquery-ui.css';
+    $indice ++;
+}
 foreach ( $funcion as $nombre ) {
     echo "<script type='text/javascript' src='" . $host . $sitio . '/plugin/scripts/' . $nombre . "'></script>\n";
 }
