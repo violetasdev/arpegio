@@ -1,8 +1,7 @@
 <?php
 $indice=0;
-//$estilo[$indice++]="component.css";
-$estilo[$indice++]="miestilo.css";
-$estilo[$indice++]="";
+$estilo[$indice++]="estiloBloque.css";
+
 
 $rutaBloque=$this->miConfigurador->getVariableConfiguracion("host");
 $rutaBloque.=$this->miConfigurador->getVariableConfiguracion("site");

@@ -1,21 +1,14 @@
-@media ( min-width : 768px) .navbar-nav {
-	float
-	:
-
-	right
-	;
-
-
-	margin
-	:
-
-	0;
-}
+/* */
 
 .navbar-custom-menu {
-  float:right;
 	margin: 0 auto;
-  padding: 0.5em;
+	padding: 0 5%;
+	position: relative;
+	align-items: center;
+	display: flex;
+	height: 71px;
+	justify-content: space-between;
+	background-color: black;
 }
 
 .marco-navegacion {
@@ -26,4 +19,151 @@
 
 #encabezadoForm{
 padding: 0;
+}
+
+
+/* Estilo side nav menu*/
+
+/* The side navigation menu */
+.sidenav {
+	 height: 100%; /* 100% Full-height */
+	 width: 0; /* 0 width - change this with JavaScript */
+	 position: fixed; /* Stay in place */
+	 z-index: 1; /* Stay on top */
+	 top: 0; /* Stay at the top */
+	 right: 0;
+	 background-color: #111; /* Black*/
+	 overflow-x: hidden; /* Disable horizontal scroll */
+	 padding-top: 71px; /* Place content 60px from the top */
+	 transition: 0.4s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+	 padding: 8px 8px 8px 32px;
+	 text-decoration: none;
+	 font-size: 20px;
+	 color: #feb327;
+	 display: block;
+	 transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+	 color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+	 position: absolute;
+	 top: 0;
+	 right: 25px;
+	 font-size: 36px;
+	 margin-left: 50px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+	 .sidenav {padding-top: 15px;}
+	 .sidenav a {font-size: 18px;}
+}
+
+[data-drilldown] a {
+  color: #fff;
+}
+
+[data-drilldown] a:hover {
+  color: #feb327;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+}
+
+.wrapper {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapper ul,li{
+  list-style: none;
+}
+
+.wrapper a {
+  text-decoration: none;
+}
+
+[data-drilldown] {
+  font-size: 17px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+[data-drilldown] li {
+  padding: 5px 0px;
+}
+
+[data-drilldown-sub] {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 0;
+  left: 100%;
+  padding: 10px 15px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+[data-drilldown-item] {
+  position: relative;
+  left: 0;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+[data-drilldown-button] {
+  position: relative;
+  left: 0;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+[data-drilldown-button-2] {
+  position: relative;
+  left: 0;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+[data-drilldown-sub-2] {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 0;
+  left: 100%;
+  padding: 10px 15px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+[data-drilldown-back],
+[data-drilldown-back-2] {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.openM {
+  left: 0;
+  visibility: visible;
+}
+
+.openM-sub-2 {
+  left: 100%;
+  visibility: visible;
+}
+
+.closeM {
+  left: -100%;
+  visibility: hidden;
 }

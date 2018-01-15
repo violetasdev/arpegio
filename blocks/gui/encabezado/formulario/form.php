@@ -108,10 +108,39 @@ class FormularioMenuUsuario {
 		$url = $this->miConfigurador->configuracion ['host'] . $this->miConfigurador->configuracion ['site'];
 		echo '
 		<div class="marco-navegacion">
-		<div class="navbar-custom-menu">
-         <a target="_blank" href="https://soporte.lanix.co/hc/es/"><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.png"></a>
+				<div class="navbar-custom-menu">
+						<div class="logo">
+         				<a target="_blank" href="https://soporte.lanix.co/hc/es/"><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.png"></a>
+				 		</div>
+						<div class="menuSide">
+  					<span style="color:#feb327;font-size:20px;cursor:pointer" onclick="openNav()">Descargas y Drivers</span>
+						</div>
 				 </div>
-      </div>';
+      </div>
+
+			<div id="mySidenav" class="sidenav">
+			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+				<div class="wrapper">
+  <ul data-drilldown>
+    <li><a data-drilldown-item href="#">Móvil</a></li>
+    <li><a data-drilldown-item href="#">Tablet</a></li>
+    <li><a href="#" data-drilldown-button>Cómputo
+      <ul data-drilldown-sub>
+          <li><a href="#" data-drilldown-back>&larr; Volver</a></li>
+      <li><a href="#"> Neuron</a></li>
+      <li><a href="#"> AIO</a></li>
+  </ul>
+  </a>
+  </li>
+  <li><a data-drilldown-item href="#">Contactar un Agente de Soporte</a></li>
+  </ul>
+</div>
+
+			</div>
+
+
+			';
 
 
 		// ------------------- SECCION: Paso de variables ------------------------------------------------
