@@ -1,8 +1,6 @@
 <?php
 $indice = 0;
 
-$funcion [$indice ++] = "metisMenu.js";
-// $funcion [$indice ++] = "jquery-1.10.2.min.js";
 
 $rutaBloque = $this->miConfigurador->getVariableConfiguracion ( "host" );
 $rutaBloque .= $this->miConfigurador->getVariableConfiguracion ( "site" );
@@ -26,5 +24,3 @@ if (isset ( $funcion [0] )) {
 }
 
 ?>
-
-

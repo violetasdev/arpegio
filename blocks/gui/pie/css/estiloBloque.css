@@ -16,6 +16,7 @@
 .contactar{
 	text-align: center;
 	background-color: white;
+	padding-top: 1em;
 }
 
 .contacto-item a{
@@ -64,14 +65,16 @@
 }
 
 .footer{
-	margin-top: 1px;
-	padding: 0 0;
+	position: absolute;
+ bottom: 0;
+ width: 100%;
 	background-color: black;
-	width: 100%;
+
 }
 
 .footer h4,h3 {
 	text-align: center;
+	margin-top: 0;
 }
 
 .footer-inner{
