@@ -12,7 +12,9 @@ form fieldset {
 }
 
 form fieldset legend {
-	width: 90%;
+	width: 95%;
+	color:orange;
+	font-size: 30px;
 }
 
 /*form fieldset:hover {
@@ -108,7 +110,7 @@ div.formulario {
 	border-color: #CCCCCC;
 	background-color: #FFFFFF;
 	border-spacing: 0px;
-	padding: 10px;
+	padding: 3%;
 }
 
 div.formularioConJqgrid {

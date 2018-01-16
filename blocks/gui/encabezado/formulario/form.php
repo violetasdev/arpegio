@@ -106,11 +106,21 @@ class FormularioMenuUsuario {
 */
 
 		$url = $this->miConfigurador->configuracion ['host'] . $this->miConfigurador->configuracion ['site'];
+
+	$variable = "pagina=listaDriver";
+  $url2 = $this->miConfigurador->configuracion ["host"] .  $this->miConfigurador->configuracion ["site"] . "/index.php?";
+	$enlace = $this->miConfigurador->configuracion ['enlace'];
+	$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar ( $variable );
+	$_REQUEST [$enlace] = $enlace . '=' . $variable;
+	$redireccion = $url2 . $_REQUEST [$enlace];
+
+
+
 		echo '
 		<div class="marco-navegacion">
 				<div class="navbar-custom-menu">
 						<div class="logo">
-         				<a target="_blank" href="https://soporte.lanix.co/hc/es/"><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.png"></a>
+         				<a href="'.$url.'/index.php""><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.png"></a>
 				 		</div>
 						<div class="menuSide">
   					<span style="color:#feb327;font-size:20px;cursor:pointer" onclick="openNav()">Descargas y Drivers</span>
@@ -128,7 +138,7 @@ class FormularioMenuUsuario {
     <li><a href="#" data-drilldown-button>Cómputo
       <ul data-drilldown-sub>
           <li><a href="#" data-drilldown-back>&larr; Volver</a></li>
-      <li><a href="#">Lanix Neuron A X16P</a></li>
+      <li><a href="'.$redireccion.'">Lanix Neuron A X16P</a></li>
 			<li><a href="#">Lanix Neuron V 16P</a></li>
   </ul>
   </a>
