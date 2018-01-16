@@ -123,17 +123,17 @@ class FormularioMenuUsuario {
 
 				<div class="wrapper">
   <ul data-drilldown>
-    <li><a data-drilldown-item href="#">Móvil</a></li>
-    <li><a data-drilldown-item href="#">Tablet</a></li>
+    <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/sections/201411123-Especificaciones-y-Caracter%C3%ADsticas">Móvil</a></li>
+    <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/sections/115001440306-Especificaciones-y-Caracter%C3%ADsticas">Tablet</a></li>
     <li><a href="#" data-drilldown-button>Cómputo
       <ul data-drilldown-sub>
           <li><a href="#" data-drilldown-back>&larr; Volver</a></li>
-      <li><a href="#"> Neuron</a></li>
-      <li><a href="#"> AIO</a></li>
+      <li><a href="#">Lanix Neuron A X16P</a></li>
+			<li><a href="#">Lanix Neuron V 16P</a></li>
   </ul>
   </a>
   </li>
-  <li><a data-drilldown-item href="#">Contactar un Agente de Soporte</a></li>
+  <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/requests/new">Contactar un Agente de Soporte</a></li>
   </ul>
 </div>
 
