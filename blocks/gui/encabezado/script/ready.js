@@ -2,12 +2,9 @@ function openNav() {
 
   if (screen.width < 780) {
       document.getElementById("mySidenav").style.width = "80%";
-  }
-  else {
+  }  else {
   document.getElementById("mySidenav").style.width = "35%";
   }
-
-
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
