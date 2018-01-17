@@ -43,12 +43,10 @@ class procesarAjax
 
 
                         $resultadoFinal[] = array(
-                            'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.$valor['descripcion'],
-                            'descripcion' => $valor['descripcion'],
-                            'plataforma' => $valor['nombre_plataforma'],
-                            'sistema' => $valor['nombre_sistema'],
-                            'fecha' => $valor['fecha_publicacion'],
-                            'version' =>$valor['version']
+                          'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.$valor['descripcion'],
+                          'plataforma' => $valor['nombre_plataforma'],
+                          'fecha' => $valor['fecha_publicacion'],
+                          'dispositivo' =>$valor['nombre_dispositivo']
                           );
 
                     $total = count($resultadoFinal);
@@ -83,14 +81,33 @@ class procesarAjax
                     break;
 
 
+                    case 'consultaDispositivo':
+                       $cadenaSql = $this->sql->getCadenaSql('consultarDispositivo');
+                       $resultadoItems =  $this->esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+
+                       foreach ( $resultadoItems as $key => $values ) {
+                         $keys = array (
+                             'value',
+                             'data'
+                         );
+                         $resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
+                       }
+                       echo '{"suggestions":' . json_encode ( $resultado ) . '}';
+                        break;
+
+
                     case 'consultaFiltroPlataforma':
 
 	                  $cadenaSql = "";
                     $plataforma = trim($_REQUEST ['plat']);
+                    $dispositivo = trim($_REQUEST ['dis']);
                       if (isset ( $plataforma ) && $plataforma != "") {
                   			$cadenaSql.= "AND plataforma='" . $plataforma . "' ";
                   		}
 
+                      if (isset ( $dispositivo ) && $dispositivo != "") {
+                        $cadenaSql.= "AND dispositivo='" . $dispositivo . "' ";
+                      }
                         $cadenaSql = $this->sql->getCadenaSql('consultaFiltroPlataforma', $cadenaSql);
                         $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
@@ -109,11 +126,9 @@ class procesarAjax
 
                                 $resultadoFinal[] = array(
                                     'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.$valor['descripcion'],
-                                    'descripcion' => $valor['descripcion'],
                                     'plataforma' => $valor['nombre_plataforma'],
-                                    'sistema' => $valor['nombre_sistema'],
                                     'fecha' => $valor['fecha_publicacion'],
-                                    'version' =>$valor['version']
+                                    'dispositivo' =>$valor['nombre_dispositivo']
                                   );
 
                             $total = count($resultadoFinal);

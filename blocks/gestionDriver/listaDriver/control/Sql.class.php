@@ -31,13 +31,13 @@ class Sql extends \Sql
                  */
 
             case 'consultaParticular':
-                $cadenaSql = " SELECT id_driver, nombredriver,descripcion,nombre_categoria, nombre_sistema, nombre_plataforma,version, fecha_publicacion ";
+                $cadenaSql = " SELECT id_driver, nombredriver,descripcion,nombre_dispositivo, nombre_plataforma, fecha_publicacion ";
                 $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo ";
                 $cadenaSql.= " WHERE estado_driver=1;";
                 break;
 
                 case 'consultaFiltroPlataforma':
-                    $cadenaSql = " SELECT id_driver,plataforma, nombredriver,descripcion,nombre_categoria, nombre_sistema, nombre_plataforma,version, fecha_publicacion ";
+                    $cadenaSql = " SELECT id_driver,plataforma, nombredriver,descripcion,nombre_dispositivo, nombre_plataforma,fecha_publicacion ";
                     $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo ";
                     $cadenaSql.= " WHERE estado_driver=1 ";
                     $cadenaSql .= str_replace("\\","",$variable);
@@ -51,6 +51,15 @@ class Sql extends \Sql
               $cadenaSql.= " WHERE estado_plataforma=1) as data ";
               $cadenaSql .= "WHERE value LIKE '%" . $_GET ['query'] . "%' ";
               break;
+
+              case 'consultarDispositivo':
+                $cadenaSql = " SELECT value , data ";
+                $cadenaSql .= "FROM ";
+                $cadenaSql.= " (SELECT id_dispositivo as data, nombre_dispositivo as value ";
+                $cadenaSql.= "FROM `arpegiodata_dispositivo` ";
+                $cadenaSql.= " WHERE estado_dispositivo=1) as data ";
+                $cadenaSql .= "WHERE value LIKE '%" . $_GET ['query'] . "%' ";
+                break;
         }
 
         return $cadenaSql;

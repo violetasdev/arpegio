@@ -57,9 +57,26 @@ $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($caden
 // URL Consultar Proyectos
 $urlConsultarPlataforma = $url . $cadena;
 
+
+// Variables para Con
+$cadenaACodificar = "pagina=" . $this->miConfigurador->getVariableConfiguracion("pagina");
+$cadenaACodificar .= "&procesarAjax=true";
+$cadenaACodificar .= "&action=index.php";
+$cadenaACodificar .= "&bloqueNombre=" . $esteBloque["nombre"];
+$cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
+$cadenaACodificar .= "&funcion=consultaDispositivo";
+
+// Codificar las variables
+$enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+$cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($cadenaACodificar, $enlace);
+
+// URL Consultar Proyectos
+$urlConsultarDispositivo = $url . $cadena;
+
 ?>
 <script type='text/javascript'>
 var plat= "";
+var dis= "";
 
 $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
  minChars: 2,
@@ -67,6 +84,18 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
  onSelect: function (suggestion) {
      $("#<?php echo $this->campoSeguro('id_plataforma');?>").val(suggestion.data);
      plat =  $("#<?php echo $this->campoSeguro('id_plataforma');?>").val();
+          actualizarTabla();
+     }
+
+});
+
+
+$("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
+ minChars: 2,
+ serviceUrl: '<?php echo $urlConsultarDispositivo;?>',
+ onSelect: function (suggestion) {
+     $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val(suggestion.data);
+     dis =  $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val();
           actualizarTabla();
      }
 
@@ -121,11 +150,10 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
                       dataSrc:"data"
                   },
                   columns: [
-                  { data :"plataforma" },
-                  { data :"nombre" },
-                  { data :"sistema" },
-                  { data :"version" },
-                  { data :"fecha" },
+                    { data :"plataforma" },
+                    { data :"dispositivo" },
+                    { data :"nombre" },
+                    { data :"fecha" },
                   ]
     } );
 } );
@@ -172,15 +200,14 @@ $('#example').DataTable().destroy();
 	        },
           ajax:{
              url:"<?php echo $urlConsultaFiltroPlataforma;?>",
-              data: { plat:plat },
+              data: { plat:plat, dis:dis },
              dataSrc:"data"
          },
          columns: [
-        { data :"plataforma" },
-         { data :"nombre" },
-       { data :"sistema" },
-         { data :"version" },
-         { data :"fecha" },
+           { data :"plataforma" },
+           { data :"dispositivo" },
+           { data :"nombre" },
+           { data :"fecha" },
          ]
 	    } );
 
