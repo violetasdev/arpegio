@@ -33,8 +33,6 @@ $cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
 $cadenaACodificar .= "&funcion=consultaFiltroPlataforma";
 $cadenaACodificar .= "&id_plataforma=".$_REQUEST['id_plataforma'];
 
-var_dump($_REQUEST);
-
 // Codificar las variables
 $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
 $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($cadenaACodificar, $enlace);
