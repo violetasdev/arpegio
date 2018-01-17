@@ -6,7 +6,8 @@ $indice = 0;
  */
 
 $estilo[$indice++] = "estiloBloque.css";
-$estilo[$indice++] = "responsive.bootstrap.min.css";
+$estilo [$indice ++] = "jquery.auto-complete.css";
+//$estilo[$indice++] = "responsive.bootstrap.min.css";
 //$estilo[$indice++] = "tabla.css";
 
 $indice++;

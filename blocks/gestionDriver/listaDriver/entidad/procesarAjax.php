@@ -41,10 +41,11 @@ class procesarAjax
                       $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado, $enlace);
                       $urlDetalle = $url . $cadena;
 
+
                         $resultadoFinal[] = array(
                             'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.$valor['descripcion'],
                             'descripcion' => $valor['descripcion'],
-                            'categoria' => $valor['nombre_categoria'],
+                            'plataforma' => $valor['nombre_plataforma'],
                             'sistema' => $valor['nombre_sistema'],
                             'fecha' => $valor['fecha_publicacion'],
                             'version' =>$valor['version']
@@ -66,26 +67,75 @@ class procesarAjax
                 }
                 echo $resultado;
                 break;
+
+                case 'consultaPlataforma':
+                   $cadenaSql = $this->sql->getCadenaSql('consultarPlataforma');
+                   $resultadoItems =  $this->esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+
+                   foreach ( $resultadoItems as $key => $values ) {
+                     $keys = array (
+                         'value',
+                         'data'
+                     );
+                     $resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
+                   }
+                   echo '{"suggestions":' . json_encode ( $resultado ) . '}';
+                    break;
+
+
+                    case 'consultaFiltroPlataforma':
+
+	                  $cadenaSql = "";
+                    $plataforma = trim($_REQUEST ['plat']);
+                      if (isset ( $plataforma ) && $plataforma != "") {
+                  			$cadenaSql.= "AND plataforma='" . $plataforma . "' ";
+                  		}
+
+                        $cadenaSql = $this->sql->getCadenaSql('consultaFiltroPlataforma', $cadenaSql);
+                        $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+
+                        if ($drivers) {
+                            foreach ($drivers as $key => $valor) {
+                              {
+                              $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+                              $valorCodificado .= "&opcion=detalleDriver";
+                              $valorCodificado .= "&id_driver=" . $valor['id_driver'];
+                              }
+
+                              $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+                              $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado, $enlace);
+                              $urlDetalle = $url . $cadena;
+
+
+                                $resultadoFinal[] = array(
+                                    'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.$valor['descripcion'],
+                                    'descripcion' => $valor['descripcion'],
+                                    'plataforma' => $valor['nombre_plataforma'],
+                                    'sistema' => $valor['nombre_sistema'],
+                                    'fecha' => $valor['fecha_publicacion'],
+                                    'version' =>$valor['version']
+                                  );
+
+                            $total = count($resultadoFinal);
+
+
+                            $resultadoF = json_encode($resultadoFinal);
+                            $resultado = '{
+                                        "recordsTotal":'     . $total . ',
+                                        "recordsFiltered":'     . $total . ',
+                                        "data":'     . $resultadoF . '}';
+                    }  } else {
+                            $resultado = '{
+                                        "recordsTotal":0 ,
+                                        "recordsFiltered":0 ,
+                                        "data": 0 }'    ;
+                        }
+                        echo $resultado;
+                        break;
+
         }
     }
 
-    public function colorCelda($valor)
-    {
-
-        if ($valor >= 0 && $valor <= 20) {
-            $color = "#F08080";
-        } elseif ($valor >= 21 && $valor <= 50) {
-            $color = "#f3aa51";
-        } elseif ($valor >= 51 && $valor <= 80) {
-            $color = "#f0ed80";
-        } elseif ($valor >= 81 && $valor <= 99) {
-            $color = "#b0e6c8";
-        } elseif ($valor >= 100) {
-            $color = "#0d7b3e";
-        }
-
-        return $color;
-    }
 }
 $miProcesarAjax = new procesarAjax($this->sql);
 exit();

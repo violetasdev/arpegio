@@ -2,10 +2,6 @@
 Código css correspondiente al Bloque.
 */
 
-#example{
-  border: none;
-}
-
 .td{
 text-align: center;
 padding: 0px;
@@ -18,13 +14,11 @@ body > table > tbody > tr > td:first-child {
 div.dataTables_filter label {
     float: right;
 }
-/*
+
 #Agrupacion{
-padding: 0 10%;
-color:orange;
-font-size: 25px;
+padding: 0 5%;
 }
-*/
+
 @media (max-height: 720px) {
 
   div.example_paginate label {

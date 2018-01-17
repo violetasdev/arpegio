@@ -117,7 +117,7 @@ class FormularioMenuUsuario {
 					</div>
 				<div class="footer-inner">
 					<div class="nav-img">
-							<a target="_blank" href="https://soporte.lanix.co/hc/es/"><img height="50px" src="'.$url.'/blocks/gui/pie/css/imagenes/pie.png"></a>
+							<a target="_blank" href="https://soporte.lanix.co/hc/es/"><img height="50px" src="'.$url.'/blocks/gui/pie/css/imagenes/pie.jpg"></a>
 					</div>
 			 	</div>
 		</div>';

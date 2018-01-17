@@ -134,4 +134,3 @@
     };
     $.validationEngineLanguage.newLang();
 })(jQuery);
-
