@@ -46,7 +46,7 @@ class Registrador
         $atributos['metodo'] = 'POST';
         // Si no se coloca, entonces toma el valor predeterminado 'index.php' (Recomendado)
         $atributos['action'] = 'index.php';
-        $atributos['titulo'] = $this->lenguaje->getCadena($esteCampo);
+        //$atributos['titulo'] = $this->lenguaje->getCadena($esteCampo);
         // Si no se coloca, entonces toma el valor predeterminado.
         $atributos['estilo'] = '';
         $atributos['marco'] = true;
@@ -278,10 +278,9 @@ class Registrador
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
-
               echo $driver[0]['descripcion'];
             }
-            
+
             echo $this->miFormulario->agrupacion('fin');
             unset($atributos);
         }

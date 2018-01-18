@@ -102,6 +102,7 @@ class procesarAjax
 	                  $cadenaSql = "";
                     $plataforma = trim($_REQUEST ['plat']);
                     $dispositivo = trim($_REQUEST ['dis']);
+
                       if (isset ( $plataforma ) && $plataforma != "") {
                   			$cadenaSql.= "AND plataforma='" . $plataforma . "' ";
                   		}
@@ -109,6 +110,7 @@ class procesarAjax
                       if (isset ( $dispositivo ) && $dispositivo != "") {
                         $cadenaSql.= "AND dispositivo='" . $dispositivo . "' ";
                       }
+                      
                         $cadenaSql = $this->sql->getCadenaSql('consultaFiltroPlataforma', $cadenaSql);
                         $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 

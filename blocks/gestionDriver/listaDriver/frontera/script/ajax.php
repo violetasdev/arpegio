@@ -74,6 +74,7 @@ $urlConsultarDispositivo = $url . $cadena;
 <script type='text/javascript'>
 var plat= "";
 var dis= "";
+var valor="";
 
 $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
  minChars: 2,
@@ -95,8 +96,23 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
      dis =  $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val();
           actualizarTabla();
      }
-
 });
+
+
+$("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
+   if($("#<?php echo $this->campoSeguro('dispositivo');?>").val()==''){
+      dis = '';
+      actualizarTabla();
+   }
+});
+
+$("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
+   if($("#<?php echo $this->campoSeguro('plataforma');?>").val()==''){
+      plat = '';
+      actualizarTabla();
+   }
+});
+
 /**
  * Código JavaScript Correspondiente a la utilización de las Peticiones Ajax(Aprobación Contrato).
  */
