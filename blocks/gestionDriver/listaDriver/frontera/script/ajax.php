@@ -31,7 +31,6 @@ $cadenaACodificar .= "&action=index.php";
 $cadenaACodificar .= "&bloqueNombre=" . $esteBloque["nombre"];
 $cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
 $cadenaACodificar .= "&funcion=consultaFiltroPlataforma";
-$cadenaACodificar .= "&id_plataforma=".$_REQUEST['id_plataforma'];
 
 // Codificar las variables
 $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
@@ -151,6 +150,7 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
                     { data :"plataforma" },
                     { data :"dispositivo" },
                     { data :"nombre" },
+                      { data :"categoria" },
                     { data :"fecha" },
                   ]
     } );
@@ -205,6 +205,7 @@ $('#example').DataTable().destroy();
            { data :"plataforma" },
            { data :"dispositivo" },
            { data :"nombre" },
+           { data :"categoria" },
            { data :"fecha" },
          ]
 	    } );

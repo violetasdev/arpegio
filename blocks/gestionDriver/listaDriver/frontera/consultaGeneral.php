@@ -180,6 +180,7 @@ class Registrador
                                             <th><center>Plataforma<center></th>
                                             <th><center>Dispositivo<center></th>
                                             <th><center>Nombre<center></th>
+                                            <th><center>Categoria<center></th>
                                             <th><center>Fecha<center></th>
                                         </tr>
                                     </thead>

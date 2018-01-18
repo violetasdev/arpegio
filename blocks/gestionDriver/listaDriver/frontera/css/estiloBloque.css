@@ -19,6 +19,11 @@ div.dataTables_filter label {
 padding: 0 5%;
 }
 
+#AgrupacionSmall{
+font-size: 15px;
+}
+
+
 @media (max-height: 720px) {
 
   div.example_paginate label {

@@ -26,7 +26,7 @@ form fieldset legend {
 form div label {
 	font-size: 15px;
 	font-weight: normal;
-	font-family: Arial, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif
 	display: block;
 	float: left;
 	padding: 3px 5px;
@@ -45,7 +45,7 @@ form input[type="text"]:focus {
 .etiquetaTextoLateral {
 	font-size: 13px;
 	font-weight: normal;
-	font-family: Arial, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif
 	display: block;
 	float: left;
 	padding: 3px 5px;
@@ -216,7 +216,7 @@ div.campoBotonRadial {
 	width: 90%;
 	margin: 5px auto 5px auto;
 	font-size: 12px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 	float: left;
 	border-collapse: collapse;
 	border-width: 0px;
@@ -230,7 +230,7 @@ div.campoCuadroSeleccion {
 	width: 90%;
 	margin: 0px auto 0px auto;
 	font-size: 12px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 	float: left;
 	border-collapse: collapse;
 	border-width: 0px;
@@ -244,7 +244,7 @@ div.campoCuadroSeleccionCorta {
 	width: 45%;
 	margin: 0px auto 0px auto;
 	font-size: 12px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 	float: left;
 	border-collapse: collapse;
 	border-width: 0px;
@@ -330,8 +330,8 @@ div.campoTextoEtiqueta {
 	border-style: solid;
 	border-color: #000000;
 	border-spacing: 0px;
-	font-size: 13px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-size: 15px;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
 div.campoMapaEtiqueta {
@@ -345,7 +345,7 @@ div.campoMapaEtiqueta {
 	border-color: #000000;
 	border-spacing: 0px;
 	font-size: 14px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 	font-weight: bold;
 }
 
@@ -359,8 +359,8 @@ div.campoTextoContenido {
 	border-spacing: 0px;
 	margin: 1px 0 1px 0;
 	padding: 2px;
-	font-size: 12px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-size: 15px;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 	font-style: italic;
 }
 
@@ -371,7 +371,7 @@ div.campoTextoContenidoSolo {
 div.campoMarcador {
 	width: 100%;
 	font-size: 14px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 	font-style: italic;
 }
 
@@ -484,7 +484,7 @@ div.general {
 	border-spacing: 0px;
 	margin: 5px auto 5px auto;
 	padding: 5px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
 div.campoBoton {
@@ -529,7 +529,7 @@ div.marcoConfirmar {
 	border-color: #000000;
 	border-spacing: 0px;
 	margin: 5px auto 15px auto;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
 div.marcoTitulo {
@@ -543,7 +543,7 @@ div.marcoTitulo {
 	background-color: #AAAAAA;
 	margin: 5px auto 15px auto;
 	padding: 5px 5px 5px 10px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
 div.marcoTituloSimple {
@@ -556,7 +556,7 @@ div.marcoTituloSimple {
 	border-spacing: 0px;
 	margin: 5px auto 15px auto;
 	padding: 5px 5px 5px 10px;
-	font-family: "Arial", Verdana, Trebuchet MS, Helvetica, sans-serif;
+	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
 div.espacioBlanco {

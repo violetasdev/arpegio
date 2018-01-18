@@ -46,7 +46,8 @@ class procesarAjax
                           'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.$valor['descripcion'],
                           'plataforma' => $valor['nombre_plataforma'],
                           'fecha' => $valor['fecha_publicacion'],
-                          'dispositivo' =>$valor['nombre_dispositivo']
+                          'dispositivo' =>$valor['nombre_dispositivo'],
+                          'categoria' =>$valor['nombre_categoria'],
                           );
 
                     $total = count($resultadoFinal);
@@ -128,7 +129,8 @@ class procesarAjax
                                     'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.$valor['descripcion'],
                                     'plataforma' => $valor['nombre_plataforma'],
                                     'fecha' => $valor['fecha_publicacion'],
-                                    'dispositivo' =>$valor['nombre_dispositivo']
+                                    'dispositivo' =>$valor['nombre_dispositivo'],
+                                    'categoria' =>$valor['nombre_categoria'],
                                   );
 
                             $total = count($resultadoFinal);
