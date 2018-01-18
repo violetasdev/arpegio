@@ -23,6 +23,10 @@ padding: 0 5%;
 font-size: 15px;
 }
 
+#botonDescarga{
+  background-color: orange;
+  border-color:orange;
+}
 
 @media (max-height: 720px) {
 

@@ -73,7 +73,7 @@ class Registrador
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
-              $esteCampo = 'plataforma';
+              $esteCampo = 'nombre_plataforma';
               $atributos ['nombre'] = $esteCampo;
               $atributos ['tipo'] = "text";
               $atributos ['id'] = $esteCampo;
@@ -279,7 +279,9 @@ class Registrador
             unset($atributos);
             {
 
+              echo $driver[0]['descripcion'];
             }
+            
             echo $this->miFormulario->agrupacion('fin');
             unset($atributos);
         }
