@@ -14,6 +14,8 @@ $indice = 0;
 $funcion[$indice++] = "jquery.dataTables.min.js";
 $funcion[$indice++] = "dataTables.bootstrap.min.js";
 $funcion[$indice++] = "dataTables.responsive.min.js";
+$funcion[$indice++] = "jquery.autocomplete.min.js";
+$funcion[$indice++] = "jquery.autocomplete.js";
 
 $rutaBloque = $this->miConfigurador->getVariableConfiguracion("host");
 $rutaBloque .= $this->miConfigurador->getVariableConfiguracion("site");
@@ -40,5 +42,3 @@ if (isset($funcion[0])) {
 include "ajax.php";
 
 ?>
-
-

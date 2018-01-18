@@ -46,12 +46,18 @@ class Registrador
         $atributos['metodo'] = 'POST';
         // Si no se coloca, entonces toma el valor predeterminado 'index.php' (Recomendado)
         $atributos['action'] = 'index.php';
-        $atributos['titulo'] = $this->lenguaje->getCadena($esteCampo);
+        //$atributos['titulo'] = $this->lenguaje->getCadena($esteCampo);
         // Si no se coloca, entonces toma el valor predeterminado.
         $atributos['estilo'] = '';
         $atributos['marco'] = true;
         $tab = 1;
         // ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
+
+
+        $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
+        $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+
+        $atributosGlobales['campoSeguro'] = 'true';
 
         // ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
         $atributos['tipoEtiqueta'] = 'inicio';
@@ -63,29 +69,220 @@ class Registrador
 
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
-            $atributos['leyenda'] = "Detalle Driver";
+            $atributos['leyenda'] = $driver[0]['nombredriver'];
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
+              $esteCampo = 'nombre_plataforma';
+              $atributos ['nombre'] = $esteCampo;
+              $atributos ['tipo'] = "text";
+              $atributos ['id'] = $esteCampo;
+              $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+              $atributos ["etiquetaObligatorio"] = true;
+              $atributos ['tab'] = $tab ++;
+              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['estilo'] = "bootstrap";
+              $atributos ['evento'] = '';
+              $atributos ['deshabilitado'] = false;
+              $atributos ['readonly'] = true;
+              $atributos ['columnas'] = 1;
+              $atributos ['tamanno'] = 1;
+              $atributos ['texto'] = $driver [0]['nombre_plataforma'];
+              $atributos ['ajax_function'] = "";
+              $atributos ['ajax_control'] = $esteCampo;
+              $atributos ['limitar'] = false;
+              $atributos ['anchoCaja'] = 5;
+              $atributos ['miEvento'] = '';
+              $atributos ['validar'] = '';
+              // Aplica atributos globales al control
+              $atributos = array_merge ( $atributos, $atributosGlobales );
+              echo $this->miFormulario->campoTexto ( $atributos );
+              unset ( $atributos );
 
-                // ------------------Division para los botones-------------------------
-                $atributos['id'] = 'divMensaje';
-                $atributos['estilo'] = 'marcoBotones';
-                echo $this->miFormulario->division("inicio", $atributos);
-                unset($atributos);
-                {
+              $esteCampo = 'dispositivo';
+              $atributos ['nombre'] = $esteCampo;
+              $atributos ['tipo'] = "text";
+              $atributos ['id'] = $esteCampo;
+              $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+              $atributos ["etiquetaObligatorio"] = true;
+              $atributos ['tab'] = $tab ++;
+              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['estilo'] = "bootstrap";
+              $atributos ['evento'] = '';
+              $atributos ['deshabilitado'] = false;
+              $atributos ['readonly'] = true;
+              $atributos ['columnas'] = 1;
+              $atributos ['tamanno'] = 1;
+              $atributos ['texto'] = $driver [0]['nombre_dispositivo'];
+              $atributos ['ajax_function'] = "";
+              $atributos ['ajax_control'] = $esteCampo;
+              $atributos ['limitar'] = false;
+              $atributos ['anchoCaja'] = 5;
+              $atributos ['miEvento'] = '';
+              $atributos ['validar'] = '';
+              // Aplica atributos globales al control
+              $atributos = array_merge ( $atributos, $atributosGlobales );
+              echo $this->miFormulario->campoTexto ( $atributos );
+              unset ( $atributos );
+
+              $esteCampo = 'nombre_categoria';
+              $atributos ['nombre'] = $esteCampo;
+              $atributos ['tipo'] = "text";
+              $atributos ['id'] = $esteCampo;
+              $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+              $atributos ["etiquetaObligatorio"] = true;
+              $atributos ['tab'] = $tab ++;
+              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['estilo'] = "bootstrap";
+              $atributos ['evento'] = '';
+              $atributos ['deshabilitado'] = false;
+              $atributos ['readonly'] = true;
+              $atributos ['columnas'] = 1;
+              $atributos ['tamanno'] = 1;
+              $atributos ['texto'] = $driver [0]['nombre_categoria'];
+              $atributos ['ajax_function'] = "";
+              $atributos ['ajax_control'] = $esteCampo;
+              $atributos ['limitar'] = false;
+              $atributos ['anchoCaja'] = 5;
+              $atributos ['miEvento'] = '';
+              $atributos ['validar'] = '';
+              // Aplica atributos globales al control
+              $atributos = array_merge ( $atributos, $atributosGlobales );
+              echo $this->miFormulario->campoTexto ( $atributos );
+              unset ( $atributos );
+
+              $esteCampo = 'nombre_sistema';
+              $atributos ['nombre'] = $esteCampo;
+              $atributos ['tipo'] = "text";
+              $atributos ['id'] = $esteCampo;
+              $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+              $atributos ["etiquetaObligatorio"] = true;
+              $atributos ['tab'] = $tab ++;
+              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['estilo'] = "bootstrap";
+              $atributos ['evento'] = '';
+              $atributos ['deshabilitado'] = false;
+              $atributos ['readonly'] = true;
+              $atributos ['columnas'] = 1;
+              $atributos ['tamanno'] = 1;
+              $atributos ['texto'] = $driver [0]['nombre_sistema'];
+              $atributos ['ajax_function'] = "";
+              $atributos ['ajax_control'] = $esteCampo;
+              $atributos ['limitar'] = false;
+              $atributos ['anchoCaja'] = 5;
+              $atributos ['miEvento'] = '';
+              $atributos ['validar'] = '';
+              // Aplica atributos globales al control
+              $atributos = array_merge ( $atributos, $atributosGlobales );
+              echo $this->miFormulario->campoTexto ( $atributos );
+              unset ( $atributos );
+
+              $esteCampo = 'version';
+          		$atributos ['nombre'] = $esteCampo;
+          		$atributos ['tipo'] = "text";
+          		$atributos ['id'] = $esteCampo;
+          		$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+          		$atributos ["etiquetaObligatorio"] = true;
+          		$atributos ['tab'] = $tab ++;
+          		$atributos ['anchoEtiqueta'] = 2;
+          		$atributos ['estilo'] = "bootstrap";
+          		$atributos ['evento'] = '';
+          		$atributos ['deshabilitado'] = false;
+          		$atributos ['readonly'] = true;
+          		$atributos ['columnas'] = 1;
+          		$atributos ['tamanno'] = 1;
+          		$atributos ['texto'] = $driver [0]['version'];
+          		$atributos ['ajax_function'] = "";
+          		$atributos ['ajax_control'] = $esteCampo;
+          		$atributos ['limitar'] = false;
+          		$atributos ['anchoCaja'] = 5;
+          		$atributos ['miEvento'] = '';
+          		$atributos ['validar'] = '';
+          		// Aplica atributos globales al control
+          		$atributos = array_merge ( $atributos, $atributosGlobales );
+          		echo $this->miFormulario->campoTexto ( $atributos );
+          		unset ( $atributos );
+
+              $esteCampo = 'publicacion';
+              $atributos ['nombre'] = $esteCampo;
+              $atributos ['tipo'] = "text";
+              $atributos ['id'] = $esteCampo;
+              $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+              $atributos ["etiquetaObligatorio"] = true;
+              $atributos ['tab'] = $tab ++;
+              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['estilo'] = "bootstrap";
+              $atributos ['evento'] = '';
+              $atributos ['deshabilitado'] = false;
+              $atributos ['readonly'] = true;
+              $atributos ['columnas'] = 1;
+              $atributos ['tamanno'] = 1;
+              $atributos ['texto'] = $driver [0]['fecha_publicacion'];
+              $atributos ['ajax_function'] = "";
+              $atributos ['ajax_control'] = $esteCampo;
+              $atributos ['limitar'] = false;
+              $atributos ['anchoCaja'] = 5;
+              $atributos ['miEvento'] = '';
+              $atributos ['validar'] = '';
+              // Aplica atributos globales al control
+              $atributos = array_merge ( $atributos, $atributosGlobales );
+              echo $this->miFormulario->campoTexto ( $atributos );
+              unset ( $atributos );
 
 
-                }
-                // ------------------Fin Division para los botones-------------------------
-                echo $this->miFormulario->division("fin");
-                unset($atributos);
 
             }
 
             echo $this->miFormulario->agrupacion('fin');
             unset($atributos);
 
+            // ------------------Division para los botones-------------------------
+              $atributos ["id"] = "botones";
+              $atributos ["estilo"] = "marcoBotones";
+              $atributos ["estiloEnLinea"] = "";
+              echo $this->miFormulario->division ( "inicio", $atributos );
+              unset ( $atributos );
+
+              // -----------------CONTROL: Botón ----------------------------------------------------------------
+                        $esteCampo = 'botonDescarga';
+                        $atributos["id"] = $esteCampo;
+                        $atributos["tabIndex"] = $tab;
+                        $atributos["tipo"] = 'boton';
+                        // submit: no se coloca si se desea un tipo button genérico
+                        $atributos['submit'] = true;
+                        $atributos["simple"] = true;
+                        $atributos["estiloMarco"] = '';
+                        $atributos["estiloBoton"] = 'info';
+                        $atributos["block"] = false;
+                        // verificar: true para verificar el formulario antes de pasarlo al servidor.
+                        $atributos["verificar"] = '';
+                        $atributos["tipoSubmit"] = 'jquery'; // Dejar vacio para un submit normal, en este caso se ejecuta la función submit declarada en ready.js
+                        $atributos["valor"] = $this->lenguaje->getCadena($esteCampo);
+                        $atributos['nombreFormulario'] = $esteBloque['nombre'];
+                        $tab++;
+
+                        // Aplica atributos globales al control
+                        $atributos = array_merge($atributos);
+                        echo $this->miFormulario->campoBotonBootstrapHtml($atributos);
+                        unset($atributos);
+
+              // -----------------FIN CONTROL: Botón -----------------------------------------------------------
+
+              // ------------------Fin Division para los botones-------------------------
+              echo $this->miFormulario->division ( "fin" );
+              unset ( $atributos );
+
+            $esteCampo = 'Agrupacion';
+            $atributos['id'] = $esteCampo;
+            $atributos['leyenda'] = "Descripción";
+            echo $this->miFormulario->agrupacion('inicio', $atributos);
+            unset($atributos);
+            {
+              echo $driver[0]['descripcion'];
+            }
+
+            echo $this->miFormulario->agrupacion('fin');
+            unset($atributos);
         }
         {
 

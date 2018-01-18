@@ -117,7 +117,13 @@ class FormularioMenuUsuario {
 					</div>
 				<div class="footer-inner">
 					<div class="nav-img">
-							<a target="_blank" href="https://soporte.lanix.co/hc/es/"><img height="50px" src="'.$url.'/blocks/gui/pie/css/imagenes/pie.png"></a>
+							<a target="_blank" href="https://soporte.lanix.co/hc/es/"><img height="50px" src="'.$url.'/blocks/gui/pie/css/imagenes/pie.jpg"></a>
+					</div>
+					<div class="nav-img">
+							<a target="_blank" href="https://soporte.lanix.co/hc/es/">Volver al Centro de Soporte</a>
+					</div>
+					<div class="nav-img">
+							<p href="#">Línea de atención: 01-800-518-4646. Lun-Vier 9:00am-5:00 pm</p>
 					</div>
 			 	</div>
 		</div>';

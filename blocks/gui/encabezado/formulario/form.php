@@ -120,10 +120,10 @@ class FormularioMenuUsuario {
 		<div class="marco-navegacion">
 				<div class="navbar-custom-menu">
 						<div class="logo">
-         				<a href="'.$url.'/index.php""><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.png"></a>
+         				<a href="'.$url.'/index.php""><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.jpg"></a>
 				 		</div>
 						<div class="menuSide">
-  					<span style="color:#feb327;font-size:20px;cursor:pointer" onclick="openNav()">Descargas y Drivers</span>
+  					<span style="color:#feb327;font-size:20px;cursor:pointer" onclick="openNav()">Centro de Drivers y Descargas</span>
 						</div>
 				 </div>
       </div>
@@ -143,7 +143,10 @@ class FormularioMenuUsuario {
   </ul>
   </a>
   </li>
+		<li></li>
+			<li><br><br><br></li>
   <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/requests/new">Contactar un Agente de Soporte</a></li>
+	<li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/">Volver al Centro de Soporte</a></li>
   </ul>
 </div>
 

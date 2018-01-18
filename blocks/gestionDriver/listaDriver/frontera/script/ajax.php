@@ -24,9 +24,94 @@ $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($caden
 // URL Consultar Proyectos
 $urlConsultaParticular = $url . $cadena;
 
+// Variables para Con
+$cadenaACodificar = "pagina=" . $this->miConfigurador->getVariableConfiguracion("pagina");
+$cadenaACodificar .= "&procesarAjax=true";
+$cadenaACodificar .= "&action=index.php";
+$cadenaACodificar .= "&bloqueNombre=" . $esteBloque["nombre"];
+$cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
+$cadenaACodificar .= "&funcion=consultaFiltroPlataforma";
+
+// Codificar las variables
+$enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+$cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($cadenaACodificar, $enlace);
+
+// URL Consultar Proyectos
+$urlConsultaFiltroPlataforma= $url . $cadena;
+
+// Variables para Con
+$cadenaACodificar = "pagina=" . $this->miConfigurador->getVariableConfiguracion("pagina");
+$cadenaACodificar .= "&procesarAjax=true";
+$cadenaACodificar .= "&action=index.php";
+$cadenaACodificar .= "&bloqueNombre=" . $esteBloque["nombre"];
+$cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
+$cadenaACodificar .= "&funcion=consultaPlataforma";
+
+// Codificar las variables
+$enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+$cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($cadenaACodificar, $enlace);
+
+// URL Consultar Proyectos
+$urlConsultarPlataforma = $url . $cadena;
+
+
+// Variables para Con
+$cadenaACodificar = "pagina=" . $this->miConfigurador->getVariableConfiguracion("pagina");
+$cadenaACodificar .= "&procesarAjax=true";
+$cadenaACodificar .= "&action=index.php";
+$cadenaACodificar .= "&bloqueNombre=" . $esteBloque["nombre"];
+$cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
+$cadenaACodificar .= "&funcion=consultaDispositivo";
+
+// Codificar las variables
+$enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+$cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($cadenaACodificar, $enlace);
+
+// URL Consultar Proyectos
+$urlConsultarDispositivo = $url . $cadena;
 
 ?>
 <script type='text/javascript'>
+var plat= "";
+var dis= "";
+var valor="";
+
+$("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
+ minChars: 2,
+ serviceUrl: '<?php echo $urlConsultarPlataforma;?>',
+ onSelect: function (suggestion) {
+     $("#<?php echo $this->campoSeguro('id_plataforma');?>").val(suggestion.data);
+     plat =  $("#<?php echo $this->campoSeguro('id_plataforma');?>").val();
+          actualizarTabla();
+     }
+
+});
+
+
+$("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
+ minChars: 2,
+ serviceUrl: '<?php echo $urlConsultarDispositivo;?>',
+ onSelect: function (suggestion) {
+     $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val(suggestion.data);
+     dis =  $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val();
+          actualizarTabla();
+     }
+});
+
+
+$("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
+   if($("#<?php echo $this->campoSeguro('dispositivo');?>").val()==''){
+      dis = '';
+      actualizarTabla();
+   }
+});
+
+$("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
+   if($("#<?php echo $this->campoSeguro('plataforma');?>").val()==''){
+      plat = '';
+      actualizarTabla();
+   }
+});
 
 /**
  * Código JavaScript Correspondiente a la utilización de las Peticiones Ajax(Aprobación Contrato).
@@ -35,6 +120,18 @@ $urlConsultaParticular = $url . $cadena;
  $(document).ready(function() {
 
   $('#example').DataTable( {
+    "processing": true,
+      "searching": true,
+      "info":false,
+      "paging": false,
+      "scrollY":"300px",
+      "scrollX": true,
+      "scrollCollapse": true,
+      "responsive": true,
+      "columnDefs": [
+        {"className": "dt-center", "targets": "_all"}
+      ],
+    "orderCellsTop": true,
         language: {
             "sProcessing":     "Procesando...",
             "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -66,21 +163,71 @@ $urlConsultaParticular = $url . $cadena;
                       dataSrc:"data"
                   },
                   columns: [
-                  { data :"nombre" },
-                  { data :"categoria" },
-                  { data :"sistema" },
-                  { data :"version" },
-                  { data :"fecha" },
+                    { data :"plataforma" },
+                    { data :"dispositivo" },
+                    { data :"nombre" },
+                      { data :"categoria" },
+                    { data :"fecha" },
                   ]
-
-//
     } );
-
-
-
-
-
-
 } );
 
+function actualizarTabla(){
+
+$('#example').DataTable().destroy();
+	    var table = $('#example').DataTable( {
+	    	"processing": true,
+	        "searching": true,
+	        "info":false,
+	        "paging": false,
+	        "scrollY":"300px",
+	        "scrollX": true,
+	        "scrollCollapse": true,
+	        "responsive": true,
+	       	"columnDefs": [
+	        	{"className": "dt-center", "targets": "_all"}
+	        ],
+	    	"orderCellsTop": true,
+	    	"language": {
+	            "sProcessing":     "Procesando...",
+			    "sLengthMenu":     "Mostrar _MENU_ registros",
+			    "sZeroRecords":    "No se encontraron resultados",
+			    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+			    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+			    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+			    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+			    "sInfoPostFix":    "",
+			    "sSearch":         "Buscar:",
+			    "sUrl":            "",
+			    "sInfoThousands":  ",",
+			    "sLoadingRecords": "Cargando...",
+			    "oPaginate": {
+			        "sFirst":    "Primero",
+			        "sLast":     "Último",
+			        "sNext":     "Siguiente",
+			        "sPrevious": "Anterior"
+			    },
+			    "oAria": {
+			        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+			        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+			    }
+	        },
+          ajax:{
+             url:"<?php echo $urlConsultaFiltroPlataforma;?>",
+              data: { plat:plat, dis:dis },
+             dataSrc:"data"
+         },
+         columns: [
+           { data :"plataforma" },
+           { data :"dispositivo" },
+           { data :"nombre" },
+           { data :"categoria" },
+           { data :"fecha" },
+         ]
+	    } );
+
+	    setInterval( function () {
+    		table.fnReloadAjax();
+		}, 30000 );
+}
 </script>
