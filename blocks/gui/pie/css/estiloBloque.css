@@ -2,6 +2,17 @@
 	float: left;
 	margin: auto  0 ;
 	padding: 0.5em;
+	color: white;
+}
+
+.nav-img a{
+	color: #ababab;
+	font-size: 15px;
+}
+
+.nav-img p{
+	color: #ababab;
+	font-size: 15px;
 }
 
 .contacto-item{
