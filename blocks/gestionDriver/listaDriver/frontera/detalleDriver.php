@@ -80,7 +80,7 @@ class Registrador
               $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
               $atributos ["etiquetaObligatorio"] = true;
               $atributos ['tab'] = $tab ++;
-              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['anchoEtiqueta'] = 1;
               $atributos ['estilo'] = "bootstrap";
               $atributos ['evento'] = '';
               $atributos ['deshabilitado'] = false;
@@ -91,7 +91,7 @@ class Registrador
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
-              $atributos ['anchoCaja'] = 5;
+              $atributos ['anchoCaja'] = 1;
               $atributos ['miEvento'] = '';
               $atributos ['validar'] = '';
               // Aplica atributos globales al control
@@ -106,7 +106,7 @@ class Registrador
               $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
               $atributos ["etiquetaObligatorio"] = true;
               $atributos ['tab'] = $tab ++;
-              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['anchoEtiqueta'] = 1;
               $atributos ['estilo'] = "bootstrap";
               $atributos ['evento'] = '';
               $atributos ['deshabilitado'] = false;
@@ -117,7 +117,7 @@ class Registrador
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
-              $atributos ['anchoCaja'] = 5;
+              $atributos ['anchoCaja'] = 1;
               $atributos ['miEvento'] = '';
               $atributos ['validar'] = '';
               // Aplica atributos globales al control
@@ -132,7 +132,7 @@ class Registrador
               $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
               $atributos ["etiquetaObligatorio"] = true;
               $atributos ['tab'] = $tab ++;
-              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['anchoEtiqueta'] = 1;
               $atributos ['estilo'] = "bootstrap";
               $atributos ['evento'] = '';
               $atributos ['deshabilitado'] = false;
@@ -143,7 +143,7 @@ class Registrador
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
-              $atributos ['anchoCaja'] = 5;
+              $atributos ['anchoCaja'] = 1;
               $atributos ['miEvento'] = '';
               $atributos ['validar'] = '';
               // Aplica atributos globales al control
@@ -169,7 +169,7 @@ class Registrador
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
-              $atributos ['anchoCaja'] = 5;
+              $atributos ['anchoCaja'] = 1;
               $atributos ['miEvento'] = '';
               $atributos ['validar'] = '';
               // Aplica atributos globales al control
@@ -195,7 +195,7 @@ class Registrador
           		$atributos ['ajax_function'] = "";
           		$atributos ['ajax_control'] = $esteCampo;
           		$atributos ['limitar'] = false;
-          		$atributos ['anchoCaja'] = 5;
+          		$atributos ['anchoCaja'] = 1;
           		$atributos ['miEvento'] = '';
           		$atributos ['validar'] = '';
           		// Aplica atributos globales al control
@@ -221,7 +221,7 @@ class Registrador
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
-              $atributos ['anchoCaja'] = 5;
+              $atributos ['anchoCaja'] = 1;
               $atributos ['miEvento'] = '';
               $atributos ['validar'] = '';
               // Aplica atributos globales al control

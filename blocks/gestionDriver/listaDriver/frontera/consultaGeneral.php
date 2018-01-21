@@ -64,7 +64,7 @@ class Registrador
 
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
-            $atributos['leyenda'] = "Descargas Disponibles ".$dispositivo;
+            $atributos['leyenda'] = "Descargas Disponibles ";
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
