@@ -109,39 +109,6 @@ class FormularioMenuUsuario {
 	$redireccion = $url2 . $_REQUEST [$enlace];
 
 
-
-/*		echo '
-
-			<div id="mySidenav" class="sidenav">
-			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-				<div class="wrapper">
-  <ul data-drilldown>
-    <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/sections/201411123-Especificaciones-y-Caracter%C3%ADsticas">Móvil</a></li>
-    <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/sections/115001440306-Especificaciones-y-Caracter%C3%ADsticas">Tablet</a></li>
-    <li><a href="#" data-drilldown-button>Cómputo
-      <ul data-drilldown-sub>
-          <li><a href="#" data-drilldown-back>&larr; Volver</a></li>
-      <li><a href="'.$redireccion.'">Lanix Neuron A X16P</a></li>
-			<li><a href="#">Lanix Neuron V 16P</a></li>
-  </ul>
-  </a>
-  </li>
-		<li></li>
-			<li><br><br><br></li>
-  <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/requests/new">Contactar un Agente de Soporte</a></li>
-	<li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/">Volver al Centro de Soporte</a></li>
-  </ul>
-</div>
-
-			</div>
-
-
-			';
-*/
-
-		// ------------------- SECCION: Paso de variables ------------------------------------------------
-
 		/**
 		 * En algunas ocasiones es útil pasar variables entre las diferentes páginas.
 		 * SARA permite realizar esto a través de tres
@@ -220,12 +187,10 @@ class FormularioMenuUsuario {
 		}
 		$i = 0;
 
-		var_dump($arreglo);
-
 		foreach ( $arreglo as $valor => $key ) {
 			if (isset ( $key [0] ['clase_enlace'] ) && $key [0] ['clase_enlace'] == 'menu') {
 
-				$menu .= ($i == 0) ? '<li><a data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '">' . $valor . '</a></li>' : '<li><a href="' . $this->CrearUrl ( $key [0] ) . '" data-drilldown-item">' . $valor . '</a><li>';
+				$menu .= ($i == 0) ? '<li><a data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '" >' . $valor . '</a></li>' : '<li><a data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '">' . $valor . '</a><li>';
 			} else {
 
 				$menu .= $this->ConstruirGrupoGeneralMenu ( $key, $valor );
@@ -265,76 +230,34 @@ class FormularioMenuUsuario {
 		$i = 0;
 		foreach ( $ArrayAtributos as $valor ) {
 
-			if (isset ( $valor ['clase_enlace'] ) && $valor ['clase_enlace'] == "normal") {
+			if (isset ( $valor ['clase_enlace'] ) && $valor ['clase_enlace'] == "submenu") {
 
 				$enlace = $valor ['id_enlace'];
 
-				$submenu .= '<li><a href="#" data-drilldown-button>Cómputo
-				      <ul  data-drilldown-sub>
-			                                ';
+				$submenu .= ' <li><a href="#" data-drilldown-button>' . $valor ['titulo_enlace'] . '
+                                <ul  data-drilldown-sub>     <li><a href="#" data-drilldown-back>&larr; Volver</a></li>
+                                ';
 
 				foreach ( $ArrayAtributos as $valor ) {
-
 					if ($valor ['submenu'] == $enlace) {
-
-						$image = "";
-
-						if ($valor ['icon'] != "") {
-							$image = '<img src="' . $valor ['icon'] . '">  ';
-						}
-
-						$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' . $image . $valor ['titulo_enlace'] . '</a></li>';
+						$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' .$valor ['titulo_enlace'] . '</a></li>';
 					}
 				}
 
-				$submenu .= '
-                            </ul>
-                        </li>';
-			} else if ($valor ['submenu'] == 0) {
+				$submenu .= '</ul></a></li>';
 
-				$image = "";
-
-				if ($valor ['icon'] != "") {
-					$image = '<img src="' . $this->_rutaBloque . "/imagenes/" . $valor ['icon'] . '">  ';
-				}
-
-				$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' . $image . $valor ['titulo_enlace'] . '</a></li>';
+			} else if ($valor ['submenu'] ==0) {
+				$submenu .= '<li><a href="'. $this->CrearUrl ( $valor ) . '" data-drilldown-item>'. $valor ['titulo_enlace'] . '</a></li>';
 			}
 		}
 
 		$cadena = '';
 
-		$cadena .= '  <li data-drilldown-button>
-                    <a>' . $nombre . '</a>
-                    <ul data-drilldown-sub>';
 		$cadena .= $submenu;
-
-		$cadena .= '  </ul>
-</a>
-                    </li>';
-
 		return $cadena;
 	}
 
-	public function ConstruirSubGrupoGeneralMenu($ArrayAtributos, $nombre) {
-		$submenu = '';
-		$i = 0;
-		foreach ( $ArrayAtributos as $valor ) {
 
-			$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' . $valor ['titulo_enlace'] . '</a></li>';
-		}
-
-		$cadena = '';
-
-		$cadena .= '<li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $nombre . '<b class="caret"></b></a>
-                    <ul class="dropdown-menu multi-level">';
-		$cadena .= $submenu;
-
-		$cadena .= '</li>';
-
-		return $cadena;
-	}
 	public function CrearUrl($atributos) {
 		if ($atributos ['tipo_enlace'] == 'interno' && ! is_null ( $atributos ['enlace'] )) {
 
