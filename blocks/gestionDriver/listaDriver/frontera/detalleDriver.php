@@ -54,8 +54,7 @@ class Registrador
         // ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
 
 
-var_dump($_REQUEST);
-exit;
+
         $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
         $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 

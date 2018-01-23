@@ -16,7 +16,6 @@ class procesarAjax
         $conexion = "arpegiodata";
 
         $this->esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
-
         // URL base
         $url = $this->miConfigurador->getVariableConfiguracion("host");
         $url .= $this->miConfigurador->getVariableConfiguracion("site");
@@ -26,7 +25,15 @@ class procesarAjax
 
         switch ($_REQUEST['funcion']) {
             case 'consultaParticular':
+
+            $_REQUEST['nombre_dispositivo']="";
+            if(isset($_REQUEST['id_dispositivo'])){
+              $cadenaSql = $this->sql->getCadenaSql('consultaParticularDispositivo',$_REQUEST['id_dispositivo']);
+            }else{
                 $cadenaSql = $this->sql->getCadenaSql('consultaParticular');
+            }
+
+
                 $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
                 if ($drivers) {
@@ -50,6 +57,7 @@ class procesarAjax
                           'categoria' =>$valor['nombre_categoria'],
                           );
 
+                    $_REQUEST['nombre_dispositivo']=$valor['nombre_dispositivo'];
                     $total = count($resultadoFinal);
 
 
@@ -110,7 +118,7 @@ class procesarAjax
                       if (isset ( $dispositivo ) && $dispositivo != "") {
                         $cadenaSql.= "AND dispositivo='" . $dispositivo . "' ";
                       }
-                      
+
                         $cadenaSql = $this->sql->getCadenaSql('consultaFiltroPlataforma', $cadenaSql);
                         $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 

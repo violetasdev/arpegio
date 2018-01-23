@@ -32,9 +32,19 @@ class Registrador
 
         // ---------------- SECCION: Parámetros Globales del Formulario ----------------------------------
 
+        $valorDispositivo='';
+        $valorPlataforma='';
         //Conexion a Base de Datos
         $conexion = "arpegiodata";
         $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
+        if(isset($_REQUEST['id_dispositivo'])){
+        $cadenaSql = $this->miSql->getCadenaSql('consultaParticularDispositivo',$_REQUEST['id_dispositivo']);
+        $dispositivo=$esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+
+$valorDispositivo=$dispositivo[0]['nombre_dispositivo'];
+$valorPlataforma=$dispositivo[0]['nombre_plataforma'];
+        }
+
 
         // ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
         $esteCampo = $esteBloque['nombre'];
@@ -60,8 +70,6 @@ class Registrador
             /**
              * Código Formulario
              */
-            $dispositivo="Lanix Neuron A X16P";
-
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
             $atributos['leyenda'] = "Descargas Disponibles ";
@@ -91,7 +99,7 @@ class Registrador
                   $atributos ['columnas'] = 1;
                   $atributos ['tamanno'] = 1;
                   $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-                  $atributos ['valor'] = "";
+                  $atributos ['valor'] = $valorPlataforma;
                   $atributos ['ajax_function'] = "";
                   $atributos ['ajax_control'] = $esteCampo;
                   $atributos ['limitar'] = false;
@@ -134,7 +142,7 @@ class Registrador
                   $atributos ['columnas'] = 1;
                   $atributos ['tamanno'] = 1;
                   $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-                  $atributos ['valor'] = "";
+                  $atributos ['valor'] = $valorDispositivo;;
                   $atributos ['ajax_function'] = "";
                   $atributos ['ajax_control'] = $esteCampo;
                   $atributos ['limitar'] = false;

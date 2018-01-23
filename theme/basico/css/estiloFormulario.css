@@ -321,7 +321,7 @@ div.cuadroTextoImportante {
 div.campoTextoEtiqueta {
 	display: block;
 	text-align: left;
-	width: 30%;
+	width: 18%;
 	float: left;
 	padding: 0px 0px;
 	margin: 1px 0 1px 0;
@@ -331,6 +331,7 @@ div.campoTextoEtiqueta {
 	border-color: #000000;
 	border-spacing: 0px;
 	font-size: 15px;
+	font-weight: bolder;
 	font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
