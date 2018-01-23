@@ -83,7 +83,7 @@ class FormularioMenuUsuario {
 		$tab = 1;
 		// ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
 
-		$conexion = "estructura";
+		$conexion = "arpegiomenu";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 
 		// ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
@@ -93,17 +93,11 @@ class FormularioMenuUsuario {
 		unset ( $atributos );
 		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
 
-	/*	$respuesta ['rol'] = array (
-
-				1 => "Application/general",
-				2 => "Application/admin",
-				3 => "Application/supervisor"
-		);
-
 		$cadenaSql = $this->miSql->getCadenaSql ( "consultarDatosMenu", $respuesta ['rol'] );
-
 		$this->atributosMenu = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
-*/
+
+		$this->ConstruirMenu ( $rutaBloque );
+
 
 		$url = $this->miConfigurador->configuracion ['host'] . $this->miConfigurador->configuracion ['site'];
 
@@ -114,49 +108,6 @@ class FormularioMenuUsuario {
 	$_REQUEST [$enlace] = $enlace . '=' . $variable;
 	$redireccion = $url2 . $_REQUEST [$enlace];
 
-
-
-		echo '
-		<div class="marco-navegacion">
-				<div class="navbar-custom-menu">
-						<div class="logo">
-         				<a href="'.$url.'/index.php""><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.jpg"></a>
-				 		</div>
-						<div class="menuSide">
-  					<span style="color:#feb327;font-size:20px;cursor:pointer" onclick="openNav()">Centro de Drivers y Descargas</span>
-						</div>
-				 </div>
-      </div>
-
-			<div id="mySidenav" class="sidenav">
-			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-				<div class="wrapper">
-  <ul data-drilldown>
-    <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/sections/201411123-Especificaciones-y-Caracter%C3%ADsticas">Móvil</a></li>
-    <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/sections/115001440306-Especificaciones-y-Caracter%C3%ADsticas">Tablet</a></li>
-    <li><a href="#" data-drilldown-button>Cómputo
-      <ul data-drilldown-sub>
-          <li><a href="#" data-drilldown-back>&larr; Volver</a></li>
-      <li><a href="'.$redireccion.'">Lanix Neuron A X16P</a></li>
-			<li><a href="#">Lanix Neuron V 16P</a></li>
-  </ul>
-  </a>
-  </li>
-		<li></li>
-			<li><br><br><br></li>
-  <li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/requests/new">Contactar un Agente de Soporte</a></li>
-	<li><a data-drilldown-item href="https://soporte.lanix.co/hc/es/">Volver al Centro de Soporte</a></li>
-  </ul>
-</div>
-
-			</div>
-
-
-			';
-
-
-		// ------------------- SECCION: Paso de variables ------------------------------------------------
 
 		/**
 		 * En algunas ocasiones es útil pasar variables entre las diferentes páginas.
@@ -208,14 +159,20 @@ class FormularioMenuUsuario {
 		$atributos ['tipoEtiqueta'] = 'fin';
 		echo $this->miFormulario->formulario ( $atributos );
 	}
-	/*function ConstruirMenu() {
+
+	public function ConstruirMenu() {
+		$url = $this->miConfigurador->configuracion ['host'] . $this->miConfigurador->configuracion ['site'];
+
 		$menu = '';
+		$menuRapido = '';
 
 		$menuGeneral = array ();
+
 		foreach ( $this->atributosMenu as $valor ) {
 
 			$menuGeneral [] = $valor ['nombre_menu'];
 		}
+
 		$menuGeneral = array_unique ( $menuGeneral );
 
 		foreach ( $menuGeneral as $valor ) {
@@ -229,11 +186,11 @@ class FormularioMenuUsuario {
 			}
 		}
 		$i = 0;
-		foreach ( $arreglo as $valor => $key ) {
 
+		foreach ( $arreglo as $valor => $key ) {
 			if (isset ( $key [0] ['clase_enlace'] ) && $key [0] ['clase_enlace'] == 'menu') {
 
-				$menu .= ($i == 0) ? '<li><a data-toggle="dropdown" href="' . $this->CrearUrl ( $key [0] ) . '">' . $valor . '</a></li>' : '<li><a href="' . $this->CrearUrl ( $key [0] ) . '" data-toggle="dropdown">' . $valor . '</a><li>';
+				$menu .= ($i == 0) ? '<li><a data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '" >' . $valor . '</a></li>' : '<li><a data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '">' . $valor . '</a><li>';
 			} else {
 
 				$menu .= $this->ConstruirGrupoGeneralMenu ( $key, $valor );
@@ -241,49 +198,67 @@ class FormularioMenuUsuario {
 			$i ++;
 		}
 
-		$cadenaHTML = '<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-					    <div class="container">
-						 <div class="navbar-header">
-					            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					                <span class="sr-only">Toggle navigation</span>
-					                <span class="icon-bar"></span>
-					                <span class="icon-bar"></span>
-					                <span class="icon-bar"></span>
-					            </button>
-					            <a class="navbar-brand" >OpenKyOS</a>
-					        </div>
-					         <div class="collapse navbar-collapse">
-					                  <ul class="nav navbar-nav">
+		$cadenaHTML = '
+		<div class="marco-navegacion">
+				<div class="navbar-custom-menu">
+						<div class="logo">
+								<a href="'.$url.'/index.php""><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.jpg"></a>
+						</div>
+						<div class="menuSide">
+						<span style="color:#feb327;font-size:20px;cursor:pointer" onclick="openNav()">Centro de Drivers y Descargas</span>
+						</div>
+				 </div>
+			</div>
 
-				';
+			<div id="mySidenav" class="sidenav">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+				<div class="wrapper">
+		<ul data-drilldown>
+
+		 ';
 		$cadenaHTML .= $menu;
-
-		$cadenaHTML .= '                      </ul>
-						                </div>
-						            </div>
-								</div>';
+		$cadenaHTML .= '
+										</ul>
+										</div>
+										</div>';
 
 		echo $cadenaHTML;
 	}
-	function ConstruirGrupoGeneralMenu($ArrayAtributos, $nombre) {
+	public function ConstruirGrupoGeneralMenu($ArrayAtributos, $nombre) {
 		$submenu = '';
 		$i = 0;
 		foreach ( $ArrayAtributos as $valor ) {
 
-			$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' . $valor ['titulo_enlace'] . '</a></li>';
+			if (isset ( $valor ['clase_enlace'] ) && $valor ['clase_enlace'] == "submenu") {
+
+				$enlace = $valor ['id_enlace'];
+
+				$submenu .= ' <li><a href="#" data-drilldown-button>' . $valor ['titulo_enlace'] . '
+                                <ul  data-drilldown-sub>     <li><a href="#" data-drilldown-back>&larr; Volver</a></li>
+                                ';
+
+				foreach ( $ArrayAtributos as $valor ) {
+					if ($valor ['submenu'] == $enlace) {
+						$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' .$valor ['titulo_enlace'] . '</a></li>';
+					}
+				}
+
+				$submenu .= '</ul></a></li>';
+
+			} else if ($valor ['submenu'] ==0) {
+				$submenu .= '<li><a href="'. $this->CrearUrl ( $valor ) . '" data-drilldown-item>'. $valor ['titulo_enlace'] . '</a></li>';
+			}
 		}
 
 		$cadena = '';
 
-		$cadena .= '<li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $nombre . '<b class="caret"></b></a>
-                    <ul class="dropdown-menu multi-level">';
 		$cadena .= $submenu;
-		$cadena .= '  </ul>
-                </li>';
 		return $cadena;
 	}
-	function CrearUrl($atributos) {
+
+
+	public function CrearUrl($atributos) {
 		if ($atributos ['tipo_enlace'] == 'interno' && ! is_null ( $atributos ['enlace'] )) {
 
 			$url = $this->miConfigurador->configuracion ['host'] . $this->miConfigurador->configuracion ['site'] . '/index.php?';
@@ -305,7 +280,8 @@ class FormularioMenuUsuario {
 		}
 
 		return $direccion;
-	}*/
+	}
+
 }
 
 $miFormulario = new FormularioMenuUsuario ( $this->lenguaje, $this->miFormulario, $this->sql );

@@ -35,3 +35,7 @@ font-size: 15px;
       text-align: right;
   }
 }
+
+campoTextoEtiqueta{
+  font-weight: bold;
+}

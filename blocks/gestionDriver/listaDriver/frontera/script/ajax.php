@@ -15,6 +15,9 @@ $cadenaACodificar .= "&action=index.php";
 $cadenaACodificar .= "&bloqueNombre=" . $esteBloque["nombre"];
 $cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
 $cadenaACodificar .= "&funcion=consultaParticular";
+if(isset($_REQUEST['id_dispositivo'])){
+$cadenaACodificar .= "&id_dispositivo=".$_REQUEST['id_dispositivo'];
+}
 
 
 // Codificar las variables
@@ -76,8 +79,9 @@ var plat= "";
 var dis= "";
 var valor="";
 
+
 $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
- minChars: 2,
+ minChars: 0,
  serviceUrl: '<?php echo $urlConsultarPlataforma;?>',
  onSelect: function (suggestion) {
      $("#<?php echo $this->campoSeguro('id_plataforma');?>").val(suggestion.data);
@@ -85,18 +89,22 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
           actualizarTabla();
      }
 
-});
+}).focus(function() {
+            $(this).autocomplete("search", "");
+        });
 
 
 $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
- minChars: 2,
+ minChars: 0,
  serviceUrl: '<?php echo $urlConsultarDispositivo;?>',
  onSelect: function (suggestion) {
      $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val(suggestion.data);
      dis =  $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val();
           actualizarTabla();
      }
-});
+}).focus(function() {
+            $(this).autocomplete("search", "");
+        });
 
 
 $("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
@@ -171,6 +179,8 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
                   ]
     } );
 } );
+
+
 
 function actualizarTabla(){
 
