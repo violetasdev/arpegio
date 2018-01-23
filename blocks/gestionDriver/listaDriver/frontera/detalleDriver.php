@@ -88,7 +88,7 @@ class Registrador
               $atributos ['readonly'] = true;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
-              $atributos ['texto'] = $driver [0]['nombre_plataforma'];
+              $atributos ['texto'] = utf8_encode($driver [0]['nombre_plataforma']);
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;

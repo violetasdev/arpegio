@@ -115,7 +115,9 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
    if($("#<?php echo $this->campoSeguro('dispositivo');?>").val()==''){
      $("#<?php echo $this->campoSeguro('plataforma');?>").val()='';
      $("#<?php echo $this->campoSeguro('id_plataforma');?>").val()='';
+        $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val('')='';
       dis = '';
+      plat = '';
       actualizarTabla();
    }
 });
@@ -123,8 +125,10 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
 $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
    if($("#<?php echo $this->campoSeguro('plataforma');?>").val()==''){
      $("#<?php echo $this->campoSeguro('dispositivo');?>").val('')='';
+      $("#<?php echo $this->campoSeguro('id_plataforma');?>").val()='';
      $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val('')='';
-      plat = '';
+     dis = '';
+       plat = '';
       actualizarTabla();
    }
 });
