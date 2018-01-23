@@ -102,6 +102,8 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
  onSelect: function (suggestion) {
      $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val(suggestion.data);
      dis =  $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val();
+     $("#<?php echo $this->campoSeguro('plataforma');?>").val('');
+     $("#<?php echo $this->campoSeguro('id_plataforma');?>").val('');
           actualizarTabla();
      }
 }).focus(function() {
@@ -111,6 +113,8 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
 
 $("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
    if($("#<?php echo $this->campoSeguro('dispositivo');?>").val()==''){
+     $("#<?php echo $this->campoSeguro('plataforma');?>").val()='';
+     $("#<?php echo $this->campoSeguro('id_plataforma');?>").val()='';
       dis = '';
       actualizarTabla();
    }
@@ -118,8 +122,8 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
 
 $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
    if($("#<?php echo $this->campoSeguro('plataforma');?>").val()==''){
-     $("#<?php echo $this->campoSeguro('dispositivo');?>").val('');
-     $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val('');
+     $("#<?php echo $this->campoSeguro('dispositivo');?>").val('')='';
+     $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val('')='';
       plat = '';
       actualizarTabla();
    }
