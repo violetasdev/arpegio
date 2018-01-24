@@ -79,7 +79,6 @@ var plat= "";
 var dis= "";
 var valor="";
 
-
 $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
  minChars: 0,
  serviceUrl: '<?php echo $urlConsultarPlataforma;?>',
@@ -112,24 +111,18 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
 
 
 $("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
-   if($("#<?php echo $this->campoSeguro('dispositivo');?>").val()==''){
-     $("#<?php echo $this->campoSeguro('plataforma');?>").val()='';
-     $("#<?php echo $this->campoSeguro('id_plataforma');?>").val()='';
-        $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val('')='';
-      dis = '';
-      plat = '';
-      actualizarTabla();
+   if($("#<?php echo $this->campoSeguro('dispositivo');?>").val()==""){
+     plat= "";
+     dis= "";
+        actualizarTabla();
    }
 });
 
 $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
-   if($("#<?php echo $this->campoSeguro('plataforma');?>").val()==''){
-     $("#<?php echo $this->campoSeguro('dispositivo');?>").val('')='';
-      $("#<?php echo $this->campoSeguro('id_plataforma');?>").val()='';
-     $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val('')='';
-     dis = '';
-       plat = '';
-      actualizarTabla();
+   if($("#<?php echo $this->campoSeguro('plataforma');?>").val()==""){
+     plat= "";
+     dis= "";
+        actualizarTabla();
    }
 });
 
@@ -142,11 +135,10 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
   $('#example').DataTable( {
     "processing": true,
       "searching": true,
-      "info":false,
-      "paging": false,
-      "scrollY":"300px",
+      "info":true,
+      "paging": true,
       "scrollX": true,
-      "scrollCollapse": true,
+      "scrollCollapse": false,
       "responsive": true,
       "columnDefs": [
         {"className": "dt-center", "targets": "_all"}
@@ -198,14 +190,12 @@ function actualizarTabla(){
 
 $('#example').DataTable().destroy();
 	    var table = $('#example').DataTable( {
-	    	"processing": true,
-	        "searching": true,
-	        "info":false,
-	        "paging": false,
-	        "scrollY":"300px",
-	        "scrollX": true,
-	        "scrollCollapse": true,
-	        "responsive": true,
+        "processing": true,
+          "searching": true,
+          "info":true,
+          "paging": true,
+          "scrollX": true,
+          "scrollCollapse": false,
 	       	"columnDefs": [
 	        	{"className": "dt-center", "targets": "_all"}
 	        ],
@@ -252,4 +242,6 @@ $('#example').DataTable().destroy();
     		table.fnReloadAjax();
 		}, 30000 );
 }
+
+
 </script>
