@@ -98,17 +98,6 @@ class FormularioMenuUsuario {
 
 		$this->ConstruirMenu ( $rutaBloque );
 
-
-		$url = $this->miConfigurador->configuracion ['host'] . $this->miConfigurador->configuracion ['site'];
-
-	$variable = "pagina=listaDriver";
-  $url2 = $this->miConfigurador->configuracion ["host"] .  $this->miConfigurador->configuracion ["site"] . "/index.php?";
-	$enlace = $this->miConfigurador->configuracion ['enlace'];
-	$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar ( $variable );
-	$_REQUEST [$enlace] = $enlace . '=' . $variable;
-	$redireccion = $url2 . $_REQUEST [$enlace];
-
-
 		/**
 		 * En algunas ocasiones es útil pasar variables entre las diferentes páginas.
 		 * SARA permite realizar esto a través de tres

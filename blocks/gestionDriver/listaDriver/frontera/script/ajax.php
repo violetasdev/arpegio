@@ -178,7 +178,7 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
                     { data :"plataforma" },
                     { data :"dispositivo" },
                     { data :"nombre" },
-                      { data :"categoria" },
+                    { data :"categoria" },
                     { data :"fecha" },
                   ]
     } );

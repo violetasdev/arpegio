@@ -246,25 +246,18 @@ class Registrador
 
               // -----------------CONTROL: Botón ----------------------------------------------------------------
                         $esteCampo = 'botonDescarga';
-                        $atributos["id"] = $esteCampo;
-                        $atributos["tabIndex"] = $tab;
-                        $atributos["tipo"] = 'boton';
-                        // submit: no se coloca si se desea un tipo button genérico
-                        $atributos['submit'] = true;
-                        $atributos["simple"] = true;
-                        $atributos["estiloMarco"] = '';
-                        $atributos["estiloBoton"] = 'info';
-                        $atributos["block"] = false;
-                        // verificar: true para verificar el formulario antes de pasarlo al servidor.
-                        $atributos["verificar"] = '';
-                        $atributos["tipoSubmit"] = 'jquery'; // Dejar vacio para un submit normal, en este caso se ejecuta la función submit declarada en ready.js
-                        $atributos["valor"] = $this->lenguaje->getCadena($esteCampo);
-                        $atributos['nombreFormulario'] = $esteBloque['nombre'];
+                        $atributos['id']=$esteCampo;
+                        $atributos['enlace']= $driver[0]['ruta_relativa'];
+                        $atributos['enlaceCodificar']= true;
+                        $atributos['tabIndex']=$tab++;
+                        $atributos['blank']=true;
+                        $atributos['estilo']='btn btn-primary';
+                        $atributos['enlaceTexto']= $this->lenguaje->getCadena ( $esteCampo );
                         $tab++;
 
                         // Aplica atributos globales al control
                         $atributos = array_merge($atributos);
-                        echo $this->miFormulario->campoBotonBootstrapHtml($atributos);
+                        echo $this->miFormulario->enlace($atributos);
                         unset($atributos);
 
               // -----------------FIN CONTROL: Botón -----------------------------------------------------------
