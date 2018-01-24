@@ -99,7 +99,7 @@ class Registrador
                   $atributos ['columnas'] = 1;
                   $atributos ['tamanno'] = 1;
                   $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-                  $atributos ['valor'] = $valorPlataforma;
+                  $atributos ['valor'] ='';
                   $atributos ['ajax_function'] = "";
                   $atributos ['ajax_control'] = $esteCampo;
                   $atributos ['limitar'] = false;

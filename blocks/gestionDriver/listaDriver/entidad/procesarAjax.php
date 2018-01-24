@@ -26,7 +26,6 @@ class procesarAjax
         switch ($_REQUEST['funcion']) {
             case 'consultaParticular':
 
-            $_REQUEST['nombre_dispositivo']="";
             if(isset($_REQUEST['id_dispositivo'])){
               $cadenaSql = $this->sql->getCadenaSql('consultaParticularDispositivo',$_REQUEST['id_dispositivo']);
             }else{
@@ -59,7 +58,6 @@ class procesarAjax
 
 
                     $total = count($resultadoFinal);
-
 
                     $resultadoF = json_encode($resultadoFinal);
                     $resultado = '{
