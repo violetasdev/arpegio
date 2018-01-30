@@ -31,3 +31,9 @@
 background-image: url('../images/lanixAmar.jpg');
 height: 30em;
 }
+
+#botonBusquedaA{
+  background-color: black;
+  border-color:black;
+  font-size: 19px;
+}
