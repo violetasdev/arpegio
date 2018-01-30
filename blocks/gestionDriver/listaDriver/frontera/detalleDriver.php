@@ -110,7 +110,7 @@ if(isset($_REQUEST['id_cadenaBusquedaLan'])){
               $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
               $atributos ["etiquetaObligatorio"] = true;
               $atributos ['tab'] = $tab ++;
-              $atributos ['anchoEtiqueta'] = 1;
+              $atributos ['anchoEtiqueta'] = 2;
               $atributos ['estilo'] = "bootstrap";
               $atributos ['evento'] = '';
               $atributos ['deshabilitado'] = false;
