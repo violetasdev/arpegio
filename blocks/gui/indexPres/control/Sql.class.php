@@ -27,9 +27,9 @@ class Sql extends \Sql
         switch ($tipo) {
 
               case 'consultarPlataforma':
-              $cadenaSql = ' SELECT id_driver as data, CONCAT(nombre_dispositivo," - ", descripcion) as value FROM `arpegiodata_driver`
-                            JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo
-                            WHERE CONCAT(dispositivo," - ", descripcion) ';
+              $cadenaSql = 'SELECT data, value from ( SELECT id_driver as data, CONCAT(nombre_dispositivo," - ", descripcion) as value FROM `arpegiodata_driver`
+                            JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo WHERE arpegiodata_driver.estado_driver=1) as seleccion
+                            WHERE value ';
               $cadenaSql .= " LIKE '%" . $_GET ['query'] . "%' ";
               break;
         }
