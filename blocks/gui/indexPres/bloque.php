@@ -1,115 +1,111 @@
 <?php
-
-//Evitar un acceso directo a este archivo
-if (!isset($GLOBALS["autorizado"])) {
-    include("../index.php");
-    exit;
+namespace gui\indexPres;
+// Evitar un acceso directo a este archivo
+if (! isset ( $GLOBALS ["autorizado"] )) {
+	include ("../index.php");
+	exit ();
 }
 
-//Todo bloque debe implementar la interfaz Bloque
-include_once("core/builder/Bloque.interface.php");
+// Cualquier bloque debe implementar la interfaz Bloque
+include_once ("core/builder/Bloque.interface.php");
 
-include_once("core/manager/Configurador.class.php");
+include_once ("core/manager/Configurador.class.php");
 
-//Elementos que constituyen un bloque típico CRUD.
-//Interfaz gráfica
-include_once("Frontera.class.php");
+// Elementos que constituyen un bloque típico CRUD.
 
-//Funciones de procesamiento de datos
-include_once("Funcion.class.php");
+// Interfaz gráfica
+include_once ("control/Frontera.class.php");
 
-//Compilación de clausulas SQL utilizadas por el bloque
-include_once("Sql.class.php");
+// Entidades de procesamiento de datos
+include_once ("control/Entidad.class.php");
 
-//Mensajes
-include_once("Lenguaje.class.php");
+// Compilación de clausulas SQL utilizadas por el bloque
+include_once ("control/Sql.class.php");
 
+// Mensajes
+include_once ("control/Lenguaje.class.php");
 
-//Esta clase actua como control del bloque en un patron FCE
-//Para evitar redefiniciones de clases el nombre de la clase del archivo bloque debe corresponder al nombre del bloque
-//precedida por la palabra Bloque
+// Esta clase actua como control del bloque en un patron FCE
 
+// Para evitar redefiniciones de clases el nombre de la clase del archivo bloque debe corresponder al nombre del bloque
+// precedida por la palabra Bloque
+class Bloque implements \Bloque {
+	var $nombreBloque;
+	var $miEntidad;
+	var $miSql;
+	var $miConfigurador;
+	public function __construct($esteBloque, $lenguaje = "") {
 
-if (class_exists('BloqueindexPres') === false) {
+		// El objeto de la clase Configurador debe ser único en toda la aplicación
+		$this->miConfigurador = \Configurador::singleton ();
 
-    class BloqueindexPres implements Bloque {
+		$ruta = $this->miConfigurador->getVariableConfiguracion ( "raizDocumento" );
+		$rutaURL = $this->miConfigurador->getVariableConfiguracion ( "host" ) . $this->miConfigurador->getVariableConfiguracion ( "site" );
 
-        var $nombreBloque;
-        var $miFuncion;
-        var $miSql;
-        var $miConfigurador;
+		if (! isset ( $esteBloque ["grupo"] ) || $esteBloque ["grupo"] == "") {
+			$ruta .= "/blocks/" . $esteBloque ["nombre"] . "/";
+			$rutaURL .= "/blocks/" . $esteBloque ["nombre"] . "/";
+		} else {
+			$ruta .= "/blocks/" . $esteBloque ["grupo"] . "/" . $esteBloque ["nombre"] . "/";
+			$rutaURL .= "/blocks/" . $esteBloque ["grupo"] . "/" . $esteBloque ["nombre"] . "/";
+		}
 
-        public function __construct($esteBloque, $lenguaje = "") {
+		$this->miConfigurador->setVariableConfiguracion ( "rutaBloque", $ruta );
+		$this->miConfigurador->setVariableConfiguracion ( "rutaUrlBloque", $rutaURL );
 
-            //El objeto de la clase Configurador debe ser único en toda la aplicación
-            $this->miConfigurador = Configurador::singleton();
+		$this->miEntidad = new Entidad ();
+		$this->miSql = new Sql ();
+		$this->miFrontera = new Frontera ();
+		$this->miLenguaje = new Lenguaje ();
+	}
+	public function bloque() {
+		if (isset ( $_REQUEST ['botonCancelar'] ) && $_REQUEST ['botonCancelar'] == "true") {
+			$this->miEntidad->redireccionar ( "paginaPrincipal" );
+		} else {
 
+			$this->miFrontera->setSql ( $this->miSql );
+			$this->miFrontera->setEntidad ( $this->miEntidad );
+			$this->miFrontera->setLenguaje ( $this->miLenguaje );
 
-            $ruta = $this->miConfigurador->getVariableConfiguracion("raizDocumento");
-            $rutaURL = $this->miConfigurador->getVariableConfiguracion("host") . $this->miConfigurador->getVariableConfiguracion("site");
+			$this->miEntidad->setSql ( $this->miSql );
+			$this->miEntidad->setLenguaje ( $this->miLenguaje );
 
-            if ($esteBloque["grupo"] == "") {
-                $ruta.="/blocks/" . $esteBloque["nombre"] . "/";
-                $rutaURL.="/blocks/" . $esteBloque["nombre"] . "/";
-            } else {
-                $ruta.="/blocks/" . $esteBloque["grupo"] . "/" . $esteBloque["nombre"] . "/";
-                $rutaURL.="/blocks/" . $esteBloque["grupo"] . "/" . $esteBloque["nombre"] . "/";
-            }
+			if (! isset ( $_REQUEST ['action'] )) {
 
-            $this->miConfigurador->setVariableConfiguracion("rutaBloque", $ruta);
-            $this->miConfigurador->setVariableConfiguracion("rutaUrlBloque", $rutaURL);
+				$this->miFrontera->frontera ();
+			} else {
 
-            $nombreClaseFuncion = "Funcion" . $esteBloque["nombre"];
-            $this->miFuncion = new $nombreClaseFuncion();
+				$respuesta = $this->miEntidad->action ();
 
-            $nombreClaseSQL = "Sql" . $esteBloque["nombre"];
-            $this->miSql = new $nombreClaseSQL();
+				// Si $respuesta==false, entonces se debe recargar el formulario y mostrar un mensaje de error.
+				if (! $respuesta) {
 
-            $nombreClaseFrontera = "Frontera" . $esteBloque["nombre"];
-            $this->miFrontera = new $nombreClaseFrontera();
-
-            $nombreClaseLenguaje = "Lenguaje" . $esteBloque["nombre"];
-            $this->miLenguaje = new $nombreClaseLenguaje();
-        }
-
-        public function bloque() {
-            
-            if (isset($_REQUEST['botonCancelar']) && $_REQUEST['botonCancelar'] == "true") {
-                $this->miFuncion->redireccionar("paginaPrincipal");                
-            } else {
-
-                if (!isset($_REQUEST['action'])) {
-                                        
-                    $this->miFrontera->setSql($this->miSql);
-                    $this->miFrontera->setFuncion($this->miFuncion);
-                    $this->miFrontera->setLenguaje($this->miLenguaje);
-                    $this->miFrontera->frontera();
-                } else {
-
-                    $this->miFuncion->setSql($this->miSql);
-                    $this->miFuncion->setFuncion($this->miFuncion);
-                    $this->miFuncion->setLenguaje($this->miLenguaje);
-                    $this->miFuncion->action();
-                }
-            }
-        }
-
-    }
-
+					$miBloque = $this->miConfigurador->getVariableConfiguracion ( 'esteBloque' );
+					$this->miConfigurador->setVariableConfiguracion ( 'errorFormulario', $miBloque ['nombre'] );
+				}
+				if (! isset ( $_REQUEST ['procesarAjax'] )) {
+					$this->miFrontera->frontera ();
+				}
+			}
+		}
+	}
 }
 // @ Crear un objeto bloque especifico
-//El arreglo $unBloque está definido en el objeto de la clase ArmadorPagina o en la clase ProcesadorPagina
+// El arreglo $unBloque está definido en el objeto de la clase ArmadorPagina o en la clase ProcesadorPagina
 
-
-$estaClase = "Bloque" . $unBloque["nombre"];
-
-$this->miConfigurador->setVariableConfiguracion("esteBloque", $unBloque);
-
-if (isset($lenguaje)) {
-    $esteBloque = new $estaClase($unBloque, $lenguaje);
-} else {
-    $esteBloque = new $estaClase($unBloque);
+if (isset ( $_REQUEST ["procesarAjax"] )) {
+	$unBloque ['nombre'] = $_REQUEST ['bloqueNombre'];
+	$unBloque ['grupo'] = $_REQUEST ['bloqueGrupo'];
 }
 
-$esteBloque->bloque();
+$this->miConfigurador->setVariableConfiguracion ( "esteBloque", $unBloque );
+
+if (isset ( $lenguaje )) {
+	$esteBloque = new Bloque ( $unBloque, $lenguaje );
+} else {
+	$esteBloque = new Bloque ( $unBloque );
+}
+
+$esteBloque->bloque ();
+
 ?>
