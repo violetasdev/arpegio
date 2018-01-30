@@ -175,9 +175,9 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
                       dataSrc:"data"
                   },
                   columns: [
-                    { data :"plataforma" },
                     { data :"dispositivo" },
                     { data :"nombre" },
+                    { data :"plataforma" },
                     { data :"categoria" },
                     { data :"fecha" },
                   ]
@@ -230,9 +230,9 @@ $('#example').DataTable().destroy();
              dataSrc:"data"
          },
          columns: [
-           { data :"plataforma" },
            { data :"dispositivo" },
            { data :"nombre" },
+           { data :"plataforma" },
            { data :"categoria" },
            { data :"fecha" },
          ]
