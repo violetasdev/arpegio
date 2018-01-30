@@ -54,8 +54,11 @@ class Registrador
         // ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
 
 
+if(isset($_REQUEST['id_cadenaBusquedaLan'])){
+  $_REQUEST['id_driver']=$_REQUEST['id_cadenaBusquedaLan'];
+}
 
-        $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
+       $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
         $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
         $atributosGlobales['campoSeguro'] = 'true';

@@ -5,7 +5,7 @@
 
 $this->idioma['noDefinido'] = 'Etiqueta No definida';
 
-$this->idioma['botonRegistro'] = 'Registrar Regla';
+$this->idioma['botonBusqueda'] = 'Buscar Archivo';
 
 /*Labels for the general filtering query*/
 $this->idioma['dispositivo'] = 'Filtrar por Dispositivo';
