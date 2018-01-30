@@ -185,9 +185,9 @@ class Registrador
                             <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
+                                            <th><center>Nombre<center></th>
                                             <th><center>Dispositivo<center></th>
                                             <th><center>Plataforma<center></th>
-                                            <th><center>Nombre<center></th>
                                             <th><center>Categoria<center></th>
                                             <th><center>Fecha<center></th>
                                         </tr>
