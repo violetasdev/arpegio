@@ -25,7 +25,7 @@ class procesarAjax
 
         switch ($_REQUEST['funcion']) {
                   case 'consultaPlataforma':
-                  $cadenaSql = $this->sql->getCadenaSql('consultarPlataforma');
+                   $cadenaSql = $this->sql->getCadenaSql('consultarPlataforma');
                    $resultadoItems =  $this->esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 
                    foreach ( $resultadoItems as $key => $values ) {
