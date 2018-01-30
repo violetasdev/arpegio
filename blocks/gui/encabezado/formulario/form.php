@@ -194,7 +194,7 @@ class FormularioMenuUsuario {
 								<a href="'.$url.'/index.php""><img height="50px" src="'.$url.'/blocks/gui/encabezado/css/imagenes/encabezado.jpg"></a>
 						</div>
 						<div class="menuSide">
-						<span style="color:#feb327;font-size:16px;cursor:pointer" onclick="openNav()">Centro de Drivers y Descargas</span>
+						<span style="color:#feb327;font-size:16px;cursor:pointer" onclick="openNav()">Drivers y Descargas</span>
 						</div>
 				 </div>
 			</div>
