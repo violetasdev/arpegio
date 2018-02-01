@@ -87,6 +87,7 @@ class Registrador
                $atributos ['TEXTOFONDO'] = "Ingrese los criterios de busqueda";
                $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
                $atributos ['valor'] = "";
+              $atributos ["obligatorio"] = true;
                $atributos ['ajax_function'] = "";
                $atributos ['ajax_control'] = $esteCampo;
                $atributos ['limitar'] = false;

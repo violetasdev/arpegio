@@ -24,7 +24,7 @@ class ArmadorPagina {
 	}
 	public function armarHTML($registroBloques) {
 		$this->bloques = $registroBloques;
-		
+
 		if ($this->miConfigurador->getVariableConfiguracion ( "cache" )) {
 			// Si la variable CACHE de configurador está configurada SE ELIMINA TODO EL CACHE
 			if (! (isset ( $_REQUEST ['opcion'] ) && $_REQUEST ['opcion'] == 'mostrarMensaje')) {
@@ -38,9 +38,9 @@ class ArmadorPagina {
 			// De forma predeterminada las paginas del aplicativo tienen cache
 			header ("Cache-Control: cache");
 		}
-		
+
 		$this->raizDocumento = $this->miConfigurador->getVariableConfiguracion ( "raizDocumento" );
-		
+
 		echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> ';
 		echo "\n<html lang='es'>\n";
 		$this->encabezadoPagina ();
@@ -48,16 +48,18 @@ class ArmadorPagina {
 		echo "</html>\n";
 	}
 	private function encabezadoPagina() {
-		$htmlPagina = "<head>\n";
+
+		$htmlPagina ="<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-MJLHHLJ' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>";
+		$htmlPagina .= "<head>\n";
 		$htmlPagina .= "<title>" . $this->miConfigurador->getVariableConfiguracion ( "nombreAplicativo" ) . "</title>\n";
 		$htmlPagina .= "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' >\n";
 		$htmlPagina .= "<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' >\n";
 		$htmlPagina .= "<link rel='shortcut icon' href='" . $this->host . $this->sitio . "/" . "favicon.ico' >\n";
 		echo $htmlPagina;
-		
+
 		// Incluir estilos
 		include_once "theme/basico/Estilo.php";
-		
+
 		// Enlazar los estilos definidos en cada bloque
 		foreach ( $this->bloques as $unBloque ) {
 			$this->incluirEstilosBloque ( $unBloque );
@@ -70,26 +72,26 @@ class ArmadorPagina {
 				0,
 				0,
 				0,
-				0 
+				0
 		);
-		
+
 		foreach ( $this->bloques as $unBloque ) {
-			
+
 			$posicion = ord ( $unBloque [self::SECCION] ) - 65;
 			$this->seccionesDeclaradas [$posicion] = $unBloque [self::SECCION];
 		}
-		
+
 		echo "<body>\n";
 		echo "<div id='marcoGeneral'>\n";
-		
+
 		if (in_array ( "A", $this->seccionesDeclaradas, true )) {
 			$this->armarSeccionAmplia ( "A" );
 		}
-		
+
 		if (in_array ( "B", $this->seccionesDeclaradas, true )) {
 			$this->armarSeccionLateral ( "B" );
 		}
-		
+
 		if (in_array ( "C", $this->seccionesDeclaradas, true )) {
 			$this->armarSeccionCentral ();
 		}
@@ -99,7 +101,7 @@ class ArmadorPagina {
 		if (in_array ( "E", $this->seccionesDeclaradas, true )) {
 			$this->armarSeccionAmplia ( "E" );
 		}
-		
+
 		echo "</div>\n";
 		$this->piePagina ();
 		echo "</body>\n";
@@ -107,15 +109,15 @@ class ArmadorPagina {
 	private function piePagina() {
 		// Funciones javascript globales del aplicativo
 		include_once "plugin/scripts/Script.php";
-		
+
 		// Insertar las funciones js definidas en cada bloque
 		foreach ( $this->bloques as $unBloque ) {
 			$this->incluirFuncionesBloque ( $unBloque );
 		}
-		
+
 		// Para las páginas que requieren jquery
 		if (isset ( $_REQUEST ["jquery"] )) {
-			
+
 			$this->incluirFuncionReady ( $unBloque );
 		}
 	}
@@ -135,58 +137,58 @@ class ArmadorPagina {
 		} else {
 			$otraSeccion = 'B';
 		}
-		
+
 		// Este tipo de secciones ocupan un ancho variable dependiendo si las otras secciones están declaradas
 		// Si ninguna de las otras secciones están declaradas entonces ocupa el ancho de la página
 		if (! in_array ( 'C', $this->seccionesDeclaradas ) && ! in_array ( $otraSeccion, $this->seccionesDeclaradas )) {
-			
+
 			echo "<div class='seccionAmplia'>\n";
 		} else {
 			// Si la otra sección está declarada pero la sección central no, entonces ocupa la mitad de la página
-			
+
 			if (! in_array ( 'C', $this->seccionesDeclaradas ) && in_array ( $otraSeccion, $this->seccionesDeclaradas )) {
 				echo "<div class='seccionMitad'>\n";
 			} else {
 				echo "<div class='seccion" . $seccion . "'>\n";
 			}
 		}
-		
+
 		foreach ( $this->bloques as $unBloque ) {
 			if ($unBloque [self::SECCION] == $seccion) {
 				$this->incluirBloque ( $unBloque );
 			}
 		}
-		
+
 		echo "</div>\n";
 	}
 	private function armarSeccionCentral() {
-		
+
 		// Si las secciones laterales no están definidas entonces la sección central ocupa el ancho de la página
 		if (! in_array ( "B", $this->seccionesDeclaradas, true ) && ! in_array ( "D", $this->seccionesDeclaradas, true )) {
-			
+
 			echo "<div class='seccionAmplia'>\n";
 		} else {
-			
+
 			if ((in_array ( "B", $this->seccionesDeclaradas, true ) && ! in_array ( "D", $this->seccionesDeclaradas, true )) || (! in_array ( "B", $this->seccionesDeclaradas, true ) && in_array ( "D", $this->seccionesDeclaradas, true ))) {
 				echo "<div class='seccionCentralAmpliada'>\n";
 			} else {
 				echo "<div class='seccionCentral'>\n";
 			}
 		}
-		
+
 		foreach ( $this->bloques as $unBloque ) {
 			if ($unBloque [self::SECCION] == "C") {
 				$this->incluirBloque ( $unBloque );
 			}
 		}
-		
+
 		echo "</div>\n";
 	}
 	private function incluirBloque($unBloque) {
 		foreach ( $unBloque as $clave => $valor ) {
 			$unBloque [$clave] = trim ( $valor );
 		}
-		
+
 		if (! isset ( $_REQUEST ['actionBloque'] ) || (isset ( $_REQUEST ['actionBloque'] ) && $unBloque [self::NOMBRE] != $_REQUEST ['actionBloque'])) {
 			if ($unBloque [self::GRUPO] == '') {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . self::ARCHIVOBLOQUE;
@@ -194,10 +196,10 @@ class ArmadorPagina {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . self::ARCHIVOBLOQUE;
 			}
 			include $archivo;
-			
+
 			return true;
 		} else {
-			
+
 			$carpeta = '';
 			if (isset ( $_REQUEST [self::BLOQUEGRUPO] ) && $_REQUEST [self::BLOQUEGRUPO] != "") {
 				$carpeta = $_REQUEST [self::BLOQUEGRUPO] . '/';
@@ -210,7 +212,7 @@ class ArmadorPagina {
 				include_once $this->raizDocumentos . self::CARPETABLOQUES . $carpeta . $unBloque [self::NOMBRE] . self::ARCHIVOBLOQUE;
 				unset ( $_REQUEST ['action'] );
 			} elseif (isset ( $_REQUEST ["procesarAjax"] )) {
-				
+
 				include_once $this->raizDocumentos . self::CARPETABLOQUES . $carpeta . $_REQUEST ["bloqueNombre"] . self::ARCHIVOBLOQUE;
 			}
 		}
@@ -219,23 +221,23 @@ class ArmadorPagina {
 		foreach ( $unBloque as $clave => $valor ) {
 			$unBloque [$clave] = trim ( $valor );
 		}
-		
+
 		if ($unBloque [self::GRUPO] == "") {
-			
+
 			$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/css/Estilo.php";
-			
+
 			if (! file_exists ( $archivo )) {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/frontera/css/Estilo.php";
 			}
 		} else {
-			
+
 			$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/css/Estilo.php";
-			
+
 			if (! file_exists ( $archivo )) {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/frontera/css/Estilo.php";
 			}
 		}
-		
+
 		if (file_exists ( $archivo )) {
 			include_once $archivo;
 		}
@@ -244,7 +246,7 @@ class ArmadorPagina {
 		foreach ( $esteBloque as $clave => $valor ) {
 			$esteBloque [$clave] = trim ( $valor );
 		}
-		
+
 		if ($esteBloque [self::GRUPO] == "") {
 			$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $esteBloque [self::NOMBRE] . "/script/Script.php";
 			if (! file_exists ( $archivo )) {
@@ -252,19 +254,19 @@ class ArmadorPagina {
 			}
 		} else {
 			$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $esteBloque [self::GRUPO] . "/" . $esteBloque [self::NOMBRE] . "/script/Script.php";
-			
+
 			if (! file_exists ( $archivo )) {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $esteBloque [self::GRUPO] . "/" . $esteBloque [self::NOMBRE] . "/frontera/script/Script.php";
 			}
 		}
-		
+
 		if (file_exists ( $archivo )) {
-			
+
 			include_once $archivo;
 		}
 	}
 	public function incluirFuncionReady($unBloque) {
-		
+
 		/**
 		 * Esta función registra funciones las opciones de la función ready (jquery) para la página
 		 * Tales funciones están declaradas en cada bloque y pueden venir directamente en un archivo
@@ -275,39 +277,39 @@ class ArmadorPagina {
 		 */
 		echo "<script type='text/javascript'>\n";
 		echo "$(document).ready(function(){\n";
-		
+
 		foreach ( $this->bloques as $unBloque ) {
-			
+
 			foreach ( $unBloque as $clave => $valor ) {
 				$unBloque [$clave] = trim ( $valor );
 			}
-			
+
 			if ($unBloque [self::GRUPO] == "") {
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/script/ready.js";
 				$archivoPHP = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/script/ready.php";
-				
+
 				if (! file_exists ( $archivo ) && ! file_exists ( $archivoPHP )) {
-					
+
 					$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/frontera/script/ready.js";
 					$archivoPHP = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::NOMBRE] . "/frontera/script/ready.php";
 				}
 			} else {
-				
+
 				$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/script/ready.js";
 				$archivoPHP = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/script/ready.php";
-				
+
 				if (! file_exists ( $archivo ) && ! file_exists ( $archivoPHP )) {
-					
+
 					$archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/frontera/script/ready.js";
 					$archivoPHP = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . "/frontera/script/ready.php";
 				}
 			}
-			
+
 			if (file_exists ( $archivo )) {
 				include $archivo;
 				echo "\n";
 			}
-			
+
 			if (file_exists ( $archivoPHP )) {
 				include $archivoPHP;
 				echo "\n";
@@ -322,9 +324,9 @@ class ArmadorPagina {
 		$this->armar_registro = $this->base->getRegistroDb ();
 		$this->total = $this->base->obtener_conteo_db ();
 		if ($this->total > 0) {
-			
+
 			for($this->contador = 0; $this->contador < $this->total; $this->contador ++) {
-				
+
 				$this->id_bloque = $this->armar_registro [$this->contador] [0];
 				$this->incluir = $this->armar_registro [$this->contador] [4];
 				include $this->miConfigurador->configuracion ["raiz_documento"] . $this->miConfigurador->configuracion ["bloques"] . "/" . $this->incluir . self::ARCHIVOBLOQUE;
