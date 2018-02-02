@@ -1,7 +1,7 @@
 <?php
 $indice=0;
 
-$estilo[$indice++]="elegant-icons.css";
+//$estilo[$indice++]="elegant-icons.css";
 $estilo[$indice++]="estiloBloque.css";
 
 
