@@ -138,7 +138,7 @@ class Registrador
                            $atributos['submit'] = true;
                            $atributos["simple"] = true;
                            $atributos["estiloMarco"] = '';
-                           $atributos["estiloBoton"] = 'btn btn-primary';
+                           $atributos["estiloBoton"] = 'botonBusquedaA';
                            $atributos["block"] = false;
                            // verificar: true para verificar el formulario antes de pasarlo al servidor.
                            $atributos["verificar"] = '';
@@ -148,7 +148,7 @@ class Registrador
                            $tab++;
 
                            // Aplica atributos globales al control
-                           $atributos = array_merge($atributos);
+                           $atributos = array_merge ( $atributos, $atributosGlobales );
                            echo $this->miFormulario->campoBoton($atributos);
                            unset($atributos);
                                      }

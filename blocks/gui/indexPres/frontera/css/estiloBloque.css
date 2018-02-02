@@ -14,6 +14,25 @@
   font-family: "Century Gothic", "AppleGothic", sans-serif;
 }
 
+@media (max-width: 600px) {
+  .cadenaBusquedaLan {
+    display: block;
+    margin : 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #101010;
+    height: 40px;
+    padding-left: 40px;
+    padding-right: 20px;
+    -webkit-appearance: none;
+    width: 80%;
+    font-size: 18px;
+    font-family: "Century Gothic", "AppleGothic", sans-serif;
+  }
+}
+
+
 .indexBack {
     position: relative;
     top: 0px;
@@ -29,16 +48,46 @@
 
 .formulario{
 background-image: url('../images/lanixAmar.jpg');
-height: 31.5em;
+height: 27em;
 }
 
-#botonBusquedaA{
-  background-color: black;
+.botonBusquedaA{
+  background-color: rgba(0,0,0,0.65);;
   border-color:black;
   font-size: 19px;
-  opacity:0.65;
+  color: white;
+  display: inline-block;
+padding: 6px 12px;
+margin-bottom: 0;
+line-height: 1.42857143;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+-ms-touch-action: manipulation;
+touch-action: manipulation;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+border: 1px solid transparent;
+border-radius: 4px;
 }
+
+.botonBusquedaA:hover{
+  background-color: black;
+  color:white;
+  }
+
 
 #indexPres{
   padding-top:10em;
+}
+
+input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: #888;
 }
