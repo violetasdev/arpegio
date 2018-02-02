@@ -29,7 +29,7 @@
 
 .formulario{
 background-image: url('../images/lanixAmar.jpg');
-height: 30em;
+height: 31.5em;
 }
 
 #botonBusquedaA{
@@ -37,4 +37,8 @@ height: 30em;
   border-color:black;
   font-size: 19px;
   opacity:0.65;
+}
+
+#indexPres{
+  padding-top:10em;
 }
