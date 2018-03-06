@@ -32,6 +32,8 @@ class Input extends HtmlBase {
         /**
          * @todo explicar esta funcionalidad
          */
+
+
         if (isset($this->atributos["validar"])) {
             $this->instanciaFormulario->validadorCampos[$this->atributos["id"]] = $this->atributos["validar"];
         } else {
@@ -98,28 +100,36 @@ class Input extends HtmlBase {
 
         $cadena = '<input ';
 
+        if (isset($this->atributos[self::TEXTOFONDO])) {
+            $cadena .= "placeholder = '" . $this->atributos[self::TEXTOFONDO] . "'";
+        }
+
+        if (isset($this->atributos[self::VALIDAR]) && $this->atributos[self::VALIDAR] == "required") {
+            $cadena .= 'required="true"';
+        }
+
         if ($this->atributos[self::TIPO] == self::FILE && $this->atributos[self::BOOTSTRAP] == true) {
-        	
+
 
         	if (isset($this->atributos[self::ETIQUETA]) && $this->atributos[self::ETIQUETA] != "") {
-        		 
+
         		//Manejo de responsiveness
         		$relacion= $this->atributos['anchoEtiqueta']*100/12;
         		$estiloLabel='';
         		$estiloControl='';
-        	
+
         		// Para xs = extra small screens (mobile phones)
-      
-    	if($relacion<33){    	
+
+    	if($relacion<33){
     		$estiloLabel.='col-xs-12 ';
-    		$estiloControl.='col-xs-12 ';    		
+    		$estiloControl.='col-xs-12 ';
     	}else{
     		$estiloLabel.='col-xs-'.$this->atributos['anchoEtiqueta'].' ';
     		$estiloControl.='col-xs-'.$this->atributos['anchoCaja'].' ';
     	}
     	$estiloLabel.='col-sm-'.$this->atributos['anchoEtiqueta'].' col-md-'.$this->atributos['anchoEtiqueta'].' col-lg-'.$this->atributos['anchoEtiqueta'];
     	$estiloControl.='col-sm-'.$this->atributos['anchoCaja'].' col-md-'.$this->atributos['anchoCaja'].' col-lg-'.$this->atributos['anchoCaja'];
-    	
+
         		//Fin manejo de responsiveness
         		$this->cadenaHTML .= '<div class="form-group row">';
         		$this->cadenaHTML .= '<label for="'. $this->atributos['id'].'" class="'.$estiloLabel.' col-form-label">';
@@ -128,8 +138,9 @@ class Input extends HtmlBase {
         		$this->cadenaHTML .= '</label>';
         		$this->cadenaHTML .= '<div class="'.$estiloControl.'">';
         	}
-        	 
+
             $cadena = '<input ';
+
             $cadena .= $this->definirAtributosGenerales();
 
             $cadena .= "type='file' ";
@@ -143,7 +154,7 @@ class Input extends HtmlBase {
 				$cadena .= "data-buttonText='Seleccionar' ";
 				$cadena .= "data-icon='false'";
 			}
-            
+
             if (isset($this->atributos[self::TAMANNO])) {
                 $cadena .= "size = '" . $this->atributos[self::TAMANNO] . "'";
             }
@@ -161,7 +172,7 @@ class Input extends HtmlBase {
 
             $cadena .= $this->atributoClassCuadroTexto();
 
-            $cadena .= $this->atributosGeneralesCuadroTexto(); 
+            $cadena .= $this->atributosGeneralesCuadroTexto();
 
             $cadena .= ">\n";
         } elseif ($this->atributos[self::TIPO] == self::HIDDEN) {
@@ -203,11 +214,7 @@ class Input extends HtmlBase {
             $this->atributos[self::MAXIMOTAMANNO] = 100;
         }
 
-        if (isset($this->atributos[self::TEXTOFONDO])) {
-            $cadena .= "placeholder = '" . $this->atributos[self::TEXTOFONDO] . "'";
-        }
-
-        $cadena .= "maxlength = '" . $this->atributos[self::MAXIMOTAMANNO] . "'";
+            $cadena .= "maxlength = '" . $this->atributos[self::MAXIMOTAMANNO] . "'";
 
         // Si se utiliza ketchup
         if (isset($this->atributos["data - validate"])) {
@@ -218,6 +225,7 @@ class Input extends HtmlBase {
         if (isset($this->atributos[self::EVENTO])) {
             $cadena .= "" . $this->atributos[self::EVENTO] . "";
         }
+
 
         return $cadena;
     }

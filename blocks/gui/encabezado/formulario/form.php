@@ -214,33 +214,25 @@ class FormularioMenuUsuario {
 
 		echo $cadenaHTML;
 	}
-	public function ConstruirGrupoGeneralMenu($ArrayAtributos, $nombre) {
-		$submenu = '';
-		$i = 0;
-		foreach ( $ArrayAtributos as $valor ) {
 
+	public function ConstruirGrupoGeneralMenu($ArrayAtributos, $nombre) {
+		$cadena = '';
+		$submenu = '';
+
+		foreach ( $ArrayAtributos as $valor ) {
 			if (isset ( $valor ['clase_enlace'] ) && $valor ['clase_enlace'] == "submenu") {
 
 				$enlace = $valor ['id_enlace'];
 
-				$submenu .= ' <li><a href="#" data-drilldown-button>' . $valor ['titulo_enlace'] . '
-                                <ul  data-drilldown-sub>     <li><a href="#" data-drilldown-back>&larr; Volver</a></li>
-                                ';
-
+				$submenu .= '<li><a href="#" data-drilldown-button>' . $valor ['titulo_enlace'] . '<ul  data-drilldown-sub><li><a href="#" data-drilldown-back>&larr; Volver</a></li>';
 				foreach ( $ArrayAtributos as $valor ) {
 					if ($valor ['submenu'] == $enlace) {
 						$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' .$valor ['titulo_enlace'] . '</a></li>';
 					}
 				}
-
 				$submenu .= '</ul></a></li>';
-
-			} else if ($valor ['submenu'] ==0) {
-				$submenu .= '<li><a href="'. $this->CrearUrl ( $valor ) . '" data-drilldown-item>'. $valor ['titulo_enlace'] . '</a></li>';
 			}
 		}
-
-		$cadena = '';
 
 		$cadena .= $submenu;
 		return $cadena;

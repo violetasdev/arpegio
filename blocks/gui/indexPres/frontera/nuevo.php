@@ -84,12 +84,10 @@ class Registrador
                $atributos ['readonly'] = false;
                $atributos ['columnas'] = 1;
                $atributos ['tamanno'] =100;
-               $atributos ['TEXTOFONDO'] = "Ingrese los criterios de busqueda";
-               $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
+               $atributos ['textoFondo'] = "Ingresa texto para empezar a buscar";
                $atributos ['valor'] = "";
-              $atributos ["obligatorio"] = true;
-               $atributos ['ajax_function'] = "";
-               $atributos ['ajax_control'] = $esteCampo;
+               //$atributos ['validar'] = "required";
+               $atributos ["obligatorio"] = true;
                $atributos ['limitar'] = false;
                $atributos ['anchoCaja'] =7;
                $atributos ['miEvento'] = '';

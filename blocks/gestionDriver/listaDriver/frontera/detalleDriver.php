@@ -58,6 +58,10 @@ if(isset($_REQUEST['id_cadenaBusquedaLan'])){
   $_REQUEST['id_driver']=$_REQUEST['id_cadenaBusquedaLan'];
 }
 
+if ($_REQUEST['id_driver']==''){
+  $url =   $this->miConfigurador->configuracion["host"] .  $this->miConfigurador->configuracion["site"] . "/index.php";
+  echo "<script>location.replace('" . $url . "')</script>";
+}
        $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
         $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
@@ -123,7 +127,7 @@ if(isset($_REQUEST['id_cadenaBusquedaLan'])){
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 1;
               $atributos ['miEvento'] = '';
-              $atributos ['validar'] = '';
+              $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoTexto ( $atributos );
@@ -149,7 +153,7 @@ if(isset($_REQUEST['id_cadenaBusquedaLan'])){
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 1;
               $atributos ['miEvento'] = '';
-              $atributos ['validar'] = '';
+              $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoTexto ( $atributos );
