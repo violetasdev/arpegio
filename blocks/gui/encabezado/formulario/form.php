@@ -93,7 +93,7 @@ class FormularioMenuUsuario {
 		unset ( $atributos );
 		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
 
-		$cadenaSql = $this->miSql->getCadenaSql ( "consultarDatosMenu", $respuesta ['rol'] );
+		$cadenaSql = $this->miSql->getCadenaSql ( "consultarDatosMenu",1 );
 		$this->atributosMenu = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 
 		$this->ConstruirMenu ( $rutaBloque );
@@ -203,7 +203,7 @@ class FormularioMenuUsuario {
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
 				<div class="wrapper">
-		<ul data-drilldown>
+		<ul data-drilldown class="drilldown">
 
 		 ';
 		$cadenaHTML .= $menu;
@@ -221,12 +221,10 @@ class FormularioMenuUsuario {
 
 		foreach ( $ArrayAtributos as $valor ) {
 			if (isset ( $valor ['clase_enlace'] ) && $valor ['clase_enlace'] == "submenu") {
-
 				$enlace = $valor ['id_enlace'];
-
-				$submenu .= '<li><a href="#" data-drilldown-button>' . $valor ['titulo_enlace'] . '<ul  data-drilldown-sub><li><a href="#" data-drilldown-back>&larr; Volver</a></li>';
+				$submenu .= '<li><a href="#" data-drilldown-button id="sub'. $valor ['menu'].'">' . $valor ['titulo_enlace'] . '<ul data-drilldown-sub id="contactosub'.$valor ['menu'].'" ><a href="#" data-drilldown-back>&larr; Volver</a>';
 				foreach ( $ArrayAtributos as $valor ) {
-					if ($valor ['submenu'] == $enlace) {
+					if ($valor ['submenu'] == $enlace && $valor ['clase_enlace'] == "normal") {
 						$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' .$valor ['titulo_enlace'] . '</a></li>';
 					}
 				}

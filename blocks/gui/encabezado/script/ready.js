@@ -17,12 +17,14 @@ function closeNav() {
         x[i].style.backgroundColor = "rgba(0,0,0,0.4)";
     }*/
 
+    $(function() {
 
       $("[data-drilldown-button]").click(function() {
-        $('[data-drilldown-sub]').addClass("openM");
-        $("[data-drilldown-item], [data-drilldown-button]").addClass("closeM");
-
-        $(".wrapper").css("height", $('[data-drilldown-sub]').outerHeight())
+      var contact=$(this).attr('id') ;
+      var element = document.getElementById("contacto"+contact);
+      element.classList.add("openM");
+      $("[data-drilldown-item], [data-drilldown-button]").addClass("closeM");
+      $(".wrapper").css("height", $('[data-drilldown-sub]').outerHeight())
         return false;
       });
 
@@ -41,11 +43,4 @@ function closeNav() {
         $(".wrapper").css("height", $('[data-drilldown-sub-2]').outerHeight());
         return false;
       });
-
-      $("[data-drilldown-back-2]").click(function() {
-        $('[data-drilldown-sub-2]').removeClass("openM-sub-2");
-        $("[data-drilldown-sub], [data-drilldown-button-2]").removeClass("closeM");
-
-        $(".wrapper").css("height", $('[data-drilldown-sub]').outerHeight());
-        return false;
-      });
+    });
