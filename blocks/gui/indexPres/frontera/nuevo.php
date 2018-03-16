@@ -86,7 +86,7 @@ class Registrador
                $atributos ['tamanno'] =100;
                $atributos ['textoFondo'] = "Ingresa texto para empezar a buscar";
                $atributos ['valor'] = "";
-               $atributos ['validar'] = "required";
+               $atributos ['validar'] = "";
                $atributos ["obligatorio"] = true;
                $atributos ['limitar'] = false;
                $atributos ['anchoCaja'] =7;

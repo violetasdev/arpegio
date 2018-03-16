@@ -15,8 +15,9 @@ $cadenaACodificar .= "&action=index.php";
 $cadenaACodificar .= "&bloqueNombre=" . $esteBloque["nombre"];
 $cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
 $cadenaACodificar .= "&funcion=consultaParticular";
-if(isset($_REQUEST['id_dispositivo'])){
-$cadenaACodificar .= "&id_dispositivo=".$_REQUEST['id_dispositivo'];
+
+if(isset($_REQUEST['cadenaBusquedaLan'])){
+$cadenaACodificar .= "&cadenaBusquedaLan=".$_REQUEST['cadenaBusquedaLan'];
 }
 
 

@@ -57,7 +57,13 @@ class Frontera
         if (isset($_REQUEST['opcion'])) {
             switch ($_REQUEST['opcion']) {
                 case 'detalleDriver':
-                    include_once $this->ruta . "frontera/detalleDriver.php";
+
+                if ($_REQUEST['id_cadenaBusquedaLan']==''){
+                  include_once $this->ruta . "frontera/consultaGeneral.php";
+                }else{
+                  include_once $this->ruta . "frontera/detalleDriver.php";
+                }
+
                     break;
 
                 default:
