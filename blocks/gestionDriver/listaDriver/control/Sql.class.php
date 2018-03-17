@@ -71,6 +71,13 @@ class Sql extends \Sql
               $cadenaSql.= " WHERE estado_driver=1 ";
               $cadenaSql.=" AND arpegiodata_driver.id_driver='".$variable."'";
               break;
+
+              case 'consultaParticularCadena':
+              $cadenaSql = " SELECT id_driver, nombredriver,descripcion,nombre_dispositivo, nombre_plataforma, fecha_publicacion,nombre_categoria ";
+              $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo ";
+              $cadenaSql.= " WHERE estado_driver=1 ";
+              $cadenaSql .= " AND descripcion LIKE '%" . $variable . "%' ";
+              break;
         }
 
         return $cadenaSql;

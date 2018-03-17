@@ -26,7 +26,6 @@ $urlConsultarPlataforma = $url . $cadena;
 //Armando para redireccionar
 $valorCodificado = "pagina=listaDriver";
 $valorCodificado .= "&opcion=detalleDriver";
-$valorCodificado .= "&id_driver=1";
 
 $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
 $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado, $enlace);

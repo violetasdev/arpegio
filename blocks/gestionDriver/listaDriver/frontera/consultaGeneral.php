@@ -37,6 +37,7 @@ class Registrador
         //Conexion a Base de Datos
         $conexion = "arpegiodata";
         $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
+
         if(isset($_REQUEST['id_dispositivo'])){
         $cadenaSql = $this->miSql->getCadenaSql('consultaParticularDispositivo',$_REQUEST['id_dispositivo']);
         $dispositivo=$esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
