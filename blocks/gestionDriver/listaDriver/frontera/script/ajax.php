@@ -20,6 +20,10 @@ if(isset($_REQUEST['cadenaBusquedaLan'])){
 $cadenaACodificar .= "&cadenaBusquedaLan=".$_REQUEST['cadenaBusquedaLan'];
 }
 
+if(isset($_REQUEST['id_dispositivo'])){
+$cadenaACodificar .= "&id_dispositivo=".$_REQUEST['id_dispositivo'];
+}
+
 
 // Codificar las variables
 $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
