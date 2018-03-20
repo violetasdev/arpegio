@@ -27,7 +27,7 @@ class procesarAjax
             case 'consultaParticular':
 
             if(isset($_REQUEST['cadenaBusquedaLan'])){
-            $cadenaSql = $this->sql->getCadenaSql('consultaParticularCadena',$_REQUEST['cadenaBusquedaLan']);
+          $cadenaSql = $this->sql->getCadenaSql('consultaParticularCadena',$_REQUEST['cadenaBusquedaLan']);
           }elseif(isset($_REQUEST['id_dispositivo'])){
                    $cadenaSql = $this->sql->getCadenaSql('consultaParticularDispositivo',$_REQUEST['id_dispositivo']);
             }else{
