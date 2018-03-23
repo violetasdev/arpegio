@@ -23,7 +23,25 @@ padding: 0 5%;
 font-size: 15px;
 }
 
+#archivo{
+  background-color: orange;
+  border-color:orange;
+  font-size: 19px;
+}
+
+.file{
+  border: 1px solid orange;
+   display: inline-block;
+   padding: 6px 12px;
+   cursor: pointer;
+}
 #botonNuevo{
+  background-color: orange;
+  border-color:orange;
+  font-size: 19px;
+}
+
+#botonDescarga{
   background-color: orange;
   border-color:orange;
   font-size: 19px;

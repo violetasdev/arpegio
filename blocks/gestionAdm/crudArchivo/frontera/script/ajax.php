@@ -127,6 +127,17 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
             $(this).autocomplete("search", "");
         });
 
+        $("#<?php echo $this->campoSeguro('nombre_dispositivo');?>").autocomplete({
+         minChars: 0,
+         serviceUrl: '<?php echo $urlConsultarDispositivo;?>',
+         onSelect: function (suggestion) {
+             $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val(suggestion.data);
+             dis =  $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val();
+             }
+        }).focus(function() {
+                    $(this).autocomplete("search", "");
+                });
+
 
 $("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
    if($("#<?php echo $this->campoSeguro('dispositivo');?>").val()==""){
@@ -144,6 +155,18 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
    }
 });
 
+
+
+
+$('#<?php echo $this->campoSeguro("fechaPublicacion");?>').datepicker({
+    format: 'yyyy-mm-dd',
+     language: "es",
+     weekStart: 1,
+     autoclose: 1,
+     daysOfWeekHighlighted: "0",
+     todayHighlight: true,
+     //startDate: new Date(),
+ });
 /**
  * Código JavaScript Correspondiente a la utilización de las Peticiones Ajax(Aprobación Contrato).
  */

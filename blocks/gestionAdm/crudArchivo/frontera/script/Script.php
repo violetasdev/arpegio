@@ -11,6 +11,10 @@ $indice = 0;
  */
 
 //$funcion [$indice ++] = " ";
+$funcion[$indice++] = "bootstrap-datepicker.js";
+$funcion[$indice++] = "bootstrap-datepicker.min.js";
+$funcion[$indice++] = "bootstrap-datepicker.es.min.js";
+$funcion[$indice++] = "bootstrap-datetimepicker.min.js";
 $funcion[$indice++] = "jquery.dataTables.min.js";
 $funcion[$indice++] = "dataTables.bootstrap.min.js";
 $funcion[$indice++] = "dataTables.responsive.min.js";

@@ -19,7 +19,8 @@ $this->idioma['nombre_sistema'] = 'Sistema Operativo';
 $this->idioma['descripcion'] = 'Descripción';
 $this->idioma['version'] = 'Versión';
 $this->idioma['dispositivo'] = 'Dispositivo';
-$this->idioma['publicacion'] = 'Fecha Publicación';
+$this->idioma['fechaPublicacion'] = 'Fecha Publicación';
+$this->idioma['archivo'] = 'Seleccionar Archivo';
 
 
 ?>
