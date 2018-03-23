@@ -73,7 +73,7 @@ class Registrador
              */
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
-            $atributos['leyenda'] = "Archivos Actuales ";
+            $atributos['leyenda'] = "Gestionar Archivos del Sistema";
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
@@ -180,20 +180,27 @@ class Registrador
                     unset ( $atributos );
 
                     // -----------------CONTROL: Botón ----------------------------------------------------------------
-                              $esteCampo = 'botonNuevo';
-                              $atributos['id']=$esteCampo;
-                              $atributos['enlace']= $driver[0]['ruta_relativa'];
-                              $atributos['enlaceCodificar']= true;
-                              $atributos['tabIndex']=$tab++;
-                              $atributos['blank']=true;
-                              $atributos['estilo']='btn btn-primary';
-                              $atributos['enlaceTexto']= $this->lenguaje->getCadena ( $esteCampo );
-                              $tab++;
+                    $esteCampo = 'botonNuevo';
+                    $atributos["id"] = $esteCampo;
+                    $atributos["tabIndex"] = $tab;
+                    $atributos["tipo"] = 'boton';
+                    // submit: no se coloca si se desea un tipo button genérico
+                    $atributos['submit'] = true;
+                    $atributos["simple"] = true;
+                    $atributos["estiloMarco"] = '';
+                    $atributos["estiloBoton"] = 'btn btn-primary';
+                    $atributos["block"] = false;
+                    // verificar: true para verificar el formulario antes de pasarlo al servidor.
+                    $atributos["verificar"] = '';
+                    $atributos["tipoSubmit"] = 'jquery'; // Dejar vacio para un submit normal, en este caso se ejecuta la función submit declarada en ready.js
+                    $atributos["valor"] = $this->lenguaje->getCadena($esteCampo);
+                    $atributos['nombreFormulario'] = $esteBloque['nombre'];
+                    $tab++;
 
-                              // Aplica atributos globales al control
-                              $atributos = array_merge($atributos);
-                              echo $this->miFormulario->enlace($atributos);
-                              unset($atributos);
+              // Aplica atributos globales al control
+              $atributos = array_merge($atributos);
+              echo $this->miFormulario->campoBotonBootstrapHtml($atributos);
+              unset($atributos);
 
                     // -----------------FIN CONTROL: Botón -----------------------------------------------------------
 
@@ -261,7 +268,7 @@ class Registrador
               $valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
               $valorCodificado .= "&bloque=" . $esteBloque['nombre'];
               $valorCodificado .= "&bloqueGrupo=" . $esteBloque["grupo"];
-              $valorCodificado .= "&opcion=registrarRegla";
+              $valorCodificado .= "&opcion=registrarArchivo";
 
               /**
              * SARA permite que los nombres de los campos sean dinámicos.

@@ -100,6 +100,19 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
         });
 
 
+        $("#<?php echo $this->campoSeguro('nombre_plataforma');?>").autocomplete({
+         minChars: 0,
+         serviceUrl: '<?php echo $urlConsultarPlataforma;?>',
+         onSelect: function (suggestion) {
+             $("#<?php echo $this->campoSeguro('id_plataforma');?>").val(suggestion.data);
+             plat =  $("#<?php echo $this->campoSeguro('id_plataforma');?>").val();
+             }
+
+        }).focus(function() {
+                    $(this).autocomplete("search", "");
+                });
+
+
 $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
  minChars: 0,
  serviceUrl: '<?php echo $urlConsultarDispositivo;?>',

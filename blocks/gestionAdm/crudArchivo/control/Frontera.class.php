@@ -55,7 +55,13 @@ class Frontera
         $resultado = $this->miConfigurador->getVariableConfiguracion('errorFormulario');
 
         if (isset($_REQUEST['opcion'])) {
+
             switch ($_REQUEST['opcion']) {
+
+              case 'registrarArchivo':
+                  include_once $this->ruta . "frontera/crearArchivo.php";
+              break;
+
               case 'detalleDriver':
 
               if ($_REQUEST['id_driver']!=''){
