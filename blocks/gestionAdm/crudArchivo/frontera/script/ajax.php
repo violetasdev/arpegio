@@ -47,7 +47,7 @@ $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($caden
 // URL Consultar Proyectos
 $urlConsultaFiltroPlataforma= $url . $cadena;
 
-// Variables para Con
+// Variables para Consultar plataformas
 $cadenaACodificar = "pagina=" . $this->miConfigurador->getVariableConfiguracion("pagina");
 $cadenaACodificar .= "&procesarAjax=true";
 $cadenaACodificar .= "&action=index.php";
@@ -59,8 +59,41 @@ $cadenaACodificar .= "&funcion=consultaPlataforma";
 $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
 $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($cadenaACodificar, $enlace);
 
-// URL Consultar Proyectos
+// URL Consultar
 $urlConsultarPlataforma = $url . $cadena;
+
+
+
+// Variables para Consultar categorias
+$cadenaACodificar = "pagina=" . $this->miConfigurador->getVariableConfiguracion("pagina");
+$cadenaACodificar .= "&procesarAjax=true";
+$cadenaACodificar .= "&action=index.php";
+$cadenaACodificar .= "&bloqueNombre=" . $esteBloque["nombre"];
+$cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
+$cadenaACodificar .= "&funcion=consultaCategoria";
+
+// Codificar las variables
+$enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+$cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($cadenaACodificar, $enlace);
+
+// URL Consultar
+$urlConsultarCategoria = $url . $cadena;
+
+// Variables para Consultar sistemas
+$cadenaACodificar = "pagina=" . $this->miConfigurador->getVariableConfiguracion("pagina");
+$cadenaACodificar .= "&procesarAjax=true";
+$cadenaACodificar .= "&action=index.php";
+$cadenaACodificar .= "&bloqueNombre=" . $esteBloque["nombre"];
+$cadenaACodificar .= "&bloqueGrupo=" . $esteBloque["grupo"];
+$cadenaACodificar .= "&funcion=consultaSistema";
+
+// Codificar las variables
+$enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+$cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($cadenaACodificar, $enlace);
+
+// URL Consultar
+$urlConsultarSistema = $url . $cadena;
+
 
 
 // Variables para Con
@@ -100,19 +133,6 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
         });
 
 
-        $("#<?php echo $this->campoSeguro('nombre_plataforma');?>").autocomplete({
-         minChars: 0,
-         serviceUrl: '<?php echo $urlConsultarPlataforma;?>',
-         onSelect: function (suggestion) {
-             $("#<?php echo $this->campoSeguro('id_plataforma');?>").val(suggestion.data);
-             plat =  $("#<?php echo $this->campoSeguro('id_plataforma');?>").val();
-             }
-
-        }).focus(function() {
-                    $(this).autocomplete("search", "");
-                });
-
-
 $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
  minChars: 0,
  serviceUrl: '<?php echo $urlConsultarDispositivo;?>',
@@ -127,16 +147,7 @@ $("#<?php echo $this->campoSeguro('dispositivo');?>").autocomplete({
             $(this).autocomplete("search", "");
         });
 
-        $("#<?php echo $this->campoSeguro('nombre_dispositivo');?>").autocomplete({
-         minChars: 0,
-         serviceUrl: '<?php echo $urlConsultarDispositivo;?>',
-         onSelect: function (suggestion) {
-             $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val(suggestion.data);
-             dis =  $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val();
-             }
-        }).focus(function() {
-                    $(this).autocomplete("search", "");
-                });
+
 
 
 $("#<?php echo $this->campoSeguro('dispositivo');?>").change(function() {
@@ -155,6 +166,49 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
    }
 });
 
+
+/** Código edición/creación de archivos**/
+
+$("#<?php echo $this->campoSeguro('nombre_plataforma');?>").autocomplete({
+ minChars: 0,
+ serviceUrl: '<?php echo $urlConsultarPlataforma;?>',
+ onSelect: function (suggestion) {
+     $("#<?php echo $this->campoSeguro('id_plataforma');?>").val(suggestion.data);
+     }
+
+}).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+
+        $("#<?php echo $this->campoSeguro('nombre_dispositivo');?>").autocomplete({
+         minChars: 0,
+         serviceUrl: '<?php echo $urlConsultarDispositivo;?>',
+         onSelect: function (suggestion) {
+             $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val(suggestion.data);
+             }
+        }).focus(function() {
+                    $(this).autocomplete("search", "");
+                });
+
+                $("#<?php echo $this->campoSeguro('nombre_categoria');?>").autocomplete({
+                 minChars: 0,
+                 serviceUrl: '<?php echo $urlConsultarCategoria;?>',
+                 onSelect: function (suggestion) {
+                     $("#<?php echo $this->campoSeguro('id_categoria');?>").val(suggestion.data);
+                     }
+                }).focus(function() {
+                            $(this).autocomplete("search", "");
+                        });
+
+                        $("#<?php echo $this->campoSeguro('nombre_sistema');?>").autocomplete({
+                         minChars: 0,
+                         serviceUrl: '<?php echo $urlConsultarSistema;?>',
+                         onSelect: function (suggestion) {
+                             $("#<?php echo $this->campoSeguro('id_sistema');?>").val(suggestion.data);
+                             }
+                        }).focus(function() {
+                                    $(this).autocomplete("search", "");
+                                });
 
 
 

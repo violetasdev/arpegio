@@ -106,6 +106,37 @@ class procesarAjax
                        echo '{"suggestions":' . json_encode (  $resultado) . '}';
                         break;
 
+                        case 'consultaSistema':
+                           $cadenaSql = $this->sql->getCadenaSql('consultarSistema');
+                           $resultadoItems =  $this->esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+
+                           foreach ( $resultadoItems as $key => $values ) {
+                             $keys = array (
+                                 'value',
+                                 'data'
+                             );
+                                $resultadoItems[$key]['value']=utf8_encode($resultadoItems[$key]['value']);
+
+                             $resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
+                           }
+                           echo '{"suggestions":' . json_encode (  $resultado) . '}';
+                            break;
+
+                            case 'consultaCategoria':
+                               $cadenaSql = $this->sql->getCadenaSql('consultarCategoria');
+                               $resultadoItems =  $this->esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+
+                               foreach ( $resultadoItems as $key => $values ) {
+                                 $keys = array (
+                                     'value',
+                                     'data'
+                                 );
+                                    $resultadoItems[$key]['value']=utf8_encode($resultadoItems[$key]['value']);
+
+                                 $resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
+                               }
+                               echo '{"suggestions":' . json_encode (  $resultado) . '}';
+                                break;
 
                     case 'consultaFiltroPlataforma':
 

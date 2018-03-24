@@ -64,6 +64,24 @@ class Sql extends \Sql
               $cadenaSql .= "WHERE value LIKE '%" . $_GET ['query'] . "%' ";
               break;
 
+              case 'consultarCategoria':
+                $cadenaSql = " SELECT value , data ";
+                $cadenaSql .= "FROM ";
+                $cadenaSql.= " (SELECT id_dispositivo as data, nombre_dispositivo as value ";
+                $cadenaSql.= "FROM `arpegiodata_dispositivo` ";
+                $cadenaSql.= " WHERE estado_dispositivo=1) as data ";
+                $cadenaSql .= "WHERE value LIKE '%" . $_GET ['query'] . "%' ";
+                break;
+
+                case 'consultarSistema':
+                  $cadenaSql = " SELECT value , data ";
+                  $cadenaSql .= "FROM ";
+                  $cadenaSql.= " (SELECT id_dispositivo as data, nombre_dispositivo as value ";
+                  $cadenaSql.= "FROM `arpegiodata_dispositivo` ";
+                  $cadenaSql.= " WHERE estado_dispositivo=1) as data ";
+                  $cadenaSql .= "WHERE value LIKE '%" . $_GET ['query'] . "%' ";
+                  break;
+
             case 'consultaDetalle':
               $cadenaSql = " SELECT arpegiodata_driver.id_driver, nombre_sistema, version,nombredriver,descripcion,nombre_dispositivo, nombre_plataforma, fecha_publicacion,nombre_categoria, ruta_relativa ";
               $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo
