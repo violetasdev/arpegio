@@ -89,6 +89,8 @@ $this->baseDatos();
 
             /*
              * guardamos el fichero en el Directorio
+
+             Generar tabla con los directorios configurables
              */
 
              if($_REQUEST['id_plataforma']==1){
@@ -96,7 +98,7 @@ $this->baseDatos();
              }elseif ($_REQUEST['id_plataforma']==2) {
 
              }else {
-              
+
              }
 
              $ruta_absoluta = $this->miConfigurador->configuracion['raizDocumento'] . $directorio . $doc;

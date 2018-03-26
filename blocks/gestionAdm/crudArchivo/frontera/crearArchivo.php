@@ -70,6 +70,35 @@ class Registrador
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
+
+              $esteCampo = 'nombre_archivo';
+              $atributos ['nombre'] = $esteCampo;
+              $atributos ['tipo'] = "text";
+              $atributos ['id'] = $esteCampo;
+              $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+              $atributos ["etiquetaObligatorio"] = true;
+              $atributos ['tab'] = $tab ++;
+              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['estilo'] = "bootstrap";
+              $atributos ['evento'] = '';
+              $atributos ['deshabilitado'] = false;
+              $atributos ['readonly'] = false;
+              $atributos ['columnas'] = 1;
+              $atributos ['tamanno'] = 1;
+              $atributos ['placeholder'] = "Nombre del Driver/Archivo";
+              $atributos ['valor'] ='';
+              $atributos ['ajax_function'] = "";
+              $atributos ['ajax_control'] = $esteCampo;
+              $atributos ['limitar'] = false;
+              $atributos ['anchoCaja'] = 5;
+              $atributos ['miEvento'] = '';
+              // $atributos ['validar'] = 'required';
+              // Aplica atributos globales al control
+              $atributos = array_merge ( $atributos, $atributosGlobales );
+              echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
+              unset ( $atributos );
+
+
               $esteCampo = 'nombre_plataforma';
               $atributos ['nombre'] = $esteCampo;
               $atributos ['tipo'] = "text";

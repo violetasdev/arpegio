@@ -17,6 +17,7 @@ $this->idioma['plataforma'] = 'Filtrar por Plataforma';
 /*Labels for the detailed driver*/
 $this->idioma['nombre_plataforma'] = 'Plataforma';
 $this->idioma['nombre_categoria'] = 'Categoría';
+$this->idioma['nombre_archivo'] = 'Nombre Archivo';
 $this->idioma['nombre_sistema'] = 'Sistema Operativo';
 $this->idioma['descripcion'] = 'Descripción';
 $this->idioma['version'] = 'Versión';
