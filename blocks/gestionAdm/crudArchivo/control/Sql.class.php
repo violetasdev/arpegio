@@ -67,18 +67,18 @@ class Sql extends \Sql
               case 'consultarCategoria':
                 $cadenaSql = " SELECT value , data ";
                 $cadenaSql .= "FROM ";
-                $cadenaSql.= " (SELECT id_dispositivo as data, nombre_dispositivo as value ";
-                $cadenaSql.= "FROM `arpegiodata_dispositivo` ";
-                $cadenaSql.= " WHERE estado_dispositivo=1) as data ";
+                $cadenaSql.= " (SELECT id_categoria as data, nombre_categoria as value ";
+                $cadenaSql.= "FROM `arpegiodata_categoria` ";
+                $cadenaSql.= " WHERE estado_categoria=1) as data ";
                 $cadenaSql .= "WHERE value LIKE '%" . $_GET ['query'] . "%' ";
                 break;
 
-                case 'consultarSistema':
+            case 'consultarSistema':
                   $cadenaSql = " SELECT value , data ";
                   $cadenaSql .= "FROM ";
-                  $cadenaSql.= " (SELECT id_dispositivo as data, nombre_dispositivo as value ";
-                  $cadenaSql.= "FROM `arpegiodata_dispositivo` ";
-                  $cadenaSql.= " WHERE estado_dispositivo=1) as data ";
+                  $cadenaSql.= " (SELECT id_sistema as data, nombre_sistema as value ";
+                  $cadenaSql.= "FROM `arpegiodata_sistemaoperativo` ";
+                  $cadenaSql.= " WHERE estado_sistema=1) as data ";
                   $cadenaSql .= "WHERE value LIKE '%" . $_GET ['query'] . "%' ";
                   break;
 

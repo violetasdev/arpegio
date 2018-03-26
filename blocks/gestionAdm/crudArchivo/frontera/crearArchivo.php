@@ -54,9 +54,6 @@ class Registrador
         // ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
 
 
-       $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
-        $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
-
         $atributosGlobales['campoSeguro'] = 'true';
 
         // ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
@@ -412,11 +409,11 @@ class Registrador
 
               // $valorCodificado = "action=" . $esteBloque["nombre"];
 
-              $valorCodificado = "actionBloque=" . $esteBloque["nombre"];
+              $valorCodificado = "action=" . $esteBloque["nombre"];
               $valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
               $valorCodificado .= "&bloque=" . $esteBloque['nombre'];
               $valorCodificado .= "&bloqueGrupo=" . $esteBloque["grupo"];
-              $valorCodificado .= "&opcion=registrarRegla";
+              $valorCodificado .= "&opcion=registrarArchivo";
 
               /**
              * SARA permite que los nombres de los campos sean dinámicos.
@@ -463,26 +460,6 @@ class Registrador
 
             case 'errorRegistro':
                 $mensaje = "Error<br>Registro de la Regla";
-                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
-                break;
-
-            case 'exitoActualizacion':
-                $mensaje = "Exito<br>Regla Actualizada";
-                $atributos['estiloLinea'] = 'success';     //success,error,information,warning
-                break;
-
-            case 'errorActualizacion':
-                $mensaje = "Error<br>Actualización de la Regla";
-                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
-                break;
-
-            case 'exitoEliminar':
-                $mensaje = "Exito<br>Regla Eliminada";
-                $atributos['estiloLinea'] = 'success';     //success,error,information,warning
-                break;
-
-            case 'errorEliminar':
-                $mensaje = "Error<br>Eliminar Regla";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
         }
