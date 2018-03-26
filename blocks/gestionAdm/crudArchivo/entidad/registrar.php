@@ -42,51 +42,144 @@ class FormProcessor
         $conexion = "arpegiodata";
         $this->esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
-        $_REQUEST['tiempo'] = time();
+
+        /**
+               * 1.
+               * CargarArchivos en el Directorio
+               */
+
+              $this->cargarArchivos();
+
+              /**
+               * 3.
+               * Registrar Documentos
+               */
+$this->baseDatos();
+
+    }
+
+    public function cargarArchivos() {
+    foreach ($_FILES as $key => $archivo) {
+
+        if ($_FILES[$key]['size'] != 0 && $_FILES[$key]['error'] == 0) {
+
+            $this->prefijo = substr(md5(uniqid(time())), 0, 6);
+            $exten = pathinfo($archivo['name']);
+
+            $allowed = array(
+                'text/plain',
+                'application/x-rar-compressed',
+                'application/zip',
+                'application/pdf',
+            );
+
+            if (!in_array($_FILES[$key]['type'], $allowed)) {
+                Redireccionador::redireccionar("ErrorCargarFicheroDirectorio");
+                exit();
+            }
+
+            if (isset($exten['extension']) == false) {
+                $exten['extension'] = 'txt';
+            }
+
+            $tamano = $archivo['size'];
+            $tipo = $archivo['type'];
+            $nombre_archivo = $_REQUEST['nombreArchivo'];
+            $doc = $nombre_archivo . "_" . $this->prefijo . '.' . $exten['extension'];
+
+            /*
+             * guardamos el fichero en el Directorio
+             */
+
+             if($_REQUEST['id_plataforma']==1){
+
+             }elseif ($_REQUEST['id_plataforma']==2) {
+
+             }else {
+              
+             }
+
+             $ruta_absoluta = $this->miConfigurador->configuracion['raizDocumento'] . $directorio . $doc;
+             $ruta_relativa = $this->miConfigurador->configuracion['host'] . $this->miConfigurador->configuracion['site'] . $directorio. $doc;
+
+            $archivo['rutaDirectorio'] = $ruta_absoluta;
+            if (!copy($archivo['tmp_name'], $ruta_absoluta)) {
+                Redireccionador::redireccionar("ErrorCargarFicheroDirectorio");
+                exit();
+            }
+
+            $this->archivo_datos_cargar[] = array(
+                'ruta_archivo' => $ruta_relativa,
+                'rutaabsoluta' => $ruta_absoluta,
+                'nombre_archivo' => $doc,
+                'nombredriver' => $doc,
+                'plataforma' => $_REQUEST['id_plataforma'],
+                'categoria' => $_REQUEST['id_categoria'],
+                'dispositivo' => $_REQUEST['id_dispositivo'],
+                'descripcion' => $archivo['descripcion'],
+                'version' => $_REQUEST['version'],
+                'tamanio' => $_REQUEST['version'],
+                'extension'=>,
+                'sistema_operativo' => $_REQUEST['id_sistema'],
+                'fecha_publicacion'=>$_REQUEST['fechaPublicacion'],
+                'fecha_creacion'=>date('yyyy/mm/dd'),
+                'estado'=>1
+              );
+
+        }
+
+    }
+    //$this->archivos_datos = $archivo_datos;
+    //var_dump($this->archivo_datos);
+    //exit;
+}
+
+public function baseDatos(){
+  $_REQUEST['tiempo'] = time();
 echo "llegamos a registrar.php";
 var_dump($_FILES);
 exit;
-        switch ($_REQUEST['opcion']) {
-            case 'registrarReglaParticular':
-                $arreglo = array(
-                    'descricion' => $_REQUEST['descripcion'],
-                    'formula' => $_REQUEST['formula'],
-                    'identificador' => $_REQUEST['identificador_formula'],
-                );
+  switch ($_REQUEST['opcion']) {
+      case 'registrarReglaParticular':
+          $arreglo = array(
+              'descricion' => $_REQUEST['descripcion'],
+              'formula' => $_REQUEST['formula'],
+              'identificador' => $_REQUEST['identificador_formula'],
+          );
 
-                $cadenaSql = $this->miSql->getCadenaSql('registrarRegla', $arreglo);
+          $cadenaSql = $this->miSql->getCadenaSql('registrarRegla', $arreglo);
 
-                $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
+          $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
-                if (isset($this->proceso) && $this->proceso != null) {
-                    Redireccionador::redireccionar("ExitoRegistro", $this->proceso);
-                } else {
-                    Redireccionador::redireccionar("ErrorRegistro");
-                }
+          if (isset($this->proceso) && $this->proceso != null) {
+              Redireccionador::redireccionar("ExitoRegistro", $this->proceso);
+          } else {
+              Redireccionador::redireccionar("ErrorRegistro");
+          }
 
-                break;
+          break;
 
-            case 'actualizarReglaParticular':
-                $arreglo = array(
-                    'id_regla' => $_REQUEST['id_regla'],
-                    'descricion' => $_REQUEST['descripcion'],
-                    'formula' => $_REQUEST['formula'],
-                    'identificador' => $_REQUEST['identificador_formula'],
-                );
+      case 'actualizarReglaParticular':
+          $arreglo = array(
+              'id_regla' => $_REQUEST['id_regla'],
+              'descricion' => $_REQUEST['descripcion'],
+              'formula' => $_REQUEST['formula'],
+              'identificador' => $_REQUEST['identificador_formula'],
+          );
 
-                $cadenaSql = $this->miSql->getCadenaSql('actualizarRegla', $arreglo);
+          $cadenaSql = $this->miSql->getCadenaSql('actualizarRegla', $arreglo);
 
-                $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
+          $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
-                if (isset($this->proceso) && $this->proceso != null) {
-                    Redireccionador::redireccionar("ExitoActualizacion", $this->proceso);
-                } else {
-                    Redireccionador::redireccionar("ErrorActualizacion");
-                }
+          if (isset($this->proceso) && $this->proceso != null) {
+              Redireccionador::redireccionar("ExitoActualizacion", $this->proceso);
+          } else {
+              Redireccionador::redireccionar("ErrorActualizacion");
+          }
 
-                break;
-        }
-    }
+          break;
+  }
+}
 }
 
 $miProcesador = new FormProcessor($this->lenguaje, $this->sql);
