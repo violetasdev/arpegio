@@ -41,7 +41,7 @@ class Registrador
         $atributos['id'] = $esteCampo;
         $atributos['nombre'] = $esteCampo;
         // Si no se coloca, entonces toma el valor predeterminado 'application/x-www-form-urlencoded'
-        $atributos['tipoFormulario'] = '';
+        $atributos['tipoFormulario'] = 'multipart/form-data';
         // Si no se coloca, entonces toma el valor predeterminado 'POST'
         $atributos['metodo'] = 'POST';
         // Si no se coloca, entonces toma el valor predeterminado 'index.php' (Recomendado)
@@ -359,7 +359,7 @@ class Registrador
               unset ( $atributos );
 
               // -----------------CONTROL: Botón ----------------------------------------------------------------
-              $esteCampo = 'botonNuevo';
+              $esteCampo = 'botonRegistrar';
               $atributos["id"] = $esteCampo;
               $atributos["tabIndex"] = $tab;
               $atributos["tipo"] = 'boton';
@@ -413,7 +413,7 @@ class Registrador
               $valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
               $valorCodificado .= "&bloque=" . $esteBloque['nombre'];
               $valorCodificado .= "&bloqueGrupo=" . $esteBloque["grupo"];
-              $valorCodificado .= "&opcion=registrarArchivo";
+              $valorCodificado .= "&opcion=registroArchivo";
 
               /**
              * SARA permite que los nombres de los campos sean dinámicos.

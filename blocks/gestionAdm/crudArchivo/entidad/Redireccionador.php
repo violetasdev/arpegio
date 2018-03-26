@@ -15,7 +15,7 @@ class Redireccionador
 
         switch ($opcion) {
             case 'ExitoRegistro':
-              zz  $variable = 'pagina=gestionReglas';
+               $variable = 'pagina=gestionReglas';
                 $variable .= '&mensaje=exitoRegistro';
                 break;
 

@@ -45,23 +45,16 @@ class Entidad
         include_once $this->ruta . "entidad/procesarAjax.php";
     }
 
-    public function validarInformacion()
-    {
-        include_once $this->ruta . "entidad/validarInformacion.php";
-    }
 
     public function cargarInformacion()
     {
-        include_once $this->ruta . "entidad/registrarActualizar.php";
+        include_once $this->ruta . "entidad/registrar.php";
     }
 
-    public function eliminar()
-    {
-        include_once $this->ruta . "entidad/eliminar.php";
-    }
     public function action()
     {
-        $resultado = true;
+
+          $resultado = true;
 
         // Aquí se coloca el código que procesará los diferentes formularios que pertenecen al bloque
         // aunque el código fuente puede ir directamente en este script, para facilitar el mantenimiento
@@ -74,16 +67,8 @@ class Entidad
         }
 
         switch ($_REQUEST['opcion']) {
-            case 'registrarReglaParticular':
+            case 'registroArchivo':
                 $this->cargarInformacion();
-                break;
-
-            case 'actualizarReglaParticular':
-                $this->cargarInformacion();
-                break;
-
-            case 'eliminarRegla':
-                $this->eliminar();
                 break;
         }
 

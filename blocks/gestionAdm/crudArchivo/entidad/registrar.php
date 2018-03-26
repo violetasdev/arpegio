@@ -39,11 +39,13 @@ class FormProcessor
             $this->rutaAbsoluta .= "/blocks/" . $_REQUEST["bloqueGrupo"] . "/" . $_REQUEST["bloque"] . "/";
         }
         //Conexion a Base de Datos
-        $conexion = "interoperacion";
+        $conexion = "arpegiodata";
         $this->esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
         $_REQUEST['tiempo'] = time();
-
+echo "llegamos a registrar.php";
+var_dump($_FILES);
+exit;
         switch ($_REQUEST['opcion']) {
             case 'registrarReglaParticular':
                 $arreglo = array(

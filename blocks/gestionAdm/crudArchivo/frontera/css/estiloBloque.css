@@ -41,6 +41,12 @@ font-size: 15px;
   font-size: 19px;
 }
 
+#botonRegistrar{
+  background-color: orange;
+  border-color:orange;
+  font-size: 19px;
+}
+
 #botonDescarga{
   background-color: orange;
   border-color:orange;
