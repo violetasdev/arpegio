@@ -92,7 +92,7 @@ class Registrador
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 5;
               $atributos ['miEvento'] = '';
-              // $atributos ['validar'] = 'required';
+              $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
@@ -120,7 +120,7 @@ class Registrador
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 5;
               $atributos ['miEvento'] = '';
-              // $atributos ['validar'] = 'required';
+          $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
@@ -163,7 +163,7 @@ class Registrador
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 5;
               $atributos ['miEvento'] = '';
-              // $atributos ['validar'] = 'required';
+              $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
@@ -206,7 +206,7 @@ class Registrador
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 5;
               $atributos ['miEvento'] = '';
-              // $atributos ['validar'] = 'required';
+            $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
@@ -249,7 +249,7 @@ class Registrador
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 5;
               $atributos ['miEvento'] = '';
-              // $atributos ['validar'] = 'required';
+            $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
@@ -291,7 +291,7 @@ class Registrador
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 5;
               $atributos ['miEvento'] = '';
-              // $atributos ['validar'] = 'required';
+              $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
@@ -342,7 +342,7 @@ class Registrador
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 3;
               $atributos ['miEvento'] = '';
-              // $atributos ['validar'] = 'required';
+              $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );

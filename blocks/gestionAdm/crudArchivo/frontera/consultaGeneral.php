@@ -333,8 +333,8 @@ class Registrador
                 $atributos['estiloLinea'] = 'success';     //success,error,information,warning
                 break;
 
-            case 'errorEliminar':
-                $mensaje = "Error<br>Eliminar Regla";
+            case 'errorArchivo':
+                $mensaje = "Error<br>Archivo no subido correctamente en el servidor.";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
         }

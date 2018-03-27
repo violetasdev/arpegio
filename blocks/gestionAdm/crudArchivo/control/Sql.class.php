@@ -96,6 +96,13 @@ class Sql extends \Sql
               $cadenaSql.= " WHERE estado_driver=1 ";
               $cadenaSql .= " AND descripcion LIKE '%" . $variable . "%' ";
               break;
+
+              case 'consultarCarpeta':
+              $cadenaSql = " SELECT folder ";
+              $cadenaSql.= "FROM `arpegiodata_folder` JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_folder.id_plataforma ";
+              $cadenaSql.= " WHERE `arpegiodata_folder`.estado=1 ";
+              $cadenaSql.= " AND folder=" . $variable . "; ";
+              break;
         }
 
         return $cadenaSql;

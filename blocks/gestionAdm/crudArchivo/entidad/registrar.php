@@ -42,7 +42,6 @@ class FormProcessor
         $conexion = "arpegiodata";
         $this->esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
-
         /**
                * 1.
                * CargarArchivos en el Directorio
@@ -54,11 +53,15 @@ class FormProcessor
                * 3.
                * Registrar Documentos
                */
-$this->baseDatos();
+              $this->baseDatos();
 
     }
 
     public function cargarArchivos() {
+
+var_dump($_REQUEST);
+      echo "cargando archivos";
+      exit;
     foreach ($_FILES as $key => $archivo) {
 
         if ($_FILES[$key]['size'] != 0 && $_FILES[$key]['error'] == 0) {
@@ -93,13 +96,9 @@ $this->baseDatos();
              Generar tabla con los directorios configurables
              */
 
-             if($_REQUEST['id_plataforma']==1){
-
-             }elseif ($_REQUEST['id_plataforma']==2) {
-
-             }else {
-
-             }
+             $cadenaSql = $this->miSql->getCadenaSql('consultarCarpeta', $_REQUEST['id_plataforma']);
+             $directorio = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
+             $directorio=$directorio[0][0];
 
              $ruta_absoluta = $this->miConfigurador->configuracion['raizDocumento'] . $directorio . $doc;
              $ruta_relativa = $this->miConfigurador->configuracion['host'] . $this->miConfigurador->configuracion['site'] . $directorio. $doc;
@@ -120,11 +119,11 @@ $this->baseDatos();
                 'dispositivo' => $_REQUEST['id_dispositivo'],
                 'descripcion' => $archivo['descripcion'],
                 'version' => $_REQUEST['version'],
-                'tamanio' => $_REQUEST['version'],
-                'extension'=>,
+                'tamanio' => $tamano,
+                'extension'=>$exten['extension'],
                 'sistema_operativo' => $_REQUEST['id_sistema'],
                 'fecha_publicacion'=>$_REQUEST['fechaPublicacion'],
-                'fecha_creacion'=>date('yyyy/mm/dd'),
+                'fecha_creacion'=> date("Y/m/d"); ,
                 'estado'=>1
               );
 
@@ -160,27 +159,7 @@ exit;
           }
 
           break;
-
-      case 'actualizarReglaParticular':
-          $arreglo = array(
-              'id_regla' => $_REQUEST['id_regla'],
-              'descricion' => $_REQUEST['descripcion'],
-              'formula' => $_REQUEST['formula'],
-              'identificador' => $_REQUEST['identificador_formula'],
-          );
-
-          $cadenaSql = $this->miSql->getCadenaSql('actualizarRegla', $arreglo);
-
-          $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
-
-          if (isset($this->proceso) && $this->proceso != null) {
-              Redireccionador::redireccionar("ExitoActualizacion", $this->proceso);
-          } else {
-              Redireccionador::redireccionar("ErrorActualizacion");
-          }
-
-          break;
-  }
+}
 }
 }
 

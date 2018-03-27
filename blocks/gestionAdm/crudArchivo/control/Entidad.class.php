@@ -66,6 +66,7 @@ class Entidad
             $this->procesarAjax();
         }
 
+
         switch ($_REQUEST['opcion']) {
             case 'registroArchivo':
                 $this->cargarInformacion();
