@@ -101,10 +101,60 @@ class Sql extends \Sql
               $cadenaSql = " SELECT folder ";
               $cadenaSql.= "FROM `arpegiodata_folder` JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_folder.id_plataforma ";
               $cadenaSql.= " WHERE `arpegiodata_folder`.estado=1 ";
-              $cadenaSql.= " AND folder=" . $variable . "; ";
+              $cadenaSql.= " AND arpegiodata_folder.id_plataforma=". $variable . "; ";
               break;
-        }
+
+              case 'registrarDriver':
+              $cadenaSql=" INSERT INTO arpegiodata_driver ";
+              $cadenaSql.= " (nombredriver, ";
+              $cadenaSql.= " plataforma, ";
+              $cadenaSql.= " categoria, ";
+              $cadenaSql.= " dispositivo, ";
+              $cadenaSql.= " descripcion, ";
+              $cadenaSql.= " version, ";
+              $cadenaSql.= " tamanio, ";
+              $cadenaSql.= " extension, ";
+              $cadenaSql.= " sistema_operativo, ";
+              $cadenaSql.= " fecha_publicacion, ";
+              $cadenaSql.= " fecha_creacion, ";
+              $cadenaSql.= " estado_driver) VALUES (";
+              $cadenaSql.= " '".$variable['nombre_archivo']."', ";
+              $cadenaSql.= " '".$variable['plataforma']."', ";
+              $cadenaSql.= " '".$variable['categoria']."', ";
+              $cadenaSql.= " '".$variable['dispositivo']."', ";
+              $cadenaSql.= " '".$variable['descripcion']."', ";
+              $cadenaSql.= " '".$variable['version']."', ";
+              $cadenaSql.= " '".$variable['tamanio']."', ";
+              $cadenaSql.= " '".$variable['extension']."', ";
+              $cadenaSql.= " '".$variable['sistema_operativo' ]."', ";
+              $cadenaSql.= " '".$variable['fecha_publicacion']."', ";
+              $cadenaSql.= " '".$variable['fecha_creacion']."', ";
+              $cadenaSql.= " '".$variable['estado']."' ";
+              $cadenaSql.= "); ";
+              break;
+
+              case 'idDriver':
+              $cadenaSql= " SELECT LAST_INSERT_ID(); ";
+              break;
+
+              case 'registrarArchivo':
+              $cadenaSql=" INSERT INTO `arpegiodata_archivo` ";
+              $cadenaSql.= " (";
+              $cadenaSql.= " `id_driver`,  ";
+              $cadenaSql.= " `ruta_relativa`,  ";
+              $cadenaSql.= " `tipo_archivo`, ";
+              $cadenaSql.= " `tamannio`,  ";
+              $cadenaSql.= " `fecha_subida`,  ";
+              $cadenaSql.= " `estado_archivo`)  ";
+              $cadenaSql.= " VALUES ( ";
+              $cadenaSql.= " '".$variable['id_driver']."', ";
+              $cadenaSql.= " '".$variable['ruta_relativa']."', ";
+              $cadenaSql.= " '".$variable['extension']."', ";
+              $cadenaSql.= " '".$variable['tamanio']."', ";
+              $cadenaSql.= " '".$variable['fecha_creacion']."', ";
+              $cadenaSql.= " 1); ";
+              break;
+            }
 
         return $cadenaSql;
-    }
-}
+}    }

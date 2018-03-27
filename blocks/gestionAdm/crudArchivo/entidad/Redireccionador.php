@@ -15,35 +15,24 @@ class Redireccionador
 
         switch ($opcion) {
             case 'ExitoRegistro':
-                $variable = 'pagina=crudAdmn';
+              $variable = 'pagina=crudArchivo';
                 $variable .= '&mensaje=exitoRegistro';
                 break;
 
             case "ErrorRegistro":
-                $variable = 'pagina=crudAdmn';
+                $variable = 'pagina=crudArchivo';
                 $variable .= '&mensaje=errorRegistro';
                 break;
 
-
-            case 'ExitoActualizacion':
-                $variable = 'pagina=crudAdmn';
-                $variable .= '&mensaje=exitoActualizacion';
-                break;
-
-            case "ErrorActualizacion":
-                $variable = 'pagina=crudAdmn';
-                $variable .= '&mensaje=errorActualizacion';
-                break;
-
-            case 'ExitoEliminar':
-                $variable = 'pagina=crudAdmn';
-                $variable .= '&mensaje=exitoEliminar';
-                break;
-
             case "ErrorCargarFicheroDirectorio":
-                $variable = 'pagina=crudAdmn';
+                $variable = 'pagina=crudArchivo';
                 $variable .= '&mensaje=errorArchivo';
                 break;
+
+                case "ErrorNoValido":
+                    $variable = 'pagina=crudArchivo';
+                    $variable .= '&mensaje=errorValido';
+                    break;
 
 
             default:

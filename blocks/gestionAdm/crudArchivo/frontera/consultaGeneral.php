@@ -309,32 +309,22 @@ class Registrador
 
         switch ($_REQUEST['mensaje']) {
             case 'exitoRegistro':
-                $mensaje = "Exito<br>Regla Registrada";
+                $mensaje = "Exito<br>Driver/Archivo registrado correctamente";
                 $atributos['estiloLinea'] = 'success';     //success,error,information,warning
                 break;
 
             case 'errorRegistro':
-                $mensaje = "Error<br>Registro de la Regla";
+                $mensaje = "Error<br>No se registró el Driver/Archivo correctamente.";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
-                break;
-
-            case 'exitoActualizacion':
-                $mensaje = "Exito<br>Regla Actualizada";
-                $atributos['estiloLinea'] = 'success';     //success,error,information,warning
-                break;
-
-            case 'errorActualizacion':
-                $mensaje = "Error<br>Actualización de la Regla";
-                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
-                break;
-
-            case 'exitoEliminar':
-                $mensaje = "Exito<br>Regla Eliminada";
-                $atributos['estiloLinea'] = 'success';     //success,error,information,warning
                 break;
 
             case 'errorArchivo':
-                $mensaje = "Error<br>Archivo no subido correctamente en el servidor.";
+                $mensaje = "Error<br>Diver/Archivo no subido correctamente en el servidor.";
+                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
+                break;
+
+            case 'errorValido':
+                $mensaje = "Error<br>Tipo de archivo no válido. <br>Permitido: .rar, .zip, .txt,.pdf únicamente";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
         }

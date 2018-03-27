@@ -53,15 +53,16 @@ class FormProcessor
                * 3.
                * Registrar Documentos
                */
-              $this->baseDatos();
+
+               if($this->cargarArchivos()==true){
+                 $this->baseDatos();
+               }
+
 
     }
 
     public function cargarArchivos() {
 
-var_dump($_REQUEST);
-      echo "cargando archivos";
-      exit;
     foreach ($_FILES as $key => $archivo) {
 
         if ($_FILES[$key]['size'] != 0 && $_FILES[$key]['error'] == 0) {
@@ -77,7 +78,7 @@ var_dump($_REQUEST);
             );
 
             if (!in_array($_FILES[$key]['type'], $allowed)) {
-                Redireccionador::redireccionar("ErrorCargarFicheroDirectorio");
+                Redireccionador::redireccionar("ErrorNoValido");
                 exit();
             }
 
@@ -87,7 +88,7 @@ var_dump($_REQUEST);
 
             $tamano = $archivo['size'];
             $tipo = $archivo['type'];
-            $nombre_archivo = $_REQUEST['nombreArchivo'];
+            $nombre_archivo = $_REQUEST['nombre_archivo'];
             $doc = $nombre_archivo . "_" . $this->prefijo . '.' . $exten['extension'];
 
             /*
@@ -97,11 +98,14 @@ var_dump($_REQUEST);
              */
 
              $cadenaSql = $this->miSql->getCadenaSql('consultarCarpeta', $_REQUEST['id_plataforma']);
-             $directorio = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
+             $directorio = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+
              $directorio=$directorio[0][0];
 
              $ruta_absoluta = $this->miConfigurador->configuracion['raizDocumento'] . $directorio . $doc;
              $ruta_relativa = $this->miConfigurador->configuracion['host'] . $this->miConfigurador->configuracion['site'] . $directorio. $doc;
+
+             $ubicacion=$directorio.$doc;
 
             $archivo['rutaDirectorio'] = $ruta_absoluta;
             if (!copy($archivo['tmp_name'], $ruta_absoluta)) {
@@ -109,25 +113,29 @@ var_dump($_REQUEST);
                 exit();
             }
 
-            $this->archivo_datos_cargar[] = array(
+            $this->archivo_datos_cargar = array(
                 'ruta_archivo' => $ruta_relativa,
                 'rutaabsoluta' => $ruta_absoluta,
-                'nombre_archivo' => $doc,
+                'nombre_archivo' => $_REQUEST['nombre_archivo'],
                 'nombredriver' => $doc,
                 'plataforma' => $_REQUEST['id_plataforma'],
                 'categoria' => $_REQUEST['id_categoria'],
                 'dispositivo' => $_REQUEST['id_dispositivo'],
-                'descripcion' => $archivo['descripcion'],
+                'descripcion' => $_REQUEST['descripcion'],
                 'version' => $_REQUEST['version'],
                 'tamanio' => $tamano,
                 'extension'=>$exten['extension'],
                 'sistema_operativo' => $_REQUEST['id_sistema'],
                 'fecha_publicacion'=>$_REQUEST['fechaPublicacion'],
-                'fecha_creacion'=> date("Y/m/d"); ,
-                'estado'=>1
+                'fecha_creacion'=> date("Y/m/d"),
+                'estado'=>1,
+                'ubicacion'=>$ubicacion,
+                'ruta_relativa'=>$ruta_relativa,
               );
 
         }
+
+        return true;
 
     }
     //$this->archivos_datos = $archivo_datos;
@@ -136,31 +144,23 @@ var_dump($_REQUEST);
 }
 
 public function baseDatos(){
-  $_REQUEST['tiempo'] = time();
-echo "llegamos a registrar.php";
-var_dump($_FILES);
-exit;
-  switch ($_REQUEST['opcion']) {
-      case 'registrarReglaParticular':
-          $arreglo = array(
-              'descricion' => $_REQUEST['descripcion'],
-              'formula' => $_REQUEST['formula'],
-              'identificador' => $_REQUEST['identificador_formula'],
-          );
 
-          $cadenaSql = $this->miSql->getCadenaSql('registrarRegla', $arreglo);
+          $cadenaSql = $this->miSql->getCadenaSql('registrarDriver', $this->archivo_datos_cargar);
+          $insertar = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
-          $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
+          $cadenaSql = $this->miSql->getCadenaSql('idDriver');
+          $id_driver = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
-          if (isset($this->proceso) && $this->proceso != null) {
-              Redireccionador::redireccionar("ExitoRegistro", $this->proceso);
+          $this->archivo_datos_cargar['id_driver']=$id_driver[0][0];
+
+          $cadenaSql2 = $this->miSql->getCadenaSql('registrarArchivo', $this->archivo_datos_cargar);
+          $this->proceso2 = $this->esteRecursoDB->ejecutarAcceso($cadenaSql2, "acceso");
+
+          if (isset($this->proceso2) && $this->proceso2 != false) {
+              Redireccionador::redireccionar("ExitoRegistro");
           } else {
               Redireccionador::redireccionar("ErrorRegistro");
           }
 
-          break;
-}
-}
-}
-
+}}
 $miProcesador = new FormProcessor($this->lenguaje, $this->sql);
