@@ -37,7 +37,7 @@ class procesarAjax
                     foreach ($drivers as $key => $valor) {
                       {
                       $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
-                      $valorCodificado .= "&opcion=detalleDriver";
+                      $valorCodificado .= "&opcion=edicionDriver";
                       $valorCodificado .= "&id_driver=" . $valor['id_driver'];
                       }
 
@@ -48,10 +48,10 @@ class procesarAjax
 
                         $resultadoFinal[] = array(
                           'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.substr($valor['descripcion'],0,100),
-                          'plataforma' => utf8_encode($valor['nombre_plataforma']),
+                          'plataforma' => $valor['nombre_plataforma'],
                           'fecha' => $valor['fecha_publicacion'],
                           'dispositivo' =>$valor['nombre_dispositivo'],
-                          'categoria' =>utf8_encode($valor['nombre_categoria']),
+                          'categoria' =>$valor['nombre_categoria'],
                           );
 
 
@@ -81,7 +81,7 @@ class procesarAjax
                          'data'
                      );
 
-                     $resultadoItems[$key]['value']=utf8_encode($resultadoItems[$key]['value']);
+                     $resultadoItems[$key]['value']=$resultadoItems[$key]['value'];
 
                      $resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
                    }
@@ -99,7 +99,7 @@ class procesarAjax
                              'value',
                              'data'
                          );
-                            $resultadoItems[$key]['value']=utf8_encode($resultadoItems[$key]['value']);
+                            $resultadoItems[$key]['value']=$resultadoItems[$key]['value'];
 
                          $resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
                        }
@@ -115,7 +115,7 @@ class procesarAjax
                                  'value',
                                  'data'
                              );
-                                $resultadoItems[$key]['value']=utf8_encode($resultadoItems[$key]['value']);
+                                $resultadoItems[$key]['value']=$resultadoItems[$key]['value'];
 
                              $resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
                            }
@@ -131,7 +131,7 @@ class procesarAjax
                                      'value',
                                      'data'
                                  );
-                                    $resultadoItems[$key]['value']=utf8_encode($resultadoItems[$key]['value']);
+                                    $resultadoItems[$key]['value']=$resultadoItems[$key]['value'];
 
                                  $resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
                                }
@@ -170,10 +170,10 @@ class procesarAjax
 
                                 $resultadoFinal[] = array(
                                   'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.substr($valor['descripcion'],0,100),
-                                  'plataforma' => utf8_encode($valor['nombre_plataforma']),
+                                  'plataforma' => $valor['nombre_plataforma'],
                                   'fecha' => $valor['fecha_publicacion'],
                                   'dispositivo' =>$valor['nombre_dispositivo'],
-                                  'categoria' =>utf8_encode($valor['nombre_categoria']),
+                                  'categoria' =>$valor['nombre_categoria'],
                                   );
 
                             $total = count($resultadoFinal);

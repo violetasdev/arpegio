@@ -62,6 +62,10 @@ class Frontera
                   include_once $this->ruta . "frontera/crearArchivo.php";
               break;
 
+              case 'edicionDriver':
+                  include_once $this->ruta . "frontera/editarArchivo.php";
+              break;
+
               case 'detalleDriver':
 
               if ($_REQUEST['id_driver']!=''){

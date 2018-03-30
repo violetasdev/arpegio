@@ -63,6 +63,22 @@ class Registrador
             /**
              * Código Formulario
              */
+
+echo "editar archivo";
+
+        if ($_REQUEST['id_driver']==''){
+            $url =   $this->miConfigurador->configuracion["host"] .  $this->miConfigurador->configuracion["site"] . "/index.php";
+            echo "<script>location.replace('" . $url . "')</script>";
+          }
+
+        $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
+        $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+
+
+        $driver=$driver[0];
+
+             var_dump($esteRecursoDB);
+
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
             $atributos['leyenda'] = 'Crear nuevo archivo';
@@ -86,7 +102,11 @@ class Registrador
               $atributos ['tamanno'] = 1;
               $atributos ['maximoTamanno'] = 100;
               $atributos ['placeholder'] = "Nombre del Driver/Archivo";
-              $atributos ['valor'] ='';
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
+              } else {
+                $atributos ['valor'] = '';
+              }
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -115,7 +135,11 @@ class Registrador
               $atributos ['tamanno'] = 1;
               $atributos ['maximoTamanno'] = 50;
               $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-              $atributos ['valor'] ='';
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
+              } else {
+                $atributos ['valor'] = '';
+              }
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -134,8 +158,8 @@ class Registrador
               $atributos ["obligatorio"] = false;
               $atributos ['marco'] = true;
               $atributos ["etiqueta"] = "";
-              if (isset ( $_REQUEST [$esteCampo] )) {
-                $atributos ['valor'] = $_REQUEST [$esteCampo];
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
               } else {
                 $atributos ['valor'] = '';
               }
@@ -159,7 +183,11 @@ class Registrador
               $atributos ['tamanno'] = 1;
               $atributos ['maximoTamanno'] = 100;
               $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-              $atributos ['valor'] = '';
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
+              } else {
+                $atributos ['valor'] = '';
+              }
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -178,8 +206,8 @@ class Registrador
               $atributos ["obligatorio"] = false;
               $atributos ['marco'] = true;
               $atributos ["etiqueta"] = "";
-              if (isset ( $_REQUEST [$esteCampo] )) {
-                $atributos ['valor'] = $_REQUEST [$esteCampo];
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
               } else {
                 $atributos ['valor'] = '';
               }
@@ -203,7 +231,11 @@ class Registrador
               $atributos ['tamanno'] = 1;
               $atributos ['maximoTamanno'] = 50;
               $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-              $atributos ['valor'] = '';
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
+              } else {
+                $atributos ['valor'] = '';
+              }
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -222,8 +254,8 @@ class Registrador
               $atributos ["obligatorio"] = false;
               $atributos ['marco'] = true;
               $atributos ["etiqueta"] = "";
-              if (isset ( $_REQUEST [$esteCampo] )) {
-                $atributos ['valor'] = $_REQUEST [$esteCampo];
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
               } else {
                 $atributos ['valor'] = '';
               }
@@ -247,7 +279,11 @@ class Registrador
               $atributos ['tamanno'] = 1;
               $atributos ['maximoTamanno'] = 50;
               $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-              $atributos ['valor'] = '';
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
+              } else {
+                $atributos ['valor'] = '';
+              }
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -266,8 +302,8 @@ class Registrador
               $atributos ["obligatorio"] = false;
               $atributos ['marco'] = true;
               $atributos ["etiqueta"] = "";
-              if (isset ( $_REQUEST [$esteCampo] )) {
-                $atributos ['valor'] = $_REQUEST [$esteCampo];
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
               } else {
                 $atributos ['valor'] = '';
               }
@@ -290,7 +326,11 @@ class Registrador
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
               $atributos ['maximoTamanno'] = 5;
-              $atributos ['valor'] ='';
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
+              } else {
+                $atributos ['valor'] = '';
+              }
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -317,7 +357,11 @@ class Registrador
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
               $atributos ['maximoTamanno'] = 300;
-              $atributos ['valor'] ='';
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
+              } else {
+                $atributos ['valor'] = '';
+              }
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -343,7 +387,11 @@ class Registrador
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
               $atributos ['maximoTamanno'] = 10;
-              $atributos ['valor'] ='';
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['valor'] = $driver[$esteCampo];
+              } else {
+                $atributos ['valor'] = '';
+              }
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;

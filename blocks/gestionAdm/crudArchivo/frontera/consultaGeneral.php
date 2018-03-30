@@ -42,8 +42,8 @@ class Registrador
         $cadenaSql = $this->miSql->getCadenaSql('consultaParticularDispositivo',$_REQUEST['id_dispositivo']);
         $dispositivo=$esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
-        $valorDispositivo=utf8_encode($dispositivo[0]['nombre_dispositivo']);
-        $valorPlataforma=utf8_encode($dispositivo[0]['nombre_plataforma']);
+        $valorDispositivo=$dispositivo[0]['nombre_dispositivo'];
+        $valorPlataforma=$dispositivo[0]['nombre_plataforma'];
         }
 
 
