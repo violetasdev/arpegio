@@ -49,7 +49,7 @@ class procesarAjax
 
 
                         $resultadoFinal[] = array(
-                          'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.substr($valor['descripcion'],100),
+                          'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.substr($valor['descripcion'],0,100),
                           'plataforma' => utf8_encode($valor['nombre_plataforma']),
                           'fecha' => $valor['fecha_publicacion'],
                           'dispositivo' =>$valor['nombre_dispositivo'],
@@ -140,7 +140,7 @@ class procesarAjax
 
 
                                 $resultadoFinal[] = array(
-                                  'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.substr($valor['descripcion'],100),
+                                  'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.substr($valor['descripcion'],0,100),
                                   'plataforma' => utf8_encode($valor['nombre_plataforma']),
                                   'fecha' => $valor['fecha_publicacion'],
                                   'dispositivo' =>$valor['nombre_dispositivo'],
