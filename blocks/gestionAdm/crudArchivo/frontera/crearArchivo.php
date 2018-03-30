@@ -377,7 +377,7 @@ class Registrador
                 $atributos ['limitar'] = false;
                 $atributos ['anchoCaja'] = 10;
                 $atributos ['miEvento'] = '';
-                $atributos ['validar'] = '';
+                $atributos ['validar'] = 'required';
                 // Aplica atributos globales al control
                 $atributos = array_merge ( $atributos, $atributosGlobales );
                 echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );

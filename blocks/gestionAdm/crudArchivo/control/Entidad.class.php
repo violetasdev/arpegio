@@ -51,6 +51,11 @@ class Entidad
         include_once $this->ruta . "entidad/registrar.php";
     }
 
+    public function editarInformacion()
+    {
+        include_once $this->ruta . "entidad/editar.php";
+    }
+
     public function action()
     {
 
@@ -70,6 +75,10 @@ class Entidad
         switch ($_REQUEST['opcion']) {
             case 'registroArchivo':
                 $this->cargarInformacion();
+                break;
+
+            case 'editarArchivo':
+                $this->editarInformacion();
                 break;
         }
 

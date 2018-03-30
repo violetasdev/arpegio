@@ -83,7 +83,7 @@ class Sql extends \Sql
                   break;
 
             case 'consultaDetalle':
-              $cadenaSql = " SELECT arpegiodata_driver.id_driver, nombre_sistema, arpegiodata_driver.sistema_operativo, version,nombredriver as nombre_archivo,descripcion,nombre_dispositivo, arpegiodata_driver.dispositivo, nombre_plataforma, arpegiodata_driver.plataforma,fecha_publicacion as fechaPublicacion,nombre_categoria,arpegiodata_driver.categoria, ruta_relativa ";
+              $cadenaSql = " SELECT arpegiodata_driver.id_driver, nombre_sistema, arpegiodata_driver.sistema_operativo as id_sistema, version,nombredriver as nombre_archivo,descripcion,nombre_dispositivo, arpegiodata_driver.dispositivo as id_dispositivo, nombre_plataforma, arpegiodata_driver.plataforma as id_plataforma,fecha_publicacion as fechaPublicacion,nombre_categoria,arpegiodata_driver.categoria as id_categoria, ruta_relativa ";
               $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo
               JOIN arpegiodata_archivo ON arpegiodata_archivo.id_driver=arpegiodata_driver.id_driver";
               $cadenaSql.= " WHERE estado_driver=1 ";

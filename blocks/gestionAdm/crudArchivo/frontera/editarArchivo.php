@@ -64,8 +64,6 @@ class Registrador
              * Código Formulario
              */
 
-echo "editar archivo";
-
         if ($_REQUEST['id_driver']==''){
             $url =   $this->miConfigurador->configuracion["host"] .  $this->miConfigurador->configuracion["site"] . "/index.php";
             echo "<script>location.replace('" . $url . "')</script>";
@@ -73,11 +71,7 @@ echo "editar archivo";
 
         $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
         $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
-
-
         $driver=$driver[0];
-
-             var_dump($esteRecursoDB);
 
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
@@ -498,7 +492,7 @@ echo "editar archivo";
               $valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
               $valorCodificado .= "&bloque=" . $esteBloque['nombre'];
               $valorCodificado .= "&bloqueGrupo=" . $esteBloque["grupo"];
-              $valorCodificado .= "&opcion=registroArchivo";
+              $valorCodificado .= "&opcion=editarArchivo";
 
               /**
              * SARA permite que los nombres de los campos sean dinámicos.

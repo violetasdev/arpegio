@@ -33,6 +33,8 @@ class procesarAjax
             }else{
                 $cadenaSql = $this->sql->getCadenaSql('consultaParticular');
             }
+
+
                 $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
                 if ($drivers) {

@@ -168,8 +168,8 @@ class Mysql extends ConectorDB {
             $salida = $busqueda->fetch_array ( MYSQLI_BOTH );
 
             for($unCampo = 0; $unCampo < $this->campo; $unCampo ++) {
-                $this->registro [$j] [$unCampo] = $salida [$unCampo];
-                $this->registro [$j] [$this->claves [$unCampo]] = $salida [$unCampo];
+                $this->registro [$j] [$unCampo] = utf8_encode($salida [$unCampo]);
+                $this->registro [$j] [$this->claves [$unCampo]] = utf8_encode($salida [$unCampo]);
             }
         }
         $busqueda->free ();

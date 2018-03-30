@@ -153,8 +153,10 @@ class procesarAjax
                       }
 
                         $cadenaSql = $this->sql->getCadenaSql('consultaFiltroPlataforma', $cadenaSql);
+
                         $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
+var_dump($drivers);
                         if ($drivers) {
                             foreach ($drivers as $key => $valor) {
                               {

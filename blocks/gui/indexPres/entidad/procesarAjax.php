@@ -34,11 +34,11 @@ class procesarAjax
                          'data'
                      );
 
-                     $resultadoItems[$key]['value']=utf8_encode($resultadoItems[$key]['value']);
+                     $resultadoItems[$key]['value']=$resultadoItems[$key]['value'];
 
                      $resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
                    }
-   
+
                    echo '{"suggestions":' . json_encode ( $resultado ) . '}';
                     break;
       }
