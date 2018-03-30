@@ -42,8 +42,10 @@ class FormProcessor
         $conexion = "arpegiodata";
         $this->esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
-        /**
-               * 1.
+        /**0. Validar campos */
+
+        $this->validarDatos();
+              /* * 1.
                * CargarArchivos en el Directorio
                */
 
@@ -157,10 +159,31 @@ public function baseDatos(){
           $this->proceso2 = $this->esteRecursoDB->ejecutarAcceso($cadenaSql2, "acceso");
 
           if (isset($this->proceso2) && $this->proceso2 != false) {
-              Redireccionador::redireccionar("ExitoRegistro");
+              Redireccionador::redireccionar("ExitoRegistro");    exit();
           } else {
-              Redireccionador::redireccionar("ErrorRegistro");
+              Redireccionador::redireccionar("ErrorRegistro");    exit();
           }
 
-}}
+}
+
+    public function validarDatos() {
+
+      $validar=array(
+        'validarDispositivo'=>$_REQUEST['id_dispositivo'],
+        'validarPlataforma'=>$_REQUEST['id_plataforma'],
+        'validarCategoria'=>$_REQUEST['id_categoria'],
+        'validarSistema'=>$_REQUEST['id_sistema'],
+      );
+
+      foreach ($validar as $key => $value) {
+        $cadenaSql = $this->miSql->getCadenaSql($key,$value);
+        $plataforma = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+        if($plataforma==false)
+        {
+          Redireccionador::redireccionar("ErrorDatos");
+          exit();
+        }
+      }
+    }
+}
 $miProcesador = new FormProcessor($this->lenguaje, $this->sql);

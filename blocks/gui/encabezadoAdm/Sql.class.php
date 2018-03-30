@@ -54,7 +54,7 @@ class Sql extends \Sql {
 					 $cadenaSql .= " JOIN arpegiomenu.menu AS men ON men.id_menu = enl.id_menu";
 					 $cadenaSql .= " WHERE 1=1 ";
 					 $i = 0;
-					 foreach ($variable as $rol) {
+				/*	 foreach ($variable as $rol) {
 							 if ($i == 0) {
 									 $cadenaSql .= " AND rol.rol = '" . $rol . "'";
 									 $i++;
@@ -62,7 +62,7 @@ class Sql extends \Sql {
 									 $cadenaSql .= " OR rol.rol = '" . $rol . "'";
 									 $i++;
 							 }
-					 }
+					 }*/
 					 $cadenaSql .= " AND enl.estado='1' AND  men.estado='1' ";
 					 $cadenaSql .= " ORDER BY enl.id_menu, enl.columna, enl.orden";
 					 $cadenaSql .= " ;";

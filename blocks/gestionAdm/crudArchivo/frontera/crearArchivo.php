@@ -85,6 +85,7 @@ class Registrador
               $atributos ['readonly'] = false;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
+              $atributos ['maximoTamanno'] = 100;
               $atributos ['placeholder'] = "Nombre del Driver/Archivo";
               $atributos ['valor'] ='';
               $atributos ['ajax_function'] = "";
@@ -113,6 +114,7 @@ class Registrador
               $atributos ['readonly'] = false;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
+              $atributos ['maximoTamanno'] = 50;
               $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
               $atributos ['valor'] ='';
               $atributos ['ajax_function'] = "";
@@ -120,7 +122,7 @@ class Registrador
               $atributos ['limitar'] = false;
               $atributos ['anchoCaja'] = 5;
               $atributos ['miEvento'] = '';
-          $atributos ['validar'] = 'required';
+              $atributos ['validar'] = 'required';
               // Aplica atributos globales al control
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
@@ -156,8 +158,9 @@ class Registrador
               $atributos ['readonly'] = false;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
+              $atributos ['maximoTamanno'] = 100;
               $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-              $atributos ['valor'] = $valorDispositivo;;
+              $atributos ['valor'] = '';
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -199,8 +202,9 @@ class Registrador
               $atributos ['readonly'] = false;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
+              $atributos ['maximoTamanno'] = 50;
               $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-              $atributos ['valor'] = $valorDispositivo;;
+              $atributos ['valor'] = '';
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -242,8 +246,9 @@ class Registrador
               $atributos ['readonly'] = false;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
+              $atributos ['maximoTamanno'] = 50;
               $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
-              $atributos ['valor'] = $valorDispositivo;;
+              $atributos ['valor'] = '';
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;
@@ -285,6 +290,7 @@ class Registrador
               $atributos ['readonly'] = false;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
+              $atributos ['maximoTamanno'] = 5;
               $atributos ['valor'] ='';
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
@@ -311,6 +317,7 @@ class Registrador
               $atributos ['readonly'] = false;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
+              $atributos ['maximoTamanno'] = 300;
               $atributos ['valor'] ='';
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
@@ -336,6 +343,7 @@ class Registrador
               $atributos ['readonly'] = false;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
+              $atributos ['maximoTamanno'] = 10;
               $atributos ['valor'] ='';
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
@@ -362,6 +370,7 @@ class Registrador
                 $atributos ['readonly'] = true;
                 $atributos ['columnas'] = 1;
                 $atributos ['tamanno'] = 1;
+                $atributos ['maximoTamanno'] = 100;
                 $atributos ['placeholder'] = "";
                 $atributos ['valor'] = "";
                 $atributos ['ajax_function'] = "";

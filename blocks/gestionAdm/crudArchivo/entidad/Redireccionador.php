@@ -29,6 +29,12 @@ class Redireccionador
                 $variable .= '&mensaje=errorArchivo';
                 break;
 
+                case "ErrorDatos":
+                    $variable = 'pagina=crudArchivo';
+                    $variable .= '&mensaje=errorDatos';
+                    break;
+
+
                 case "ErrorNoValido":
                     $variable = 'pagina=crudArchivo';
                     $variable .= '&mensaje=errorValido';

@@ -154,6 +154,31 @@ class Sql extends \Sql
               $cadenaSql.= " '".$variable['fecha_creacion']."', ";
               $cadenaSql.= " 1); ";
               break;
+
+
+              case 'validarPlataforma':
+                $cadenaSql = " SELECT id_plataforma as data, nombre_plataforma as value ";
+                $cadenaSql.= "FROM `arpegiodata_plataforma` ";
+                $cadenaSql.= " WHERE estado_plataforma=1 AND id_plataforma='".$variable."' ";
+                break;
+
+              case 'validarDispositivo':
+                $cadenaSql = " SELECT id_dispositivo as data, nombre_dispositivo as value ";
+                $cadenaSql.= "FROM `arpegiodata_dispositivo` ";
+                $cadenaSql.= " WHERE estado_dispositivo=1 AND id_dispositivo='".$variable."'";
+                break;
+
+                case 'validarCategoria':
+                  $cadenaSql = " SELECT id_categoria as data, nombre_categoria as value ";
+                  $cadenaSql.= "FROM `arpegiodata_categoria` ";
+                  $cadenaSql.= " WHERE estado_categoria=1 AND id_categoria='".$variable."'";
+                  break;
+
+              case 'validarSistema':
+                    $cadenaSql = " SELECT id_sistema as data, nombre_sistema as value ";
+                    $cadenaSql.= "FROM `arpegiodata_sistemaoperativo` ";
+                    $cadenaSql.= " WHERE estado_sistema=1 AND id_sistema='".$variable."'";
+                    break;
             }
 
         return $cadenaSql;

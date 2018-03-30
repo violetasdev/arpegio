@@ -318,6 +318,11 @@ class Registrador
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
 
+          case 'errorDatos':
+                $mensaje = "Error<br>Datos de formulario no ingresados correctamente.";
+                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
+                break;
+
             case 'errorArchivo':
                 $mensaje = "Error<br>Diver/Archivo no subido correctamente en el servidor.";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
