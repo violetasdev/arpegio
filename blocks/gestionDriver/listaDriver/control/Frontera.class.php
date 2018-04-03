@@ -56,11 +56,13 @@ class Frontera
 
         if (isset($_REQUEST['opcion'])) {
             switch ($_REQUEST['opcion']) {
-                case 'detalleDriver':
+              case 'detalleDriver':
 
-              if (isset($_REQUEST['id_driver']) && $_REQUEST['id_driver']!=''){
+              if (isset($_REQUEST['id_cadenaBusquedaLan']) && $_REQUEST['id_cadenaBusquedaLan']!=''){
+                $_REQUEST['buscarLista']=$_REQUEST['id_cadenaBusquedaLan'];
                 include_once $this->ruta . "frontera/detalleDriver.php";
-              }elseif (isset($_REQUEST['id_cadenaBusquedaLan']) && $_REQUEST['id_cadenaBusquedaLan']!=''){
+              }elseif (isset($_REQUEST['id_driver']) && $_REQUEST['id_driver']!=''){
+                $_REQUEST['buscarLista']=$_REQUEST['id_driver'];
                 include_once $this->ruta . "frontera/detalleDriver.php";
               }elseif ($_REQUEST['id_cadenaBusquedaLan']==''){
                 include_once $this->ruta . "frontera/consultaGeneral.php";

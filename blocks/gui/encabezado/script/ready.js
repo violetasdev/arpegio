@@ -1,3 +1,4 @@
+
 function openNav() {
 
   if (screen.width < 780) {

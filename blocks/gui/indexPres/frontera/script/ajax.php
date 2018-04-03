@@ -37,7 +37,6 @@ var plat= "";
 
 
 $("#<?php echo $this->campoSeguro('cadenaBusquedaLan');?>").autocomplete({
-
  minChars: 3,
  maxResults: 10,
  serviceUrl: '<?php echo $urlConsultarPlataforma;?>',
