@@ -54,21 +54,12 @@ class Registrador
         // ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
 
 
-if(isset($_REQUEST['id_cadenaBusquedaLan'])){
-   $buscarDriver=$_REQUEST['id_cadenaBusquedaLan'];
-   $_REQUEST['id_cadenaBusquedaLan']='';
-}
-
-if(isset($_REQUEST['id_driver'] && $_REQUEST['id_driver']!='')){
-  $buscarDriver=$_REQUEST['id_driver'];
-}
-
-if ($_REQUEST['id_driver']==''){
+if(isset(  $_REQUEST['buscarLista']) &&  $_REQUEST['buscarLista']!=''){
+  $buscarDriver=  $_REQUEST['buscarLista'];
+}else{
   $url =   $this->miConfigurador->configuracion["host"] .  $this->miConfigurador->configuracion["site"] . "/index.php";
   echo "<script>location.replace('" . $url . "')</script>";
 }
-
-
 
        $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$buscarDriver);
         $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");

@@ -104,11 +104,8 @@ class Registrador
                $atributos ["obligatorio"] = false;
                $atributos ['marco'] = true;
                $atributos ["etiqueta"] = "";
-               if (isset ( $_REQUEST [$esteCampo] )) {
-                 $atributos ['valor'] = $_REQUEST [$esteCampo];
-               } else {
-                 $atributos ['valor'] = '';
-               }
+              $atributos ['valor'] = '';
+
                $atributos = array_merge ( $atributos, $atributosGlobales );
                echo $this->miFormulario->campoCuadroTexto ( $atributos );
                unset ( $atributos );
