@@ -62,7 +62,12 @@ if ($_REQUEST['id_driver']==''){
   $url =   $this->miConfigurador->configuracion["host"] .  $this->miConfigurador->configuracion["site"] . "/index.php";
   echo "<script>location.replace('" . $url . "')</script>";
 }
-       $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
+
+       $buscarDriver=$_REQUEST['id_driver'];
+       $_REQUEST['id_cadenaBusquedaLan']='';
+
+
+       $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$buscarDriver);
         $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
         $atributosGlobales['campoSeguro'] = 'true';

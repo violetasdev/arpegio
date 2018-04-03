@@ -35,12 +35,15 @@ $urlDetalle = $url . $cadena;// Codificar las variables
 <script type='text/javascript'>
 var plat= "";
 
+
 $("#<?php echo $this->campoSeguro('cadenaBusquedaLan');?>").autocomplete({
+
  minChars: 3,
  maxResults: 10,
  serviceUrl: '<?php echo $urlConsultarPlataforma;?>',
  onSelect: function (suggestion) {
      $("#<?php echo $this->campoSeguro('id_cadenaBusquedaLan');?>").val(suggestion.data);
+     //Activar únicamente si se requiere una redireccion al seleccionar un item de la lista
   //     location.href = "<?php echo $urlDetalle?>";
      }
 });
