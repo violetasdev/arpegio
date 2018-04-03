@@ -189,8 +189,6 @@ public function baseDatos(){
       }
 
       $this->archivo_datos_cargar = array(
-          'ruta_archivo' => $ruta_relativa,
-          'rutaabsoluta' => $ruta_absoluta,
           'nombre_archivo' => $_REQUEST['nombre_archivo'],
           'nombredriver' => $doc,
           'plataforma' => $_REQUEST['id_plataforma'],
@@ -198,8 +196,6 @@ public function baseDatos(){
           'dispositivo' => $_REQUEST['id_dispositivo'],
           'descripcion' => $_REQUEST['descripcion'],
           'version' => $_REQUEST['version'],
-          'tamanio' => $tamano,
-          'extension'=>$exten['extension'],
           'sistema_operativo' => $_REQUEST['id_sistema'],
           'fecha_publicacion'=>$_REQUEST['fechaPublicacion'],
           'fecha_creacion'=> date("Y/m/d"),
