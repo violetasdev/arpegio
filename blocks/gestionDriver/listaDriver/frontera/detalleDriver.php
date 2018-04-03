@@ -55,7 +55,12 @@ class Registrador
 
 
 if(isset($_REQUEST['id_cadenaBusquedaLan'])){
-  $_REQUEST['id_driver']=$_REQUEST['id_cadenaBusquedaLan'];
+   $buscarDriver=$_REQUEST['id_cadenaBusquedaLan'];
+   $_REQUEST['id_cadenaBusquedaLan']='';
+}
+
+if(isset($_REQUEST['id_driver'] && $_REQUEST['id_driver']!='')){
+  $buscarDriver=$_REQUEST['id_driver'];
 }
 
 if ($_REQUEST['id_driver']==''){
@@ -63,8 +68,6 @@ if ($_REQUEST['id_driver']==''){
   echo "<script>location.replace('" . $url . "')</script>";
 }
 
-       $buscarDriver=$_REQUEST['id_driver'];
-       $_REQUEST['id_cadenaBusquedaLan']='';
 
 
        $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$buscarDriver);
