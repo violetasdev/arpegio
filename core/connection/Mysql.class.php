@@ -153,13 +153,13 @@ class Mysql extends ConectorDB {
             $i = 0;
             foreach ( $this->keys as $clave => $valor ) {
                 if (is_string ( $valor )) {
-                    $this->claves [$i] = $valor;
+                    $this->claves [$i] = utf8_encode($valor);
                     $i ++;
                 }
             }
             for($unCampo = 0; $unCampo < $this->campo; $unCampo ++) {
-                $this->registro [0] [$unCampo] = $salida [$unCampo];
-                $this->registro [0] [$this->claves [$unCampo]] = $salida [$unCampo];
+                $this->registro [0] [$unCampo] = utf8_encode($salida [$unCampo]);
+                $this->registro [0] [$this->claves [$unCampo]] =utf8_encode( $salida [$unCampo]);
             }
         }
 
@@ -168,8 +168,8 @@ class Mysql extends ConectorDB {
             $salida = $busqueda->fetch_array ( MYSQLI_BOTH );
 
             for($unCampo = 0; $unCampo < $this->campo; $unCampo ++) {
-                $this->registro [$j] [$unCampo] = $salida [$unCampo];
-                $this->registro [$j] [$this->claves [$unCampo]] = $salida [$unCampo];
+                $this->registro [$j] [$unCampo] = utf8_encode($salida [$unCampo]);
+                $this->registro [$j] [$this->claves [$unCampo]] = utf8_encode($salida [$unCampo]);
             }
         }
         $busqueda->free ();
