@@ -1,0 +1,41 @@
+/*
+Código css correspondiente al Bloque.
+*/
+
+.td{
+text-align: center;
+padding: 0px;
+}
+
+body > table > tbody > tr > td:first-child {
+  text-align: left;
+}
+
+div.dataTables_filter label {
+    float: right;
+}
+
+#Agrupacion{
+padding: 0 5%;
+}
+
+#AgrupacionSmall{
+font-size: 15px;
+}
+
+#botonDescarga{
+  background-color: orange;
+  border-color:orange;
+  font-size: 19px;
+}
+
+@media (max-height: 720px) {
+
+  div.example_paginate label {
+      text-align: right;
+  }
+}
+
+campoTextoEtiqueta{
+  font-weight: bold;
+}
