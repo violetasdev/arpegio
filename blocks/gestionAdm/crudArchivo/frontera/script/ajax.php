@@ -326,9 +326,8 @@ $('#example').DataTable().destroy();
          columns: [
            { data :"nombre" },
            { data :"dispositivo" },
-           { data :"plataforma" },
-           { data :"categoria" },
-           { data :"fecha" },
+           { data :"editar" },
+           { data :"inhabilitar" },
          ]
 	    } );
 

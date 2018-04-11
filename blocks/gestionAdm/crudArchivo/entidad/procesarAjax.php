@@ -168,32 +168,45 @@ class procesarAjax
                         $cadenaSql.= "AND dispositivo='" . $dispositivo . "' ";
                       }
 
-                        $cadenaSql = $this->sql->getCadenaSql('consultaFiltroPlataforma', $cadenaSql);
+                      $cadenaSql = $this->sql->getCadenaSql('consultaFiltroPlataforma', $cadenaSql);
 
-                        $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+                      $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
-var_dump($drivers);
                         if ($drivers) {
+
+                                            $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+                                            $valorCodificado .= "&opcion=edicionDriver";
+
+                                            $valorCodificado2 = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+                                            $valorCodificado2 .= "&opcion=inhabilitarDriver";
+
+                                            $valorCodificado3 = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+                                            $valorCodificado3 .= "&opcion=detalleDriver";
+
                             foreach ($drivers as $key => $valor) {
                               {
-                              $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
-                              $valorCodificado .= "&opcion=detalleDriver";
                               $valorCodificado .= "&id_driver=" . $valor['id_driver'];
+                              $valorCodificado2 .= "&id_driver=" . $valor['id_driver'];
+                              $valorCodificado3 .= "&id_driver=" . $valor['id_driver'];
                               }
 
                               $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+
                               $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado, $enlace);
-                              $urlDetalle = $url . $cadena;
+                              $cadena2 = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado2, $enlace);
+                              $cadena3 = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado3, $enlace);
+
+                              $urlEdit = $url . $cadena;
+                              $urlDisable = $url . $cadena2;
+                              $urlDetalle = $url . $cadena3;
 
 
                                 $resultadoFinal[] = array(
-                                  'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.substr($valor['descripcion'],0,100),
-                                  'plataforma' => $valor['nombre_plataforma'],
-                                  'fecha' => $valor['fecha_publicacion'],
-                                  'dispositivo' =>$valor['nombre_dispositivo'],
-                                  'categoria' =>$valor['nombre_categoria'],
+                                  'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br>',
+                                  'dispositivo' => $valor['nombre_dispositivo'],
+                                  'editar' => '<a href="'.$urlEdit.'">Editar</a><br>',
+                                  'inhabilitar' =>'<a href="'.$urlDisable.'">Inhabilitar</a><br>',
                                   );
-
                             $total = count($resultadoFinal);
 
 
