@@ -8,6 +8,7 @@ $this->idioma['noDefinido'] = 'Etiqueta No definida';
 $this->idioma['botonNuevo'] = 'Subir Nuevo Archivo';
 $this->idioma['botonRegistrar'] = 'Registrar Archivo';
 $this->idioma['botonEditar'] = 'Guardar Cambios';
+$this->idioma['botonDescarga'] = 'Descargar';
 
 
 /*Labels for the general filtering query*/

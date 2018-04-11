@@ -62,7 +62,7 @@ if ($_REQUEST['id_driver']==''){
   $url =   $this->miConfigurador->configuracion["host"] .  $this->miConfigurador->configuracion["site"] . "/index.php";
   echo "<script>location.replace('" . $url . "')</script>";
 }
-       $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
+        $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_driver']);
         $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
         $atributosGlobales['campoSeguro'] = 'true';
@@ -77,7 +77,7 @@ if ($_REQUEST['id_driver']==''){
 
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
-            $atributos['leyenda'] = $driver[0]['nombredriver'];
+            $atributos['leyenda'] = "Vista Administrador Detalle ".$driver[0]['nombre_archivo'];
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
@@ -211,7 +211,7 @@ if ($_REQUEST['id_driver']==''){
           		echo $this->miFormulario->campoTexto ( $atributos );
           		unset ( $atributos );
 
-              $esteCampo = 'publicacion';
+              $esteCampo = 'fechaPublicacion';
               $atributos ['nombre'] = $esteCampo;
               $atributos ['tipo'] = "text";
               $atributos ['id'] = $esteCampo;
@@ -225,7 +225,7 @@ if ($_REQUEST['id_driver']==''){
               $atributos ['readonly'] = true;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
-              $atributos ['texto'] = $driver [0]['fecha_publicacion'];
+              $atributos ['texto'] = $driver [0]['fechaPublicacion'];
               $atributos ['ajax_function'] = "";
               $atributos ['ajax_control'] = $esteCampo;
               $atributos ['limitar'] = false;

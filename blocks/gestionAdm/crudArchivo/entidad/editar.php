@@ -51,8 +51,6 @@ class FormProcessor
                foreach ($_FILES as $key => $archivo) {
 
                    if ($_FILES[$key]['size'] != 0 && $_FILES[$key]['error'] == 0) {
-
-                     echo "entro a ver el archivo";
                      $this->archivo=true;
                      $this->cargarArchivos();
                    }
@@ -123,7 +121,8 @@ class FormProcessor
                 exit();
             }
 
-            $this->archivo_datos_cargar = array(
+            $this->archivo_cargar = array(
+                'nombre_archivo' => $_REQUEST['nombre_archivo'],
                 'ruta_archivo' => $ruta_relativa,
                 'rutaabsoluta' => $ruta_absoluta,
                 'nombredriver' => $doc,
@@ -132,6 +131,7 @@ class FormProcessor
                 'ubicacion'=>$ubicacion,
                 'ruta_relativa'=>$ruta_relativa,
                 'fecha_creacion'=> date("Y/m/d"),
+                'id_driver'=>$_REQUEST['id_driver'],
               );
         }
         return true;
@@ -140,11 +140,12 @@ class FormProcessor
 
 public function baseDatos(){
 
-          $cadenaSql = $this->miSql->getCadenaSql('actualizarDriver', $this->archivo_datos_cargar);
-        echo  $insertar = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
+          $cadenaSql = $this->miSql->getCadenaSql('actualizarDriver', $this->datos_cargar);
+          $insertar = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
           if($this->archivo==true){
-          $cadenaSql2 = $this->miSql->getCadenaSql('actualizarArchivo', $this->archivo_datos_cargar);
+
+         $cadenaSql2 = $this->miSql->getCadenaSql('actualizarArchivo', $this->archivo_cargar);
           $this->proceso2 = $this->esteRecursoDB->ejecutarAcceso($cadenaSql2, "acceso");
 
           if (isset($this->proceso2) && $this->proceso2!= false) {
@@ -180,7 +181,7 @@ public function baseDatos(){
         }
       }
 
-      $this->archivo_datos_cargar = array(
+      $this->datos_cargar = array(
           'id_driver'=>$_REQUEST['id_driver'],
           'nombre_archivo' => $_REQUEST['nombre_archivo'],
           'plataforma' => $_REQUEST['id_plataforma'],

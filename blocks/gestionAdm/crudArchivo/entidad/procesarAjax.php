@@ -41,21 +41,30 @@ class procesarAjax
                   $valorCodificado2 = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
                   $valorCodificado2 .= "&opcion=inhabilitarDriver";
 
+                  $valorCodificado3 = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+                  $valorCodificado3 .= "&opcion=detalleDriver";
+
+
                     foreach ($drivers as $key => $valor) {
                       {
                       $valorCodificado .= "&id_driver=" . $valor['id_driver'];
                       $valorCodificado2 .= "&id_driver=" . $valor['id_driver'];
+                      $valorCodificado3 .= "&id_driver=" . $valor['id_driver'];
                       }
 
                       $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+
                       $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado, $enlace);
                       $cadena2 = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado2, $enlace);
+                      $cadena3 = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado3, $enlace);
+
                       $urlEdit = $url . $cadena;
                       $urlDisable = $url . $cadena2;
+                      $urlDetalle = $url . $cadena3;
 
 
                         $resultadoFinal[] = array(
-                          'nombre' => $valor['nombredriver'],
+                          'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br>',
                           'dispositivo' => $valor['nombre_dispositivo'],
                           'editar' => '<a href="'.$urlEdit.'">Editar</a><br>',
                           'inhabilitar' =>'<a href="'.$urlDisable.'">Inhabilitar</a><br>',

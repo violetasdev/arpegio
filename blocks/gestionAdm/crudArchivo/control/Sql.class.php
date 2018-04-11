@@ -112,8 +112,6 @@ class Sql extends \Sql
               $cadenaSql.= " dispositivo, ";
               $cadenaSql.= " descripcion, ";
               $cadenaSql.= " version, ";
-              $cadenaSql.= " tamanio, ";
-              $cadenaSql.= " extension, ";
               $cadenaSql.= " sistema_operativo, ";
               $cadenaSql.= " fecha_publicacion, ";
               $cadenaSql.= " fecha_creacion, ";
@@ -124,8 +122,6 @@ class Sql extends \Sql
               $cadenaSql.= " '".$variable['dispositivo']."', ";
               $cadenaSql.= " '".$variable['descripcion']."', ";
               $cadenaSql.= " '".$variable['version']."', ";
-              $cadenaSql.= " '".$variable['tamanio']."', ";
-              $cadenaSql.= " '".$variable['extension']."', ";
               $cadenaSql.= " '".$variable['sistema_operativo' ]."', ";
               $cadenaSql.= " '".$variable['fecha_publicacion']."', ";
               $cadenaSql.= " '".$variable['fecha_creacion']."', ";
@@ -201,7 +197,7 @@ class Sql extends \Sql
                     $cadenaSql.= " `ruta_relativa`='".$variable['ruta_relativa']."', ";
                     $cadenaSql.= " `tipo_archivo`='".$variable['extension']."', ";
                     $cadenaSql.= " `tamannio`='".$variable['tamanio']."', ";
-                    $cadenaSql.= " `fecha_subida` '".$variable['fecha_creacion']."', ";
+                    $cadenaSql.= " `fecha_subida`='".$variable['fecha_creacion']."' ";
                     $cadenaSql.= " WHERE ";
                     $cadenaSql.= " id_driver='".$variable['id_driver']."'; ";
                     break;

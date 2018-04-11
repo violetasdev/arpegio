@@ -57,7 +57,7 @@ class Redireccionador
 
                 case "ErrorActualizarArchivo":
                     $variable = 'pagina=crudArchivo';
-                    $variable .= '&mensaje=errorArchivo';
+                    $variable .= '&mensaje=errorArchivoActualizar';
                     break;
 
             default:

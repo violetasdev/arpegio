@@ -334,6 +334,11 @@ class Registrador
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
 
+                case 'errorArchivoActualizar':
+                    $mensaje = "Error<br>Driver/Archivo no actualizado correctamente en el servidor.";
+                    $atributos['estiloLinea'] = 'error';     //success,error,information,warning
+                    break;
+
             case 'errorInfo':
                 $mensaje = "Error<br>Información no actualizada correctamente en el servidor.";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
