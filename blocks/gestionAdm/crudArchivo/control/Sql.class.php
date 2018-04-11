@@ -179,6 +179,32 @@ class Sql extends \Sql
                     $cadenaSql.= "FROM `arpegiodata_sistemaoperativo` ";
                     $cadenaSql.= " WHERE estado_sistema=1 AND id_sistema='".$variable."'";
                     break;
+
+                    /**Edicion de archivos**/
+
+                    case 'actualizarDriver':
+                    $cadenaSql=" UPDATE arpegiodata_driver SET ";
+                    $cadenaSql.= " nombredriver='".$variable['nombre_archivo']."', ";
+                    $cadenaSql.= " plataforma='".$variable['plataforma']."', ";
+                    $cadenaSql.= " categoria='".$variable['categoria']."', ";
+                    $cadenaSql.= " dispositivo='".$variable['dispositivo']."', ";;
+                    $cadenaSql.= " descripcion='".$variable['descripcion']."', ";
+                    $cadenaSql.= " version='".$variable['version']."', ";
+                    $cadenaSql.= " sistema_operativo='".$variable['sistema_operativo' ]."', ";
+                    $cadenaSql.= " fecha_publicacion='".$variable['fecha_publicacion']."' ";
+                    $cadenaSql.= " WHERE ";
+                    $cadenaSql.= " id_driver='".$variable['id_driver']."'; ";
+                    break;
+
+                    case 'actualizarArchivo':
+                    $cadenaSql=" UPDATE `arpegiodata_archivo` SET";
+                    $cadenaSql.= " `ruta_relativa`='".$variable['ruta_relativa']."', ";
+                    $cadenaSql.= " `tipo_archivo`='".$variable['extension']."', ";
+                    $cadenaSql.= " `tamannio`='".$variable['tamanio']."', ";
+                    $cadenaSql.= " `fecha_subida` '".$variable['fecha_creacion']."', ";
+                    $cadenaSql.= " WHERE ";
+                    $cadenaSql.= " id_driver='".$variable['id_driver']."'; ";
+                    break;
             }
 
         return $cadenaSql;

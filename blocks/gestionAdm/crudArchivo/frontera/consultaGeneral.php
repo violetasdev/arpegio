@@ -222,9 +222,8 @@ class Registrador
                                         <tr>
                                             <th><center>Nombre<center></th>
                                             <th><center>Dispositivo<center></th>
-                                            <th><center>Plataforma<center></th>
-                                            <th><center>Categoria<center></th>
-                                            <th><center>Fecha<center></th>
+                                            <th><center>Editar<center></th>
+                                            <th><center>Inhabilitar<center></th>
                                         </tr>
                                     </thead>
                                   </table>';
@@ -288,9 +287,6 @@ class Registrador
               $atributos["valor"] = $valorCodificado;
               echo $this->miFormulario->campoCuadroTexto($atributos);
               unset($atributos);
-
-
-
         }
 
         // ----------------FINALIZAR EL FORMULARIO ----------------------------------------------------------
@@ -313,18 +309,33 @@ class Registrador
                 $atributos['estiloLinea'] = 'success';     //success,error,information,warning
                 break;
 
+            case 'exitoArchivo':
+                $mensaje = "Exito<br>Datos del Driver/Archivo actualizado correctamente en el servidor.";
+                $atributos['estiloLinea'] = 'success';     //success,error,information,warning
+                break;
+
+            case 'exitoInfo':
+                $mensaje = "Exito<br>Driver/Archivo actualizado correctamente en el servidor.";
+                $atributos['estiloLinea'] = 'success';     //success,error,information,warning
+                break;
+
             case 'errorRegistro':
                 $mensaje = "Error<br>No se registró el Driver/Archivo correctamente.";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
 
-          case 'errorDatos':
+            case 'errorDatos':
                 $mensaje = "Error<br>Datos de formulario no ingresados correctamente.";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
 
             case 'errorArchivo':
-                $mensaje = "Error<br>Diver/Archivo no subido correctamente en el servidor.";
+                $mensaje = "Error<br>Driver/Archivo no subido correctamente en el servidor.";
+                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
+                break;
+
+            case 'errorInfo':
+                $mensaje = "Error<br>Información no actualizada correctamente en el servidor.";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
 

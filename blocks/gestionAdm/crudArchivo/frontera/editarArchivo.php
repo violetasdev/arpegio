@@ -75,7 +75,7 @@ class Registrador
 
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
-            $atributos['leyenda'] = 'Crear nuevo archivo';
+            $atributos['leyenda'] = 'Editar archivo '. $driver['nombre_archivo'];
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
@@ -438,7 +438,7 @@ class Registrador
               unset ( $atributos );
 
               // -----------------CONTROL: Botón ----------------------------------------------------------------
-              $esteCampo = 'botonRegistrar';
+              $esteCampo = 'botonEditar';
               $atributos["id"] = $esteCampo;
               $atributos["tabIndex"] = $tab;
               $atributos["tipo"] = 'boton';
@@ -488,11 +488,12 @@ class Registrador
 
               // $valorCodificado = "action=" . $esteBloque["nombre"];
 
-              $valorCodificado = "action=" . $esteBloque["nombre"];
-              $valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
-              $valorCodificado .= "&bloque=" . $esteBloque['nombre'];
-              $valorCodificado .= "&bloqueGrupo=" . $esteBloque["grupo"];
-              $valorCodificado .= "&opcion=editarArchivo";
+              $valorCodificado= "action=" . $esteBloque["nombre"];
+              $valorCodificado.= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+              $valorCodificado.= "&bloque=" . $esteBloque['nombre'];
+              $valorCodificado.= "&bloqueGrupo=" . $esteBloque["grupo"];
+              $valorCodificado.= "&opcion=editarArchivo";
+              $valorCodificado.= "&id_driver=".$_REQUEST['id_driver'];
 
               /**
              * SARA permite que los nombres de los campos sean dinámicos.

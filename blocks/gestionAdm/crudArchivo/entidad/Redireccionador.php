@@ -40,6 +40,25 @@ class Redireccionador
                     $variable .= '&mensaje=errorValido';
                     break;
 
+                    case 'ExitoActualizarInfo':
+                      $variable = 'pagina=crudArchivo';
+                        $variable .= '&mensaje=exitoInfo';
+                        break;
+
+                    case "ErrorActualizarInfo":
+                        $variable = 'pagina=crudArchivo';
+                        $variable .= '&mensaje=errorInfo';
+                        break;
+
+                case 'ExitoActualizarArchivo':
+                    $variable = 'pagina=crudArchivo';
+                    $variable .= '&mensaje=exitoArchivo';
+                    break;
+
+                case "ErrorActualizarArchivo":
+                    $variable = 'pagina=crudArchivo';
+                    $variable .= '&mensaje=errorArchivo';
+                    break;
 
             default:
                 $variable = '';

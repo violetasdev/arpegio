@@ -26,7 +26,7 @@ class FormProcessor
         $this->miConfigurador->fabricaConexiones->setRecursoDB('principal');
         $this->lenguaje = $lenguaje;
         $this->miSql = $sql;
-
+        $this->archivo=false;
         $this->rutaURL = $this->miConfigurador->getVariableConfiguracion("host") . $this->miConfigurador->getVariableConfiguracion("site");
 
         $this->rutaAbsoluta = $this->miConfigurador->getVariableConfiguracion("raizDocumento");
@@ -43,16 +43,21 @@ class FormProcessor
         $this->esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
         /**0. Validar campos */
-echo "llegada a editar";
-var_dump($_REQUEST);
-var_dump($_FILES);
-exit;
-        $this->validarDatos();
+              $this->validarDatos();
               /* * 1.
                * CargarArchivos en el Directorio
                */
 
-              $this->cargarArchivos();
+               foreach ($_FILES as $key => $archivo) {
+
+                   if ($_FILES[$key]['size'] != 0 && $_FILES[$key]['error'] == 0) {
+
+                     echo "entro a ver el archivo";
+                     $this->archivo=true;
+                     $this->cargarArchivos();
+                   }
+               }
+
 
               /**
                * 3.
@@ -121,52 +126,39 @@ exit;
             $this->archivo_datos_cargar = array(
                 'ruta_archivo' => $ruta_relativa,
                 'rutaabsoluta' => $ruta_absoluta,
-                'nombre_archivo' => $_REQUEST['nombre_archivo'],
                 'nombredriver' => $doc,
-                'plataforma' => $_REQUEST['id_plataforma'],
-                'categoria' => $_REQUEST['id_categoria'],
-                'dispositivo' => $_REQUEST['id_dispositivo'],
-                'descripcion' => $_REQUEST['descripcion'],
-                'version' => $_REQUEST['version'],
                 'tamanio' => $tamano,
                 'extension'=>$exten['extension'],
-                'sistema_operativo' => $_REQUEST['id_sistema'],
-                'fecha_publicacion'=>$_REQUEST['fechaPublicacion'],
-                'fecha_creacion'=> date("Y/m/d"),
-                'estado'=>1,
                 'ubicacion'=>$ubicacion,
                 'ruta_relativa'=>$ruta_relativa,
+                'fecha_creacion'=> date("Y/m/d"),
               );
-
         }
-
         return true;
-
-    }
-    //$this->archivos_datos = $archivo_datos;
-    //var_dump($this->archivo_datos);
-    //exit;
+  }
 }
 
 public function baseDatos(){
 
-          $cadenaSql = $this->miSql->getCadenaSql('registrarDriver', $this->archivo_datos_cargar);
-          $insertar = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
+          $cadenaSql = $this->miSql->getCadenaSql('actualizarDriver', $this->archivo_datos_cargar);
+        echo  $insertar = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
-          $cadenaSql = $this->miSql->getCadenaSql('idDriver');
-          $id_driver = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
-
-          $this->archivo_datos_cargar['id_driver']=$id_driver[0][0];
-
-          $cadenaSql2 = $this->miSql->getCadenaSql('registrarArchivo', $this->archivo_datos_cargar);
+          if($this->archivo==true){
+          $cadenaSql2 = $this->miSql->getCadenaSql('actualizarArchivo', $this->archivo_datos_cargar);
           $this->proceso2 = $this->esteRecursoDB->ejecutarAcceso($cadenaSql2, "acceso");
 
-          if (isset($this->proceso2) && $this->proceso2 != false) {
-              Redireccionador::redireccionar("ExitoRegistro");    exit();
+          if (isset($this->proceso2) && $this->proceso2!= false) {
+            Redireccionador::redireccionar("ExitoActualizarArchivo");    exit();
           } else {
-              Redireccionador::redireccionar("ErrorRegistro");    exit();
+            Redireccionador::redireccionar("ErrorActualizarArchivo");    exit();
           }
-
+        }else{
+          if (isset($insertar) && $insertar!=false) {
+            Redireccionador::redireccionar("ExitoActualizarInfo");    exit();
+          } else {
+            Redireccionador::redireccionar("ErrorActualizarInfo");    exit();
+          }
+        }
 }
 
     public function validarDatos() {
@@ -189,19 +181,15 @@ public function baseDatos(){
       }
 
       $this->archivo_datos_cargar = array(
+          'id_driver'=>$_REQUEST['id_driver'],
           'nombre_archivo' => $_REQUEST['nombre_archivo'],
-          'nombredriver' => $doc,
           'plataforma' => $_REQUEST['id_plataforma'],
           'categoria' => $_REQUEST['id_categoria'],
           'dispositivo' => $_REQUEST['id_dispositivo'],
-          'descripcion' => $_REQUEST['descripcion'],
+          'descripcion' => utf8_encode($_REQUEST['descripcion']),
           'version' => $_REQUEST['version'],
           'sistema_operativo' => $_REQUEST['id_sistema'],
           'fecha_publicacion'=>$_REQUEST['fechaPublicacion'],
-          'fecha_creacion'=> date("Y/m/d"),
-          'estado'=>1,
-          'ubicacion'=>$ubicacion,
-          'ruta_relativa'=>$ruta_relativa,
         );
     }
 }

@@ -34,24 +34,31 @@ class procesarAjax
                 $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
                 if ($drivers) {
+
+                  $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+                  $valorCodificado .= "&opcion=edicionDriver";
+
+                  $valorCodificado2 = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+                  $valorCodificado2 .= "&opcion=inhabilitarDriver";
+
                     foreach ($drivers as $key => $valor) {
                       {
-                      $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
-                      $valorCodificado .= "&opcion=edicionDriver";
                       $valorCodificado .= "&id_driver=" . $valor['id_driver'];
+                      $valorCodificado2 .= "&id_driver=" . $valor['id_driver'];
                       }
 
                       $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
                       $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado, $enlace);
-                      $urlDetalle = $url . $cadena;
+                      $cadena2 = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado2, $enlace);
+                      $urlEdit = $url . $cadena;
+                      $urlDisable = $url . $cadena2;
 
 
                         $resultadoFinal[] = array(
-                          'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br><br>'.substr($valor['descripcion'],0,100),
-                          'plataforma' => $valor['nombre_plataforma'],
-                          'fecha' => $valor['fecha_publicacion'],
-                          'dispositivo' =>$valor['nombre_dispositivo'],
-                          'categoria' =>$valor['nombre_categoria'],
+                          'nombre' => $valor['nombredriver'],
+                          'dispositivo' => $valor['nombre_dispositivo'],
+                          'editar' => '<a href="'.$urlEdit.'">Editar</a><br>',
+                          'inhabilitar' =>'<a href="'.$urlDisable.'">Inhabilitar</a><br>',
                           );
 
 
