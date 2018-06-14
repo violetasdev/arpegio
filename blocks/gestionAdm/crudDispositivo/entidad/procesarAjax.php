@@ -26,7 +26,7 @@ class procesarAjax
         switch ($_REQUEST['funcion']) {
             case 'consultaParticular':
 
-            echo   $cadenaSql = $this->sql->getCadenaSql('consultaParticular');
+              $cadenaSql = $this->sql->getCadenaSql('consultaParticular');
               $drivers = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
                 if ($drivers) {
@@ -39,8 +39,8 @@ class procesarAjax
 
                     foreach ($drivers as $key => $valor) {
                       {
-                      $valorCodificado .= "&id_driver=" . $valor['id_driver'];
-                      $valorCodificado2 .= "&id_driver=" . $valor['id_driver'];
+                      $valorCodificado .= "&id_dispositivo=" . $valor['id_dispositivo'];
+                      $valorCodificado2 .= "&id_dispositivo=" . $valor['id_dispositivo'];
                       }
 
                       $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
@@ -134,8 +134,8 @@ class procesarAjax
 
                             foreach ($drivers as $key => $valor) {
                               {
-                              $valorCodificado .= "&id_driver=" . $valor['id_driver'];
-                              $valorCodificado2 .= "&id_driver=" . $valor['id_driver'];
+                              $valorCodificado .= "&id_dispositivo=" . $valor['id_dispositivo'];
+                              $valorCodificado2 .= "&id_dispositivo=" . $valor['id_dispositivo'];
                               }
 
                               $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
