@@ -54,7 +54,7 @@ class procesarAjax
                         $resultadoFinal[] = array(
                           'dispositivo' => $valor['nombre_dispositivo'],
                           'plataforma' => $valor['nombre_plataforma'],
-                          'estado' => $valor['estado_dispositivo'],
+                          'estado' => $valor['estado_dispositivo']==1 ? "Activo":"Inactivo",
                           'editar' => '<a href="'.$urlEdit.'">Editar</a><br>',
                           'inhabilitar' =>'<a href="'.$urlDisable.'">Inhabilitar</a><br>',
                           );
@@ -117,7 +117,7 @@ class procesarAjax
                     $plataforma = trim($_REQUEST ['plat']);
 
                       if (isset ( $plataforma ) && $plataforma != "") {
-                  			$cadenaSql.= "AND id_plataforma='" . $plataforma . "' ";
+                  			$cadenaSql.= "AND `arpegiodata_dispositivo`.id_plataforma='" . $plataforma . "' ";
                   		}
 
                       $cadenaSql = $this->sql->getCadenaSql('consultaFiltroPlataforma', $cadenaSql);
@@ -150,7 +150,7 @@ class procesarAjax
                                 $resultadoFinal[] = array(
                                   'dispositivo' => $valor['nombre_dispositivo'],
                                   'plataforma' => $valor['nombre_plataforma'],
-                                  'estado' => $valor['estado_dispositivo'],
+                                  'estado' => $valor['estado_dispositivo']==1 ? "Activo":"Inactivo",
                                   'editar' => '<a href="'.$urlEdit.'">Editar</a><br>',
                                   'inhabilitar' =>'<a href="'.$urlDisable.'">Inhabilitar</a><br>',
                                   );

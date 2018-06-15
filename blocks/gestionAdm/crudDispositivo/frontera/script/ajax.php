@@ -65,8 +65,6 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
  onSelect: function (suggestion) {
      $("#<?php echo $this->campoSeguro('id_plataforma');?>").val(suggestion.data);
      plat =  $("#<?php echo $this->campoSeguro('id_plataforma');?>").val();
-     $("#<?php echo $this->campoSeguro('dispositivo');?>").val('');
-     $("#<?php echo $this->campoSeguro('id_dispositivo');?>").val('');
           actualizarTabla();
      }
 
@@ -77,8 +75,7 @@ $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({
 $("#<?php echo $this->campoSeguro('plataforma');?>").change(function() {
    if($("#<?php echo $this->campoSeguro('plataforma');?>").val()==""){
      plat= "";
-     dis= "";
-        actualizarTabla();
+     actualizarTabla();
    }
 });
 
@@ -204,14 +201,16 @@ $('#example').DataTable().destroy();
 			        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 			    }
 	        },
+          responsive: true,
           ajax:{
              url:"<?php echo $urlConsultaFiltroPlataforma;?>",
-              data: { plat:plat, dis:dis },
+              data: { plat:plat},
              dataSrc:"data"
          },
          columns: [
-           { data :"nombre" },
            { data :"dispositivo" },
+           { data :"plataforma" },
+           { data :"estado" },
            { data :"editar" },
            { data :"inhabilitar" },
          ]

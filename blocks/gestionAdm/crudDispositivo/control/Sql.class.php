@@ -33,10 +33,10 @@ class Sql extends \Sql
               break;
 
             case 'consultaFiltroPlataforma':
-              $cadenaSql = " SELECT nombre_dispositivo, nombre_plataforma, fecha_publicacion,estado_dispositivo";
-              $cadenaSql.= "FROM `arpegiodata_dispositivo` JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_dispositivo.plataforma ";
+              $cadenaSql = "SELECT id_dispositivo,nombre_dispositivo, nombre_plataforma, `arpegiodata_dispositivo`.fecha_creacion,estado_dispositivo ";
+              $cadenaSql.= "FROM `arpegiodata_dispositivo` JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_dispositivo.id_plataforma ";
               $cadenaSql.= " WHERE estado_dispositivo=1 ";
-              $cadenaSql .= str_replace("\\","",$variable);
+              $cadenaSql .= str_replace("\\","",$variable) .";";
               break;
 
             case 'consultarPlataforma':
