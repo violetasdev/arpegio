@@ -292,8 +292,6 @@ class Registrador
               echo $this->miFormulario->campoCuadroTexto($atributos);
               unset($atributos);
 
-
-
         }
 
         // ----------------FINALIZAR EL FORMULARIO ----------------------------------------------------------
