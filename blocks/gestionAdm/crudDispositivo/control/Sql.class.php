@@ -32,6 +32,14 @@ class Sql extends \Sql
               $cadenaSql.= " WHERE estado_dispositivo=1;";
               break;
 
+
+              case 'consultaDetalle':
+                $cadenaSql = "SELECT id_dispositivo,nombre_dispositivo,`arpegiodata_dispositivo`.id_plataforma, nombre_plataforma ";
+                $cadenaSql.= "FROM `arpegiodata_dispositivo` JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_dispositivo.id_plataforma ";
+                $cadenaSql.= " WHERE estado_dispositivo=1 ";
+                $cadenaSql.= " AND id_dispositivo=".$variable.";";
+                break;
+
             case 'consultaFiltroPlataforma':
               $cadenaSql = "SELECT id_dispositivo,nombre_dispositivo, nombre_plataforma, `arpegiodata_dispositivo`.fecha_creacion,estado_dispositivo ";
               $cadenaSql.= "FROM `arpegiodata_dispositivo` JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_dispositivo.id_plataforma ";
@@ -77,18 +85,13 @@ class Sql extends \Sql
 
           /**Edicion**/
 
-                    case 'actualizarDriver':
-                    $cadenaSql=" UPDATE arpegiodata_driver SET ";
-                    $cadenaSql.= " nombredriver='".$variable['nombre_archivo']."', ";
-                    $cadenaSql.= " plataforma='".$variable['plataforma']."', ";
-                    $cadenaSql.= " categoria='".$variable['categoria']."', ";
-                    $cadenaSql.= " dispositivo='".$variable['dispositivo']."', ";;
-                    $cadenaSql.= " descripcion='".$variable['descripcion']."', ";
-                    $cadenaSql.= " version='".$variable['version']."', ";
-                    $cadenaSql.= " sistema_operativo='".$variable['sistema_operativo' ]."', ";
-                    $cadenaSql.= " fecha_publicacion='".$variable['fecha_publicacion']."' ";
+                    case 'actualizarDispositivo':
+                    $cadenaSql=" UPDATE arpegiodata_dispositivo SET ";
+                    $cadenaSql.= " nombre_dispositivo='".$variable['nombre_dispositivo']."', ";;
+                    $cadenaSql.= " id_plataforma='".$variable['id_plataforma']."', ";
+                    $cadenaSql.= " fecha_creacion='".$variable['fecha_creacion']."' ";
                     $cadenaSql.= " WHERE ";
-                    $cadenaSql.= " id_driver='".$variable['id_driver']."'; ";
+                    $cadenaSql.= " id_dispositivo='".$variable['id_dispositivo']."'; ";
                     break;
             }
 

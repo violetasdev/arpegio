@@ -24,41 +24,36 @@ class Redireccionador
                 $variable .= '&mensaje=errorRegistro';
                 break;
 
-            case "ErrorCargarFicheroDirectorio":
+            case "ErrorDatos":
                 $variable = 'pagina=crudDispositivo';
-                $variable .= '&mensaje=errorArchivo';
+                $variable .= '&mensaje=errorDatos';
                 break;
 
-                case "ErrorDatos":
-                    $variable = 'pagina=crudDispositivo';
-                    $variable .= '&mensaje=errorDatos';
-                    break;
+            case "ErrorDispositivo":
+                $variable = 'pagina=crudDispositivo';
+                $variable .= '&mensaje=errorDispositivo';
+                break;
 
 
-                case "ErrorNoValido":
-                    $variable = 'pagina=crudDispositivo';
-                    $variable .= '&mensaje=errorValido';
-                    break;
+            case "ErrorNoValido":
+                $variable = 'pagina=crudDispositivo';
+                $variable .= '&mensaje=errorValido';
+                break;
 
-                    case 'ExitoActualizarInfo':
-                      $variable = 'pagina=crudDispositivo';
-                        $variable .= '&mensaje=exitoInfo';
-                        break;
+            case 'ExitoActualizarInfo':
+                $variable = 'pagina=crudDispositivo';
+                $variable .= '&mensaje=exitoInfo';
+                break;
 
-                    case "ErrorActualizarInfo":
-                        $variable = 'pagina=crudDispositivo';
-                        $variable .= '&mensaje=errorInfo';
-                        break;
+            case "ErrorActualizacion":
+                $variable = 'pagina=crudDispositivo';
+                $variable .= '&mensaje=errorUpdate';
+                break;
 
-                case 'ExitoActualizarArchivo':
-                    $variable = 'pagina=crudDispositivo';
-                    $variable .= '&mensaje=exitoArchivo';
-                    break;
-
-                case "ErrorActualizarArchivo":
-                    $variable = 'pagina=crudDispositivo';
-                    $variable .= '&mensaje=errorArchivoActualizar';
-                    break;
+            case 'ExitoActualizacion':
+                $variable = 'pagina=crudDispositivo';
+                $variable .= '&mensaje=exitoUpdate';
+                break;
 
             default:
                 $variable = '';

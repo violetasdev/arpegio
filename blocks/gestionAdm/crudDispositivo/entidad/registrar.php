@@ -85,7 +85,8 @@ public function baseDatos(){
         $cadenaSql = $this->miSql->getCadenaSql('validarPlataforma',$_REQUEST['id_plataforma']);
         $cadenaSqlD = $this->miSql->getCadenaSql('validarDispositivo',$_REQUEST['nombre_dispositivo']);
         $plataforma = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
-        $dispositivo = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+        $dispositivo = $this->esteRecursoDB->ejecutarAcceso($cadenaSqlD, "busqueda");
+
         if($plataforma==false)
         {
           Redireccionador::redireccionar("ErrorDatos");
@@ -94,7 +95,7 @@ public function baseDatos(){
 
         if($dispositivo!=false)
         {
-          Redireccionador::redireccionar("ErrorDatos");
+          Redireccionador::redireccionar("ErrorDispositivo");
           exit();
         }
       }

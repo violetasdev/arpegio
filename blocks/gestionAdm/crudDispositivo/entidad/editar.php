@@ -42,156 +42,64 @@ class FormProcessor
         $conexion = "arpegiodata";
         $this->esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
-        /**0. Validar campos */
-              $this->validarDatos();
-              /* * 1.
-               * CargarArchivos en el Directorio
-               */
+          /**0. Validar campos */
 
-               foreach ($_FILES as $key => $archivo) {
+          $this->validarDatos();
 
-                   if ($_FILES[$key]['size'] != 0 && $_FILES[$key]['error'] == 0) {
-                     $this->archivo=true;
-                     $this->cargarArchivos();
-                   }
-               }
+          /*** 1.Registrar*/
 
-
-              /**
-               * 3.
-               * Registrar Documentos
-               */
-
-               if($this->cargarArchivos()==true){
-                 $this->baseDatos();
-               }
-
-
+          $this->baseDatos();
     }
 
-    public function cargarArchivos() {
 
-    foreach ($_FILES as $key => $archivo) {
+    public function baseDatos(){
 
-        if ($_FILES[$key]['size'] != 0 && $_FILES[$key]['error'] == 0) {
-
-            $this->prefijo = substr(md5(uniqid(time())), 0, 6);
-            $exten = pathinfo($archivo['name']);
-
-            $allowed = array(
-                'text/plain',
-                'application/x-rar-compressed',
-                'application/zip',
-                'application/pdf',
-            );
-
-            if (!in_array($_FILES[$key]['type'], $allowed)) {
-                Redireccionador::redireccionar("ErrorNoValido");
-                exit();
-            }
-
-            if (isset($exten['extension']) == false) {
-                $exten['extension'] = 'txt';
-            }
-
-            $tamano = $archivo['size'];
-            $tipo = $archivo['type'];
-            $nombre_archivo = $_REQUEST['nombre_archivo'];
-            $doc = $nombre_archivo . "_" . $this->prefijo . '.' . $exten['extension'];
-
-            /*
-             * guardamos el fichero en el Directorio
-
-             Generar tabla con los directorios configurables
-             */
-
-             $cadenaSql = $this->miSql->getCadenaSql('consultarCarpeta', $_REQUEST['id_plataforma']);
-             $directorio = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
-
-             $directorio=$directorio[0][0];
-
-             $ruta_absoluta = $this->miConfigurador->configuracion['raizDocumento'] . $directorio . $doc;
-             $ruta_relativa = $this->miConfigurador->configuracion['host'] . $this->miConfigurador->configuracion['site'] . $directorio. $doc;
-
-             $ubicacion=$directorio.$doc;
-
-            $archivo['rutaDirectorio'] = $ruta_absoluta;
-            if (!copy($archivo['tmp_name'], $ruta_absoluta)) {
-                Redireccionador::redireccionar("ErrorCargarFicheroDirectorio");
-                exit();
-            }
-
-            $this->archivo_cargar = array(
-                'nombre_archivo' => $_REQUEST['nombre_archivo'],
-                'ruta_archivo' => $ruta_relativa,
-                'rutaabsoluta' => $ruta_absoluta,
-                'nombredriver' => $doc,
-                'tamanio' => $tamano,
-                'extension'=>$exten['extension'],
-                'ubicacion'=>$ubicacion,
-                'ruta_relativa'=>$ruta_relativa,
+            $this->archivo_datos_cargar=array(
+                'nombre_dispositivo'=>$_REQUEST['nombre_dispositivo'],
+                'id_plataforma'=>$_REQUEST['id_plataforma'],
                 'fecha_creacion'=> date("Y/m/d"),
-                'id_driver'=>$_REQUEST['id_driver'],
+                'id_dispositivo'=>$_REQUEST['id_dispositivo']
               );
-        }
-        return true;
-  }
-}
 
-public function baseDatos(){
+              $cadenaSql = $this->miSql->getCadenaSql('actualizarDispositivo', $this->archivo_datos_cargar);
+              $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
-          $cadenaSql = $this->miSql->getCadenaSql('actualizarDriver', $this->datos_cargar);
-          $insertar = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
-          if($this->archivo==true){
+              if (isset($this->proceso) && $this->proceso != false) {
+                  Redireccionador::redireccionar("ExitoActualizacion");    exit();
+              } else {
+                  Redireccionador::redireccionar("ErrorActualizacion");    exit();
+              }
+    }
 
-         $cadenaSql2 = $this->miSql->getCadenaSql('actualizarArchivo', $this->archivo_cargar);
-          $this->proceso2 = $this->esteRecursoDB->ejecutarAcceso($cadenaSql2, "acceso");
-
-          if (isset($this->proceso2) && $this->proceso2!= false) {
-            Redireccionador::redireccionar("ExitoActualizarArchivo");    exit();
-          } else {
-            Redireccionador::redireccionar("ErrorActualizarArchivo");    exit();
-          }
-        }else{
-          if (isset($insertar) && $insertar!=false) {
-            Redireccionador::redireccionar("ExitoActualizarInfo");    exit();
-          } else {
-            Redireccionador::redireccionar("ErrorActualizarInfo");    exit();
-          }
-        }
-}
 
     public function validarDatos() {
+            $validar=array(
+              'validarPlataforma'=>$_REQUEST['id_plataforma'],
+              'validarDispositivo'=>$_REQUEST['nombre_dispositivo'],
 
-      $validar=array(
-        'validarDispositivo'=>$_REQUEST['id_dispositivo'],
-        'validarPlataforma'=>$_REQUEST['id_plataforma'],
-        'validarCategoria'=>$_REQUEST['id_categoria'],
-        'validarSistema'=>$_REQUEST['id_sistema'],
-      );
+            );
 
-      foreach ($validar as $key => $value) {
-        $cadenaSql = $this->miSql->getCadenaSql($key,$value);
-        $plataforma = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
-        if($plataforma==false)
-        {
-          Redireccionador::redireccionar("ErrorDatos");
-          exit();
-        }
-      }
+            foreach ($validar as $key => $value) {
+              $cadenaSql = $this->miSql->getCadenaSql('validarPlataforma',$_REQUEST['id_plataforma']);
+              $plataforma = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
-      $this->datos_cargar = array(
-          'id_driver'=>$_REQUEST['id_driver'],
-          'nombre_archivo' => $_REQUEST['nombre_archivo'],
-          'plataforma' => $_REQUEST['id_plataforma'],
-          'categoria' => $_REQUEST['id_categoria'],
-          'dispositivo' => $_REQUEST['id_dispositivo'],
-          'descripcion' => utf8_encode($_REQUEST['descripcion']),
-          'version' => $_REQUEST['version'],
-          'sistema_operativo' => $_REQUEST['id_sistema'],
-          'fecha_publicacion'=>$_REQUEST['fechaPublicacion'],
-        );
+              if($plataforma==false)
+              {
+                Redireccionador::redireccionar("ErrorDatos");
+                exit();
+              }
+
+              if($_REQUEST['nombre_dispositivo_inicial']!=$_REQUEST['nombre_dispositivo']){
+                $cadenaSqlD = $this->miSql->getCadenaSql('validarDispositivo',$_REQUEST['nombre_dispositivo']);
+                $dispositivo = $this->esteRecursoDB->ejecutarAcceso($cadenaSqlD, "busqueda");
+
+                if($dispositivo!=false)
+                {
+                  Redireccionador::redireccionar("ErrorDispositivo");
+                  exit();
+                }}
+            }
     }
 }
 $miProcesador = new FormProcessor($this->lenguaje, $this->sql);

@@ -253,12 +253,12 @@ class Registrador
 
         switch ($_REQUEST['mensaje']) {
             case 'exitoRegistro':
-                $mensaje = "Exito<br>Datos registrado correctamente";
+                $mensaje = "Exito<br>Datos registrados correctamente";
                 $atributos['estiloLinea'] = 'success';     //success,error,information,warning
                 break;
 
-              case 'exitoInfo':
-                $mensaje = "Exito<br>Datos actualizado correctamente en el servidor.";
+              case 'exitoUpdate':
+                $mensaje = "Exito<br>Datos actualizados correctamente en el servidor.";
                 $atributos['estiloLinea'] = 'success';     //success,error,information,warning
                 break;
 
@@ -272,8 +272,12 @@ class Registrador
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
 
+            case 'errorDispositivo':
+                $mensaje = "Error<br>Datos de formulario no ingresados correctamente. Posiblemente ya existe ese dispositivo.";
+                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
+                break;
 
-            case 'errorInfo':
+            case 'errorUpdate':
                 $mensaje = "Error<br>Información no actualizada correctamente en el servidor.";
                 $atributos['estiloLinea'] = 'error';     //success,error,information,warning
                 break;
