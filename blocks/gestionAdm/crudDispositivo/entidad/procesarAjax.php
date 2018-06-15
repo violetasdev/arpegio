@@ -31,32 +31,26 @@ class procesarAjax
 
                 if ($drivers) {
 
+
                   $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
                   $valorCodificado .= "&opcion=edicionDriver";
-
-                  $valorCodificado2 = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
-                  $valorCodificado2 .= "&opcion=inhabilitarDriver";
 
                     foreach ($drivers as $key => $valor) {
                       {
                       $valorCodificado .= "&id_dispositivo=" . $valor['id_dispositivo'];
-                      $valorCodificado2 .= "&id_dispositivo=" . $valor['id_dispositivo'];
                       }
 
                       $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
 
                       $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado, $enlace);
-                      $cadena2 = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado2, $enlace);
 
                       $urlEdit = $url . $cadena;
-                      $urlDisable = $url . $cadena2;
 
                         $resultadoFinal[] = array(
                           'dispositivo' => $valor['nombre_dispositivo'],
                           'plataforma' => $valor['nombre_plataforma'],
                           'estado' => $valor['estado_dispositivo']==1 ? "Activo":"Inactivo",
                           'editar' => '<a href="'.$urlEdit.'">Editar</a><br>',
-                          'inhabilitar' =>'<a href="'.$urlDisable.'">Inhabilitar</a><br>',
                           );
 
 
@@ -129,30 +123,21 @@ class procesarAjax
                                             $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
                                             $valorCodificado .= "&opcion=edicionDriver";
 
-                                            $valorCodificado2 = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
-                                            $valorCodificado2 .= "&opcion=inhabilitarDriver";
-
                             foreach ($drivers as $key => $valor) {
                               {
                               $valorCodificado .= "&id_dispositivo=" . $valor['id_dispositivo'];
-                              $valorCodificado2 .= "&id_dispositivo=" . $valor['id_dispositivo'];
-                              }
+                            }
 
                               $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
-
                               $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado, $enlace);
-                              $cadena2 = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($valorCodificado2, $enlace);
 
                               $urlEdit = $url . $cadena;
-                              $urlDisable = $url . $cadena2;
-
 
                                 $resultadoFinal[] = array(
                                   'dispositivo' => $valor['nombre_dispositivo'],
                                   'plataforma' => $valor['nombre_plataforma'],
                                   'estado' => $valor['estado_dispositivo']==1 ? "Activo":"Inactivo",
                                   'editar' => '<a href="'.$urlEdit.'">Editar</a><br>',
-                                  'inhabilitar' =>'<a href="'.$urlDisable.'">Inhabilitar</a><br>',
                                   );
                             $total = count($resultadoFinal);
 

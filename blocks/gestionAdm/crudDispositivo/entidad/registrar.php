@@ -59,6 +59,7 @@ public function baseDatos(){
             'nombre_dispositivo'=>$_REQUEST['nombre_dispositivo'],
             'id_plataforma'=>$_REQUEST['id_plataforma'],
             'fecha_creacion'=> date("Y/m/d"),
+            'estado_dispositivo'=>$_REQUEST['estado_dispositivo']
           );
 
           $cadenaSql = $this->miSql->getCadenaSql('registrarDispositivo', $this->archivo_datos_cargar);

@@ -171,7 +171,6 @@ class Registrador
                                             <th><center>Plataforma<center></th>
                                             <th><center>Estado<center></th>
                                             <th><center>Editar<center></th>
-                                            <th><center>Inhabilitar<center></th>
                                         </tr>
                                     </thead>
                                   </table>';

@@ -66,21 +66,13 @@ class Frontera
                   include_once $this->ruta . "frontera/editarArchivo.php";
               break;
 
-              case 'detalleDriver':
+              case 'inhabilitarDriver':
+                  include_once $this->ruta . "frontera/editarArchivo.php";
+              break;
 
-              if ($_REQUEST['id_driver']!=''){
-                  include_once $this->ruta . "frontera/detalleDriver.php";
-
-              }elseif ($_REQUEST['id_cadenaBusquedaLan']==''){
-              include_once $this->ruta . "frontera/consultaGeneral.php";
-            }else{
-              include_once $this->ruta . "frontera/consultaGeneral.php";
-            }
-
+              default:
+                  include_once $this->ruta . "frontera/consultaGeneral.php";
                   break;
-                default:
-                    include_once $this->ruta . "frontera/consultaGeneral.php";
-                    break;
             }
         } else {
             include_once $this->ruta . "frontera/consultaGeneral.php";

@@ -73,7 +73,6 @@ class Registrador
         $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
         $driver=$driver[0];
 
-
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
             $atributos['leyenda'] = 'Editar dispositivo '. $driver['nombre_dispositivo'];
@@ -160,6 +159,46 @@ class Registrador
               }
               $atributos = array_merge ( $atributos, $atributosGlobales );
               echo $this->miFormulario->campoCuadroTexto ( $atributos );
+              unset ( $atributos );
+
+              $esteCampo = 'estado_dispositivo';
+              $atributos ['nombre'] = $esteCampo;
+              $atributos ['id'] = $esteCampo;
+              $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+              $atributos ["etiquetaObligatorio"] = true;
+              $atributos ['tab'] = $tab ++;
+              $atributos ['anchoEtiqueta'] = 2;
+              $atributos ['evento'] = '';
+              $atributos ['seleccion'] = - 1;
+              $atributos ['deshabilitado'] = false;
+              $atributos ['columnas'] = 1;
+              $atributos ['tamanno'] = 1;
+              $atributos ['ajax_function'] = "";
+              $atributos ['ajax_control'] = $esteCampo;
+              $atributos ['estilo'] = "bootstrap";
+              $atributos ['limitar'] = false;
+              $atributos ['anchoCaja'] = 2;
+              $atributos ['miEvento'] = '';
+              $atributos ['validar'] = 'true';
+              $matrizItems = array (
+                array (
+                    0,'Inactivo'
+                ),
+                array (
+                    1,'Activo'
+                )
+              );
+              $atributos ['matrizItems'] = $matrizItems;
+              // Aplica atributos globales al control
+
+              if (isset ( $driver [$esteCampo] )) {
+                $atributos ['seleccion'] = $driver[$esteCampo];
+              } else {
+                $atributos ['seleccion'] = 1;
+              }
+
+              $atributos = array_merge ( $atributos, $atributosGlobales );
+              echo $this->miFormulario->campoCuadroListaBootstrap ( $atributos );
               unset ( $atributos );
             }
 

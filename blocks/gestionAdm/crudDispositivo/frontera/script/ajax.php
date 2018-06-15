@@ -156,7 +156,6 @@ $('#<?php echo $this->campoSeguro("fechaPublicacion");?>').datepicker({
                     { data :"plataforma" },
                     { data :"estado" },
                     { data :"editar" },
-                    { data :"inhabilitar" },
                   ]
     } );
 } );
@@ -212,7 +211,6 @@ $('#example').DataTable().destroy();
            { data :"plataforma" },
            { data :"estado" },
            { data :"editar" },
-           { data :"inhabilitar" },
          ]
 	    } );
 

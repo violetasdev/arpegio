@@ -58,7 +58,8 @@ class FormProcessor
                 'nombre_dispositivo'=>$_REQUEST['nombre_dispositivo'],
                 'id_plataforma'=>$_REQUEST['id_plataforma'],
                 'fecha_creacion'=> date("Y/m/d"),
-                'id_dispositivo'=>$_REQUEST['id_dispositivo']
+                'id_dispositivo'=>$_REQUEST['id_dispositivo'],
+                'estado_dispositivo'=>$_REQUEST['estado_dispositivo']
               );
 
               $cadenaSql = $this->miSql->getCadenaSql('actualizarDispositivo', $this->archivo_datos_cargar);

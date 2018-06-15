@@ -39,19 +39,19 @@ class FormProcessor
             $this->rutaAbsoluta .= "/blocks/" . $_REQUEST["bloqueGrupo"] . "/" . $_REQUEST["bloque"] . "/";
         }
         //Conexion a Base de Datos
-        $conexion = "interoperacion";
+        $conexion = "arpegiodata";
         $this->esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
         $_REQUEST['tiempo'] = time();
 
 
-        $cadenaSql = $this->miSql->getCadenaSql('eliminarRegla');
+        $cadenaSql = $this->miSql->getCadenaSql('inhabilitar',$_REQUEST['id_dispositivo']);
         $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
-
+        
         if (isset($this->proceso) && $this->proceso != null) {
-            Redireccionador::redireccionar("ExitoEliminar", $this->proceso);
+            Redireccionador::redireccionar("ExitoActualizacion", $this->proceso);
         } else {
-            Redireccionador::redireccionar("ErrorEliminar");
+            Redireccionador::redireccionar("ErrorActualizacion");
         }
     }
 }

@@ -56,6 +56,12 @@ class Entidad
         include_once $this->ruta . "entidad/editar.php";
     }
 
+    public function inhabilitarInformacion()
+    {
+        include_once $this->ruta . "entidad/inhabilitar.php";
+    }
+
+
     public function action()
     {
 
@@ -71,7 +77,6 @@ class Entidad
             $this->procesarAjax();
         }
 
-
         switch ($_REQUEST['opcion']) {
             case 'registroDispositivo':
                 $this->cargarInformacion();
@@ -79,6 +84,11 @@ class Entidad
 
             case 'editarDispositivo':
                 $this->editarInformacion();
+                break;
+
+
+            case 'inhabilitarDriver':
+                $this->inhabilitarInformacion();
                 break;
         }
 

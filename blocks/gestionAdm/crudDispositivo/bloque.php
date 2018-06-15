@@ -70,6 +70,7 @@ class Bloque implements \Bloque {
 			$this->miEntidad->setSql ( $this->miSql );
 			$this->miEntidad->setLenguaje ( $this->miLenguaje );
 
+
 			if (! isset ( $_REQUEST ['action'] )) {
 
 				$this->miFrontera->frontera ();
