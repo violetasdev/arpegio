@@ -120,8 +120,8 @@ class procesarAjax
 
                         if ($drivers) {
 
-                                            $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
-                                            $valorCodificado .= "&opcion=edicionDriver";
+                            $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+                            $valorCodificado .= "&opcion=edicionDriver";
 
                             foreach ($drivers as $key => $valor) {
                               {

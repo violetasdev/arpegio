@@ -56,7 +56,6 @@ $urlConsultarPlataforma = $url . $cadena;
 ?>
 <script type='text/javascript'>
 var plat= "";
-var dis= "";
 var valor="";
 
 $("#<?php echo $this->campoSeguro('plataforma');?>").autocomplete({

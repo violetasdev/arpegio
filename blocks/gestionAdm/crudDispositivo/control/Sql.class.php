@@ -45,7 +45,7 @@ class Sql extends \Sql
             case 'consultaFiltroPlataforma':
               $cadenaSql = "SELECT id_dispositivo,nombre_dispositivo, nombre_plataforma, `arpegiodata_dispositivo`.fecha_creacion,estado_dispositivo ";
               $cadenaSql.= "FROM `arpegiodata_dispositivo` JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_dispositivo.id_plataforma ";
-              $cadenaSql.= " WHERE ";
+              $cadenaSql.= " WHERE 1=1 ";
               //estado_dispositivo=1 ";
               $cadenaSql .= str_replace("\\","",$variable) .";";
               break;
