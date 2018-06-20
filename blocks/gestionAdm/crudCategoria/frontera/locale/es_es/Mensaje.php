@@ -11,12 +11,12 @@ $this->idioma['botonEditar'] = 'Guardar Cambios';
 
 
 /*Labels for the general filtering query*/
-$this->idioma['plataforma'] = 'Filtrar por Plataforma';
+$this->idioma['categoria'] = 'Filtrar por categoria';
 
 
 /*Labels for the detailed driver*/
-$this->idioma['nombre_plataforma'] = 'Plataforma';
-$this->idioma['estado_plataforma'] = 'Estado Registro';
+$this->idioma['nombre_categoria'] = 'Categoría';
+$this->idioma['estado_categoria'] = 'Estado Registro';
 
 
 ?>
