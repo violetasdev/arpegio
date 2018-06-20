@@ -64,8 +64,6 @@ public function baseDatos(){
           $cadenaSql = $this->miSql->getCadenaSql('registrarPlataforma', $this->archivo_datos_cargar);
           $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
-exit;
-
           if (isset($this->proceso) && $this->proceso != false) {
               Redireccionador::redireccionar("ExitoRegistro");    exit();
           } else {

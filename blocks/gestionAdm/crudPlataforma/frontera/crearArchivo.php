@@ -98,7 +98,7 @@ class Registrador
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
               unset ( $atributos );
 
-              $esteCampo = 'estado';
+              $esteCampo = 'estado_plataforma';
               $atributos ['nombre'] = $esteCampo;
               $atributos ['id'] = $esteCampo;
               $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );

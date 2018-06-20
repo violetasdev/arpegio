@@ -55,14 +55,13 @@ class FormProcessor
     public function baseDatos(){
 
             $this->archivo_datos_cargar=array(
-                'nombre_dispositivo'=>$_REQUEST['nombre_dispositivo'],
-                'id_plataforma'=>$_REQUEST['id_plataforma'],
+                'nombre_plataforma'=>$_REQUEST['nombre_plataforma'],
                 'fecha_creacion'=> date("Y/m/d"),
-                'id_dispositivo'=>$_REQUEST['id_dispositivo'],
-                'estado_dispositivo'=>$_REQUEST['estado_dispositivo']
+                'id_plataforma'=>$_REQUEST['id_plataforma'],
+                'estado_plataforma'=>$_REQUEST['estado_plataforma']
               );
 
-              $cadenaSql = $this->miSql->getCadenaSql('actualizarDispositivo', $this->archivo_datos_cargar);
+              $cadenaSql = $this->miSql->getCadenaSql('actualizarPlataforma', $this->archivo_datos_cargar);
               $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
 
@@ -75,32 +74,16 @@ class FormProcessor
 
 
     public function validarDatos() {
-            $validar=array(
-              'validarPlataforma'=>$_REQUEST['id_plataforma'],
-              'validarDispositivo'=>$_REQUEST['nombre_dispositivo'],
 
-            );
+              if($_REQUEST['nombre_plataforma_inicial']!=$_REQUEST['nombre_plataforma']){
+                $cadenaSqlD = $this->miSql->getCadenaSql('validarPlataforma',$_REQUEST['nombre_plataforma']);
+                $plataforma = $this->esteRecursoDB->ejecutarAcceso($cadenaSqlD, "busqueda");
 
-            foreach ($validar as $key => $value) {
-              $cadenaSql = $this->miSql->getCadenaSql('validarPlataforma',$_REQUEST['id_plataforma']);
-              $plataforma = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
-
-              if($plataforma==false)
-              {
-                Redireccionador::redireccionar("ErrorDatos");
-                exit();
-              }
-
-              if($_REQUEST['nombre_dispositivo_inicial']!=$_REQUEST['nombre_dispositivo']){
-                $cadenaSqlD = $this->miSql->getCadenaSql('validarDispositivo',$_REQUEST['nombre_dispositivo']);
-                $dispositivo = $this->esteRecursoDB->ejecutarAcceso($cadenaSqlD, "busqueda");
-
-                if($dispositivo!=false)
+                if($plataforma!=false)
                 {
-                  Redireccionador::redireccionar("ErrorDispositivo");
+                  Redireccionador::redireccionar("ErrorPlataforma");
                   exit();
                 }}
-            }
     }
 }
 $miProcesador = new FormProcessor($this->lenguaje, $this->sql);

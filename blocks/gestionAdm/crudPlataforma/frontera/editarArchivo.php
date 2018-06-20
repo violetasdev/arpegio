@@ -64,54 +64,21 @@ class Registrador
              * Código Formulario
              */
 
-        if ($_REQUEST['id_dispositivo']==''){
+        if ($_REQUEST['id_plataforma']==''){
             $url =   $this->miConfigurador->configuracion["host"] .  $this->miConfigurador->configuracion["site"] . "/index.php";
             echo "<script>location.replace('" . $url . "')</script>";
           }
 
-        $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_dispositivo']);
+        $cadenaSql = $this->miSql->getCadenaSql('consultaDetalle',$_REQUEST['id_plataforma']);
         $driver = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
         $driver=$driver[0];
 
             $esteCampo = 'Agrupacion';
             $atributos['id'] = $esteCampo;
-            $atributos['leyenda'] = 'Editar dispositivo '. $driver['nombre_dispositivo'];
+            $atributos['leyenda'] = 'Editar detalles '. $driver['nombre_plataforma'];
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
-
-              $esteCampo = 'nombre_dispositivo';
-              $atributos ['nombre'] = $esteCampo;
-              $atributos ['tipo'] = "text";
-              $atributos ['id'] = $esteCampo;
-              $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-              $atributos ["etiquetaObligatorio"] = true;
-              $atributos ['tab'] = $tab ++;
-              $atributos ['anchoEtiqueta'] = 2;
-              $atributos ['estilo'] = "bootstrap";
-              $atributos ['evento'] = '';
-              $atributos ['deshabilitado'] = false;
-              $atributos ['readonly'] = false;
-              $atributos ['columnas'] = 1;
-              $atributos ['tamanno'] = 1;
-              $atributos ['maximoTamanno'] = 60;
-              $atributos ['placeholder'] = "Escriba nombre del nuevo dispositivo";
-              if (isset ( $driver [$esteCampo] )) {
-                $atributos ['valor'] = $driver[$esteCampo];;
-              } else {
-                $atributos ['valor'] = '';
-              }
-              $atributos ['ajax_function'] = "";
-              $atributos ['ajax_control'] = $esteCampo;
-              $atributos ['limitar'] = false;
-              $atributos ['anchoCaja'] = 5;
-              $atributos ['miEvento'] = '';
-              $atributos ['validar'] = 'required';
-              // Aplica atributos globales al control
-              $atributos = array_merge ( $atributos, $atributosGlobales );
-              echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
-              unset ( $atributos );
-
 
               $esteCampo = 'nombre_plataforma';
               $atributos ['nombre'] = $esteCampo;
@@ -127,8 +94,8 @@ class Registrador
               $atributos ['readonly'] = false;
               $atributos ['columnas'] = 1;
               $atributos ['tamanno'] = 1;
-              $atributos ['maximoTamanno'] = 50;
-              $atributos ['placeholder'] = "Ingrese los criterios de busqueda";
+              $atributos ['maximoTamanno'] = 60;
+              $atributos ['placeholder'] = "Escriba nombre de la nueva plataforma";
               if (isset ( $driver [$esteCampo] )) {
                 $atributos ['valor'] = $driver[$esteCampo];;
               } else {
@@ -145,23 +112,8 @@ class Registrador
               echo $this->miFormulario->campoCuadroTextoBootstrap ( $atributos );
               unset ( $atributos );
 
-              $esteCampo = 'id_plataforma';
-              $atributos ["id"] = $esteCampo; // No cambiar este nombre
-              $atributos ["tipo"] = "hidden";
-              $atributos ['estilo'] = '';
-              $atributos ["obligatorio"] = false;
-              $atributos ['marco'] = true;
-              $atributos ["etiqueta"] = "";
-              if (isset ( $driver [$esteCampo] )) {
-                $atributos ['valor'] = $driver[$esteCampo];;
-              } else {
-                $atributos ['valor'] = '';
-              }
-              $atributos = array_merge ( $atributos, $atributosGlobales );
-              echo $this->miFormulario->campoCuadroTexto ( $atributos );
-              unset ( $atributos );
 
-              $esteCampo = 'estado_dispositivo';
+              $esteCampo = 'estado_plataforma';
               $atributos ['nombre'] = $esteCampo;
               $atributos ['id'] = $esteCampo;
               $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
@@ -267,9 +219,9 @@ class Registrador
               $valorCodificado.= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
               $valorCodificado.= "&bloque=" . $esteBloque['nombre'];
               $valorCodificado.= "&bloqueGrupo=" . $esteBloque["grupo"];
-              $valorCodificado.= "&opcion=editarDispositivo";
-              $valorCodificado.= "&id_dispositivo=".$_REQUEST['id_dispositivo'];
-              $valorCodificado.= "&nombre_dispositivo_inicial=".$driver['nombre_dispositivo'];
+              $valorCodificado.= "&opcion=editarPlataforma";
+              $valorCodificado.= "&id_plataforma=".$_REQUEST['id_plataforma'];
+              $valorCodificado.= "&nombre_plataforma_inicial=".$driver['nombre_plataforma'];
 
 
 
