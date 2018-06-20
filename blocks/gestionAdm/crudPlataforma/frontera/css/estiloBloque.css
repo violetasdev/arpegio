@@ -1,0 +1,72 @@
+/*
+Código css correspondiente al Bloque.
+*/
+
+.td{
+text-align: center;
+padding: 0px;
+}
+
+body > table > tbody > tr > td:first-child {
+  text-align: left;
+}
+
+div.dataTables_filter label {
+    float: right;
+}
+
+#Agrupacion{
+padding: 0 5%;
+}
+
+#AgrupacionSmall{
+font-size: 15px;
+}
+
+#archivo{
+  background-color: orange;
+  border-color:orange;
+  font-size: 19px;
+}
+
+.file{
+  border: 1px solid orange;
+   display: inline-block;
+   padding: 6px 12px;
+   cursor: pointer;
+}
+#botonNuevo{
+  background-color: orange;
+  border-color:orange;
+  font-size: 19px;
+}
+
+#botonRegistrar{
+  background-color: orange;
+  border-color:orange;
+  font-size: 19px;
+}
+
+#botonEditar{
+  background-color: orange;
+  border-color:orange;
+  font-size: 19px;
+}
+
+
+#botonDescarga{
+  background-color: orange;
+  border-color:orange;
+  font-size: 19px;
+}
+
+@media (max-height: 720px) {
+
+  div.example_paginate label {
+      text-align: right;
+  }
+}
+
+campoTextoEtiqueta{
+  font-weight: bold;
+}
