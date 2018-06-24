@@ -145,7 +145,7 @@ public function baseDatos(){
 
           if($this->archivo==true){
 
-         $cadenaSql2 = $this->miSql->getCadenaSql('actualizarArchivo', $this->archivo_cargar);
+          $cadenaSql2 = $this->miSql->getCadenaSql('actualizarArchivo', $this->archivo_cargar);
           $this->proceso2 = $this->esteRecursoDB->ejecutarAcceso($cadenaSql2, "acceso");
 
           if (isset($this->proceso2) && $this->proceso2!= false) {

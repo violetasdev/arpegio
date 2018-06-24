@@ -56,6 +56,11 @@ class Entidad
         include_once $this->ruta . "entidad/editar.php";
     }
 
+    public function inhabilitar()
+    {
+        include_once $this->ruta . "entidad/inhabilitar.php";
+    }
+
     public function action()
     {
 
@@ -79,6 +84,10 @@ class Entidad
 
             case 'editarArchivo':
                 $this->editarInformacion();
+                break;
+
+            case 'inhabilitarDriver':
+                $this->inhabilitar();
                 break;
         }
 

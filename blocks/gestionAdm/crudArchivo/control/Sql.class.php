@@ -27,22 +27,22 @@ class Sql extends \Sql
         switch ($tipo) {
 
             case 'consultaParticular':
-              $cadenaSql = " SELECT id_driver, nombredriver,descripcion,nombre_dispositivo, nombre_plataforma, fecha_publicacion,nombre_categoria ";
+              $cadenaSql = " SELECT id_driver, nombredriver,descripcion,nombre_dispositivo, nombre_plataforma, fecha_publicacion,nombre_categoria, estado_driver ";
               $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo ";
-              $cadenaSql.= " WHERE estado_driver=1;";
+              $cadenaSql.= " WHERE 1=1;";
               break;
 
             case 'consultaParticularDispositivo':
                 $cadenaSql = " SELECT id_driver, nombredriver,descripcion,nombre_dispositivo, nombre_plataforma, fecha_publicacion,nombre_categoria ";
                 $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo ";
-                $cadenaSql.= " WHERE estado_driver=1 ";
+                $cadenaSql.= " WHERE 1=1 ";
                 $cadenaSql.= " AND dispositivo=".$variable.";";
                 break;
 
             case 'consultaFiltroPlataforma':
               $cadenaSql = " SELECT id_driver,plataforma, nombredriver,descripcion,nombre_dispositivo, nombre_plataforma,fecha_publicacion,nombre_categoria ";
               $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo ";
-              $cadenaSql.= " WHERE estado_driver=1 ";
+              $cadenaSql.= " WHERE 1=1 ";
               $cadenaSql .= str_replace("\\","",$variable);
               break;
 
@@ -86,14 +86,14 @@ class Sql extends \Sql
               $cadenaSql = " SELECT arpegiodata_driver.id_driver, nombre_sistema, arpegiodata_driver.sistema_operativo as id_sistema, version,nombredriver as nombre_archivo,descripcion,nombre_dispositivo, arpegiodata_driver.dispositivo as id_dispositivo, nombre_plataforma, arpegiodata_driver.plataforma as id_plataforma,fecha_publicacion as fechaPublicacion,nombre_categoria,arpegiodata_driver.categoria as id_categoria, ruta_relativa ";
               $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo
               JOIN arpegiodata_archivo ON arpegiodata_archivo.id_driver=arpegiodata_driver.id_driver";
-              $cadenaSql.= " WHERE estado_driver=1 ";
+              $cadenaSql.= " WHERE 1=1 ";
               $cadenaSql.=" AND arpegiodata_driver.id_driver='".$variable."'";
               break;
 
               case 'consultaParticularCadena':
               $cadenaSql = " SELECT id_driver, nombredriver,descripcion,nombre_dispositivo, nombre_plataforma, fecha_publicacion,nombre_categoria ";
               $cadenaSql.= "FROM `arpegiodata_driver` JOIN arpegiodata_categoria on arpegiodata_categoria.id_categoria=arpegiodata_driver.categoria JOIN arpegiodata_dispositivo on arpegiodata_dispositivo.id_dispositivo=arpegiodata_driver.dispositivo JOIN arpegiodata_plataforma on arpegiodata_plataforma.id_plataforma=arpegiodata_driver.plataforma JOIN arpegiodata_sistemaoperativo on arpegiodata_sistemaoperativo.id_sistema=arpegiodata_driver.sistema_operativo ";
-              $cadenaSql.= " WHERE estado_driver=1 ";
+              $cadenaSql.= " WHERE 1=1 ";
               $cadenaSql .= " AND descripcion LIKE '%" . $variable . "%' ";
               break;
 
@@ -201,6 +201,13 @@ class Sql extends \Sql
                     $cadenaSql.= " WHERE ";
                     $cadenaSql.= " id_driver='".$variable['id_driver']."'; ";
                     break;
+
+                    case 'inhabilitarDriver':
+                      $cadenaSql=" UPDATE arpegiodata_driver SET ";
+                      $cadenaSql.= " estado_driver='".$variable['estado_driver']."' ";
+                      $cadenaSql.= " WHERE ";
+                      $cadenaSql.= " id_driver='".$variable['id_driver']."'; ";
+                      break;
             }
 
         return $cadenaSql;

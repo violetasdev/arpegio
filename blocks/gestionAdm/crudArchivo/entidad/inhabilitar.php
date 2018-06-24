@@ -16,7 +16,6 @@ class FormProcessor
     public $miFormulario;
     public $miSql;
     public $conexion;
-    public $archivos_datos;
     public $esteRecursoDB;
 
     public function __construct($lenguaje, $sql)
@@ -39,19 +38,31 @@ class FormProcessor
             $this->rutaAbsoluta .= "/blocks/" . $_REQUEST["bloqueGrupo"] . "/" . $_REQUEST["bloque"] . "/";
         }
         //Conexion a Base de Datos
-        $conexion = "interoperacion";
+        $conexion = "arpegiodata";
         $this->esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
         $_REQUEST['tiempo'] = time();
 
 
-        $cadenaSql = $this->miSql->getCadenaSql('eliminarRegla');
+        if($_REQUEST['estado_driver']==0){
+            $datos=array(
+              'id_driver'=>$_REQUEST['id_driver'],
+              'estado_driver'=>1
+            );
+          }else{
+            $datos=array(
+              'id_driver'=>$_REQUEST['id_driver'],
+              'estado_driver'=>0
+            );
+          }
+
+        $cadenaSql = $this->miSql->getCadenaSql('inhabilitarDriver', $datos);
         $this->proceso = $this->esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
 
         if (isset($this->proceso) && $this->proceso != null) {
-            Redireccionador::redireccionar("ExitoEliminar", $this->proceso);
+            Redireccionador::redireccionar("ExitoInhabilitar", $this->proceso);
         } else {
-            Redireccionador::redireccionar("ErrorEliminar");
+            Redireccionador::redireccionar("ErrorInhabilitar");
         }
     }
 }

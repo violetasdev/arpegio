@@ -38,8 +38,11 @@ class procesarAjax
                   $valorCodificado = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
                   $valorCodificado .= "&opcion=edicionDriver";
 
-                  $valorCodificado2 = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
-                  $valorCodificado2 .= "&opcion=inhabilitarDriver";
+                  $valorCodificado2 = "action=" . $esteBloque["nombre"];
+                  $valorCodificado2.= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
+                  $valorCodificado2.= "&bloque=" . $esteBloque['nombre'];
+                  $valorCodificado2.= "&bloqueGrupo=" . $esteBloque["grupo"];
+                  $valorCodificado2.= "&opcion=inhabilitarDriver";
 
                   $valorCodificado3 = "pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
                   $valorCodificado3 .= "&opcion=detalleDriver";
@@ -49,6 +52,7 @@ class procesarAjax
                       {
                       $valorCodificado .= "&id_driver=" . $valor['id_driver'];
                       $valorCodificado2 .= "&id_driver=" . $valor['id_driver'];
+                      $valorCodificado2 .= "&estado_driver=" . $valor['estado_driver'];
                       $valorCodificado3 .= "&id_driver=" . $valor['id_driver'];
                       }
 
@@ -62,12 +66,13 @@ class procesarAjax
                       $urlDisable = $url . $cadena2;
                       $urlDetalle = $url . $cadena3;
 
+                      $estado=$valor['estado_driver']==1 ? "Activo":"Inactivo";
 
                         $resultadoFinal[] = array(
                           'nombre' => '<a href="'.$urlDetalle.'">'.$valor['nombredriver'].'</a><br>',
                           'dispositivo' => $valor['nombre_dispositivo'],
                           'editar' => '<a href="'.$urlEdit.'">Editar</a><br>',
-                          'inhabilitar' =>'<a href="'.$urlDisable.'">Inhabilitar</a><br>',
+                          'inhabilitar' => '<a href="'.$urlDisable.'">'.$estado.'</a><br>',
                           );
 
 
