@@ -1,5 +1,5 @@
 <?php
-namespace gui\inicio;
+namespace gui\login;
 if (! isset ( $GLOBALS ["autorizado"] )) {
     include ("../index.php");
     exit ();
@@ -12,31 +12,31 @@ include_once ("core/connection/Sql.class.php");
 //en camel case precedida por la palabra sql
 
 class Sql extends \Sql {
-	
-	
+
+
 	var $miConfigurador;
 
 function __construct() {
-    
+
     $this->miConfigurador = \Configurador::singleton ();
 
 }
 
 function getCadenaSql($tipo, $variable = "") {
-    
+
     /**
      * 1.
      * Revisar las variables para evitar SQL Injection
      */
     $prefijo = $this->miConfigurador->getVariableConfiguracion ( "prefijo" );
     $idSesion = $this->miConfigurador->getVariableConfiguracion ( "id_sesion" );
-    
+
     switch ($tipo) {
-        
+
         /**
          * Clausulas específicas
          */
-        
+
         case "buscarUsuario" :
             $cadenaSql = "SELECT ";
             $cadenaSql .= "FECHA_CREACION, ";
@@ -46,7 +46,7 @@ function getCadenaSql($tipo, $variable = "") {
             $cadenaSql .= "WHERE ";
             $cadenaSql .= "`PRIMER_NOMBRE` ='" . $variable . "' ";
             break;
-        
+
         case "insertarRegistro" :
             $cadenaSql = "INSERT INTO ";
             $cadenaSql .= $prefijo . "registradoConferencia ";
@@ -72,7 +72,7 @@ function getCadenaSql($tipo, $variable = "") {
             $cadenaSql .= "'" . time () . "' ";
             $cadenaSql .= ")";
             break;
-        
+
         case "actualizarRegistro" :
             $cadenaSql = "UPDATE ";
             $cadenaSql .= $prefijo . "conductor ";
@@ -84,34 +84,34 @@ function getCadenaSql($tipo, $variable = "") {
             $cadenaSql .= "WHERE ";
             $cadenaSql .= "`idConductor` =" . $_REQUEST ["registro"] . " ";
             break;
-        
+
         /**
          * Clausulas genéricas.
          * se espera que estén en todos los formularios
          * que utilicen esta plantilla
          */
-        
+
         case "iniciarTransaccion" :
             $cadenaSql = "START TRANSACTION";
             break;
-        
+
         case "finalizarTransaccion" :
             $cadenaSql = "COMMIT";
             break;
-        
+
         case "cancelarTransaccion" :
             $cadenaSql = "ROLLBACK";
             break;
-        
+
         case "eliminarTemp" :
-            
+
             $cadenaSql = "DELETE ";
             $cadenaSql .= "FROM ";
             $cadenaSql .= $prefijo . "tempFormulario ";
             $cadenaSql .= "WHERE ";
             $cadenaSql .= "id_sesion = '" . $variable . "' ";
             break;
-        
+
         case "insertarTemp" :
             $cadenaSql = "INSERT INTO ";
             $cadenaSql .= $prefijo . "tempFormulario ";
@@ -123,7 +123,7 @@ function getCadenaSql($tipo, $variable = "") {
             $cadenaSql .= "fecha ";
             $cadenaSql .= ") ";
             $cadenaSql .= "VALUES ";
-            
+
             foreach ( $_REQUEST as $clave => $valor ) {
                 $cadenaSql .= "( ";
                 $cadenaSql .= "'" . $idSesion . "', ";
@@ -133,10 +133,10 @@ function getCadenaSql($tipo, $variable = "") {
                 $cadenaSql .= "'" . $variable ['fecha'] . "' ";
                 $cadenaSql .= "),";
             }
-            
+
             $cadenaSql = substr ( $cadenaSql, 0, (strlen ( $cadenaSql ) - 1) );
             break;
-        
+
         case "rescatarTemp" :
             $cadenaSql = "SELECT ";
             $cadenaSql .= "id_sesion, ";
@@ -149,13 +149,13 @@ function getCadenaSql($tipo, $variable = "") {
             $cadenaSql .= "WHERE ";
             $cadenaSql .= "id_sesion='" . $idSesion . "'";
             break;
-            
-            
+
+
             /**
          * Clausulas Menú.
-         * Mediante estas sentencias se generan los diferentes menus del aplicativo         
+         * Mediante estas sentencias se generan los diferentes menus del aplicativo
          */
-                  
+
        	case "datosMenu" :
        		$cadenaSql=" SELECT DISTINCT";
        		$cadenaSql.=" enl.id_menu AS menu,";
@@ -182,7 +182,7 @@ function getCadenaSql($tipo, $variable = "") {
        		$cadenaSql.=" ;";
 			break;
     }
-    
+
     return $cadenaSql;
 
 }

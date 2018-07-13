@@ -53,6 +53,7 @@ class Sesion extends SesionBase {
 
         if ($this->sesionNivel > 0) {
 
+
             // Verificar si en el cliente existe y tenga registrada una cookie que identifique la sesion
             $this->sesionId = $this->numeroSesion();
 
@@ -343,7 +344,7 @@ class Sesion extends SesionBase {
      * @METHOD obtener_nivel
      *
      * Retorna el nivel de usuario en la base de datos
-     * @PARAM 
+     * @PARAM
      *
      * @return valor
      * @access public

@@ -1,5 +1,5 @@
 <?php
-namespace gui\inicio;
+namespace gui\login;
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");
 	exit ();
@@ -16,8 +16,8 @@ class Frontera{
 	var $formulario;
 	var $miConfigurador;
 
-	function __construct() {	    
-	    $this->miConfigurador = \Configurador::singleton ();	
+	function __construct() {
+	    $this->miConfigurador = \Configurador::singleton ();
 	}
 
 	public function setRuta($unaRuta){
@@ -48,13 +48,13 @@ class Frontera{
 
 	function html()
 	{
-		
+
 		include_once("core/builder/FormularioHtml.class.php");
-		
+
 		$this->ruta=$this->miConfigurador->getVariableConfiguracion("rutaBloque");
-		
+
 		$this->miFormulario=new \FormularioHtml();
-		include_once($this->ruta."/formulario/form.php");	
+	include_once $this->ruta .  "formulario/form.php";
 
 	}
 }

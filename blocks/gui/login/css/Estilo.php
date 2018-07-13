@@ -9,7 +9,7 @@ $estilo[$indice++]="owl.transitions.css";
 $estilo[$indice++]="prettyPhoto.css";
 $estilo[$indice++]="main.css";
 $estilo[$indice++]="responsive.css";
-$estilo[$indice++]="miestilo.css";
+//$estilo[$indice++]="miestilo.css"; estilo del login
 $estilo[$indice++]="jquery.jdigiclock.css";
 
 

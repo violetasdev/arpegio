@@ -38,6 +38,8 @@ class Registrador
         $conexion = "arpegiodata";
         $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
+        $_REQUEST['tiempo']=time();
+
 
         // ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
         $esteCampo = $esteBloque['nombre'];
@@ -70,6 +72,7 @@ class Registrador
             unset($atributos);
             {
 
+var_dump($_SESSION['samlUserdata']);
                 // ------------------Division para los botones-------------------------
                 $atributos['id'] = 'divMensaje';
                 $atributos['estilo'] = 'marcoBotones';

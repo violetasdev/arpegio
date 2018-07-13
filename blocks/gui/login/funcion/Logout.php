@@ -1,13 +1,13 @@
 <?php
 
-include_once ("core/auth/SesionSso.class.php");
+include_once ("core/auth/SesionOneLogin.class.php");
 
 class Logout {
-	
+
 	var $miSesionSso;
-		
+
 	function __construct() {
-		$this->miSesionSso = \SesionSso::singleton ();
+		$this->miSesionSso = \SesionOneLogin::singleton ();
 	}
 	function procesarFormulario() {
 		return $this->miSesionSso->terminarSesion();
