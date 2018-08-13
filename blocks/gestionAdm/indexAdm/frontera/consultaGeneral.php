@@ -72,7 +72,7 @@ class Registrador
             unset($atributos);
             {
 
-var_dump($_SESSION['samlUserdata']);
+var_dump($_SESSION);
                 // ------------------Division para los botones-------------------------
                 $atributos['id'] = 'divMensaje';
                 $atributos['estilo'] = 'marcoBotones';
@@ -114,7 +114,6 @@ var_dump($_SESSION['samlUserdata']);
               $valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
               $valorCodificado .= "&bloque=" . $esteBloque['nombre'];
               $valorCodificado .= "&bloqueGrupo=" . $esteBloque["grupo"];
-              $valorCodificado .= "&opcion=registrarRegla";
 
               /**
              * SARA permite que los nombres de los campos sean dinámicos.
@@ -149,67 +148,6 @@ var_dump($_SESSION['samlUserdata']);
         }
     }
 
-
-    public function mensajeModal()
-    {
-
-        switch ($_REQUEST['mensaje']) {
-            case 'exitoRegistro':
-                $mensaje = "Exito<br>Regla Registrada";
-                $atributos['estiloLinea'] = 'success';     //success,error,information,warning
-                break;
-
-            case 'errorRegistro':
-                $mensaje = "Error<br>Registro de la Regla";
-                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
-                break;
-
-            case 'exitoActualizacion':
-                $mensaje = "Exito<br>Regla Actualizada";
-                $atributos['estiloLinea'] = 'success';     //success,error,information,warning
-                break;
-
-            case 'errorActualizacion':
-                $mensaje = "Error<br>Actualización de la Regla";
-                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
-                break;
-
-            case 'exitoEliminar':
-                $mensaje = "Exito<br>Regla Eliminada";
-                $atributos['estiloLinea'] = 'success';     //success,error,information,warning
-                break;
-
-            case 'errorEliminar':
-                $mensaje = "Error<br>Eliminar Regla";
-                $atributos['estiloLinea'] = 'error';     //success,error,information,warning
-                break;
-        }
-
-        // ----------------INICIO CONTROL: Ventana Modal Beneficiario Eliminado---------------------------------
-
-        $atributos['tipoEtiqueta'] = 'inicio';
-        $atributos['titulo'] = 'Mensaje';
-        $atributos['id'] = 'mensajeModal';
-        echo $this->miFormulario->modal($atributos);
-        unset($atributos);
-
-        // ----------------INICIO CONTROL: Mapa--------------------------------------------------------
-        echo '<div style="text-align:center;">';
-
-        echo '<p><h5>' . $mensaje . '</h5></p>';
-
-        echo '</div>';
-
-        // ----------------FIN CONTROL: Mapa--------------------------------------------------------
-
-        echo '<div style="text-align:center;">';
-
-        echo '</div>';
-
-        $atributos['tipoEtiqueta'] = 'fin';
-        echo $this->miFormulario->modal($atributos);
-        unset($atributos);
-    }
 }
 
 $miSeleccionador = new Registrador($this->lenguaje, $this->miFormulario, $this->sql);

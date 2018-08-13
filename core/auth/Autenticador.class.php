@@ -84,12 +84,12 @@ class Autenticador {
             } else {
             	/*
             	 * Para la autenticación con SingleSignOn se verifica que esté habilitado en la base de datos "_configuracion"
-            	 */
+*/
             	$resultado = $this->verificarAutenticacionSSO();
-							
+
             	//La única página que no se valida por SSO es el index
             	if($resultado){
-            		if($this->getPagina()=='index'){
+            		if($this->getPagina()!='indexasd'){
             			return true;
             		}
             		$resultado = $this->iniciarAutenticacionSSO();

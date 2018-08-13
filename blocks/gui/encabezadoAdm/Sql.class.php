@@ -45,7 +45,8 @@ class Sql extends \Sql {
 					 $cadenaSql .= " ten.nombre AS tipo_enlace,";
 					 $cadenaSql .= " cen.nombre AS clase_enlace,";
 					 $cadenaSql .= " enl.enlace AS enlace,";
-					 $cadenaSql .= " enl.parametros AS parametros ";
+					 $cadenaSql .= " enl.parametros AS parametros, ";
+					 $cadenaSql .= " enl.icon AS icon ";
 					 $cadenaSql .= " FROM arpegiomenu.menu_rol_enlace as rol_enlace";
 					 $cadenaSql .= " JOIN arpegiomenu.menu_enlace AS enl ON enl.id_enlace = rol_enlace.id_enlace";
 					 $cadenaSql .= " JOIN arpegiomenu.menu_tipo_enlace AS ten ON ten.id_tipo_enlace = enl.id_tipo_enlace";
@@ -63,7 +64,8 @@ class Sql extends \Sql {
 									 $i++;
 							 }
 					 }*/
-					 $cadenaSql .= " AND enl.estado='1' AND  men.estado='1' ";
+
+					 $cadenaSql .= "AND rol_enlace.id_rol=2 ";
 					 $cadenaSql .= " ORDER BY enl.id_menu, enl.columna, enl.orden";
 					 $cadenaSql .= " ;";
 

@@ -1,4 +1,4 @@
-/* */
+/*
 
 .navbar-custom-menu {
 	margin: 0 auto;
@@ -10,11 +10,24 @@
 	justify-content: space-between;
 	background-color: #d9d9d9;
 }
+ */
+
+ .logo{
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 width: 60px;
+	 height: 50px;
+ }
 
 .marco-navegacion {
-	width: 100%;
-	height: 71px;
-	background-color:#d9d9d9;
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 60px;
+  background-color: #d9d9d9;
 }
 
 #encabezadoForm{
@@ -31,7 +44,7 @@ padding: 0;
 	 position: fixed; /* Stay in place */
 	 z-index: 4; /* Stay on top */
 	 top: 0; /* Stay at the top */
-	 right: 0;
+	 left: 0;
 	 background-color: #d9d9d9; /* dark gray*/
 	 overflow-x: hidden; /* Disable horizontal scroll */
 	 padding-top: 71px; /* Place content 60px from the top */

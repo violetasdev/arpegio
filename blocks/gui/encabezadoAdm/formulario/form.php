@@ -191,26 +191,20 @@ class FormularioMenuUsuario {
 		<div class="marco-navegacion">
 				<div class="navbar-custom-menu">
 						<div class="logo">
-								<a href="'.$url.'/index.php""><img height="50px" src="'.$url.'/blocks/gui/encabezadoAdm/css/imagenes/encabezadoAdm.jpg"></a>
+								<a href="'.$url.'/index.php""><img height="40px" src="'.$url.'/blocks/gui/encabezadoAdm/css/imagenes/lanixicog.png"></a>
 						</div>
-						<div class="menuSide">
-						<span style="color:#595959;font-size:16px;cursor:pointer" onclick="openNav()">Drivers y Descargas</span>
-						</div>
+						<div class="wrapper">
+				<ul data-drilldown class="drilldown">
+
+				 ';
+				$cadenaHTML .= $menu;
+				$cadenaHTML .= '
+												</ul>
+												</div>
 				 </div>
 			</div>
 
-			<div id="mySidenav" class="sidenav">
-				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-				<div class="wrapper">
-		<ul data-drilldown class="drilldown">
-
-		 ';
-		$cadenaHTML .= $menu;
-		$cadenaHTML .= '
-										</ul>
-										</div>
-										</div>';
+									';
 
 		echo $cadenaHTML;
 	}
@@ -219,15 +213,24 @@ class FormularioMenuUsuario {
 		$cadena = '';
 		$submenu = '';
 
+
+
 		foreach ( $ArrayAtributos as $valor ) {
+
+			//var_dump($valor);
 			if (isset ( $valor ['clase_enlace'] ) && $valor ['clase_enlace'] == "submenu") {
 				$enlace = $valor ['id_enlace'];
-				$submenu .= '<li><a href="#" data-drilldown-button id="sub'. $valor ['menu'].'">' . $valor ['titulo_enlace'] . '<ul data-drilldown-sub id="contactosub'.$valor ['menu'].'" ><a href="#" data-drilldown-back>&larr; Volver</a>';
-				foreach ( $ArrayAtributos as $valor ) {
+
+				$submenu .= '<li>';
+				if ($valor ['icon'] != '') {
+					$submenu.= $valor ['icon'];
+				}
+				$submenu .= '<a href="#" data-drilldown-button id="sub'. $valor ['menu'].'">' . $valor ['titulo_enlace'] . '<ul data-drilldown-sub id="contactosub'.$valor ['menu'].'" ><a href="#" data-drilldown-back>&larr; Volver</a>';
+				/*foreach ( $ArrayAtributos as $valor ) {
 					if ($valor ['submenu'] == $enlace && $valor ['clase_enlace'] == "normal") {
 						$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' .$valor ['titulo_enlace'] . '</a></li>';
 					}
-				}
+				}*/
 				$submenu .= '</ul></a></li>';
 			}
 		}

@@ -63,6 +63,9 @@ class Registrador
              * Código Formulario
              */
 
+             var_dump($_SESSION);
+             
+
              $esteCampo = 'Agrupacionfiltros';
              $atributos ['id'] = $esteCampo;
              echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
