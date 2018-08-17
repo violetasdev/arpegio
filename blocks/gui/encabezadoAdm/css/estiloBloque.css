@@ -96,11 +96,12 @@ padding: 0;
   width: 100%;
   height: auto;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .wrapper ul,li{
   list-style: none;
+  padding: 0.5em;
 }
 
 .wrapper a {

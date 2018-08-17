@@ -174,17 +174,22 @@ class FormularioMenuUsuario {
 				}
 			}
 		}
-		$i = 0;
 
 		foreach ( $arreglo as $valor => $key ) {
 			if (isset ( $key [0] ['clase_enlace'] ) && $key [0] ['clase_enlace'] == 'menu') {
 
-				$menu .= ($i == 0) ? '<li><a data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '" >' . $valor . '</a></li>' : '<li><a data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '">' . $valor . '</a><li>';
+				if ($key[0] ['icon'] != '') {
+				  $icon= $key[0] ['icon'];
+					$menu .=  '<li><a title="'.$valor.'"; data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '">' . $icon . '</a><li>';
+
+				}else{
+				  $menu .= '<li><a title="'.$valor.'"; data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '">' . $valor . '</a><li>';
+				}
+
 			} else {
 
 				$menu .= $this->ConstruirGrupoGeneralMenu ( $key, $valor );
 			}
-			$i ++;
 		}
 
 		$cadenaHTML = '
@@ -213,8 +218,6 @@ class FormularioMenuUsuario {
 		$cadena = '';
 		$submenu = '';
 
-
-
 		foreach ( $ArrayAtributos as $valor ) {
 
 			//var_dump($valor);
@@ -225,7 +228,7 @@ class FormularioMenuUsuario {
 				if ($valor ['icon'] != '') {
 					$submenu.= $valor ['icon'];
 				}
-				$submenu .= '<a href="#" data-drilldown-button id="sub'. $valor ['menu'].'">' . $valor ['titulo_enlace'] . '<ul data-drilldown-sub id="contactosub'.$valor ['menu'].'" ><a href="#" data-drilldown-back>&larr; Volver</a>';
+				$submenu .= '<a href="#" data-drilldown-button id="sub'. $valor ['menu'].'">' . $valor ['titulo_enlace'] . '<ul data-drilldown-sub id="contactosub'.$valor ['menu'].'" >';
 				/*foreach ( $ArrayAtributos as $valor ) {
 					if ($valor ['submenu'] == $enlace && $valor ['clase_enlace'] == "normal") {
 						$submenu .= '<li><a href="' . $this->CrearUrl ( $valor ) . '">' .$valor ['titulo_enlace'] . '</a></li>';
