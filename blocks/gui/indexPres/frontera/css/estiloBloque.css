@@ -47,13 +47,13 @@
     }
 
 .formulario{
-background-image: url('../images/lanixAmar.jpg');
+background-image: url('../images/banner_index2.jpg');
 height: 27em;
 }
 
 @media screen and (min-width: 1900px) {
   .formulario{
-  background-image: url('../images/lanixAmar.jpg');
+  background-image: url('../images/banner_index2.jpg');
   height: 31.5em;
   }
 }
@@ -88,7 +88,13 @@ border-radius: 4px;
 
 
 #indexPres{
-  padding-top:10em;
+  padding-top:2em;
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+  padding-bottom: 1.5em;
 }
 
 input::-webkit-input-placeholder {
