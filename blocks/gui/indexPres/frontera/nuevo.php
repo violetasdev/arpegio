@@ -1,5 +1,5 @@
 <?php
-namespace gestionDriver\listaDriver\frontera;
+namespace gui\indexPress\frontera;
 
 /**
  * IMPORTANTE: Este formulario está utilizando jquery.
@@ -67,7 +67,7 @@ class Registrador
              $atributos ['id'] = $esteCampo;
              echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
              unset ( $atributos );
-
+             echo '<h2>Centro de Drivers y Descargas para Lanix Colombia</h2>';
                // ----------------INICIO CONTROL: Lista Proyectos---------------------------
 
                $esteCampo = 'cadenaBusquedaLan';

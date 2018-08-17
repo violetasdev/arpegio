@@ -98,7 +98,6 @@ class FormularioMenuUsuario {
 		echo '
 
 		<div class="footer">
-
       <div class="contactar">
 					<h4>¿No encontraste lo que buscabas?</h4>
        		<h3>Contactar un agente</h3>
