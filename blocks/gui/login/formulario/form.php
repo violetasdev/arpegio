@@ -103,6 +103,8 @@ class FormularioMenu {
 		unset ( $atributos );
 		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
 
+echo "Estamos en login";
+
 	if(isset($_REQUEST['event']) && $_REQUEST['event']=="logout"){
 
 			include $this->site.'funcion/Logout.php';
@@ -121,8 +123,12 @@ class FormularioMenu {
 
 		}else if(isset($_REQUEST['event']) && $_REQUEST['event']=="login"){
 
+
+
 			include $this->site.'funcion/VerificarSesion.php';
 
+var_dump($respuesta);
+						exit;
 			if($respuesta==true){
 				$directorio = $this->miConfigurador->getVariableConfiguracion ( "host" );
 				$directorio .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/index.php?";

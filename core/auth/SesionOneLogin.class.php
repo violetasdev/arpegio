@@ -90,6 +90,9 @@ class SesionOneLogin {
 				// Se eliminan las sesiones expiradas
 				//$this->borrarSesionExpirada();
 				if($this->verificarSesionAbierta()){
+
+					echo "estamos en verificar sesion abierta";
+					exit;
 					$resultado = $this->getParametrosSesionAbierta();
 				} else {
 
@@ -155,7 +158,7 @@ class SesionOneLogin {
 					'ReturnTo' => $aplication_base_url
 				);
 
-				$this->authnRequest->login();
+				$this->authnRequest->login($aplication_base_url);
 
 
 								echo "crear sesion";

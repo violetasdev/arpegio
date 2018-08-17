@@ -64,6 +64,7 @@ class Sql extends \Sql {
 							 }
 					 }*/
 					 $cadenaSql .= " AND enl.estado='1' AND  men.estado='1' ";
+					 $cadenaSql .= " AND rol_enlace.id_rol='1' ";
 					 $cadenaSql .= " ORDER BY enl.id_menu, enl.columna, enl.orden";
 					 $cadenaSql .= " ;";
 

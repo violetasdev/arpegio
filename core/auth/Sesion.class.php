@@ -45,14 +45,11 @@ class Sesion extends SesionBase {
      * @access public
      */
     function verificarSesion() {
-
         $resultado = true;
-
         // Se eliminan las sesiones expiradas
         $this->borrarSesionExpirada();
 
         if ($this->sesionNivel > 0) {
-
 
             // Verificar si en el cliente existe y tenga registrada una cookie que identifique la sesion
             $this->sesionId = $this->numeroSesion();

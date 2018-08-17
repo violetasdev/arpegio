@@ -73,6 +73,7 @@ class Registrador
             {
 
 var_dump($_SESSION);
+exit;
                 // ------------------Division para los botones-------------------------
                 $atributos['id'] = 'divMensaje';
                 $atributos['estilo'] = 'marcoBotones';

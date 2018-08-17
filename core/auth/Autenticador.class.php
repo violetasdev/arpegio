@@ -85,15 +85,15 @@ class Autenticador {
             	/*
             	 * Para la autenticación con SingleSignOn se verifica que esté habilitado en la base de datos "_configuracion"
 */
-            	$resultado = $this->verificarAutenticacionSSO();
+           	$resultado = $this->verificarAutenticacionSSO();
 
             	//La única página que no se valida por SSO es el index
-            	if($resultado){
-            		if($this->getPagina()!='indexasd'){
+            	if($resultado==true){
+            		if($this->getPagina()=='index' || $this->getPagina()=='indexAdm'){
             			return true;
             		}
             		$resultado = $this->iniciarAutenticacionSSO();
-            		if($resultado){
+            		if($resultado==true){
             			return true;
             		} else {
             			$this->tipoError = "usuarioNoAutorizado";
@@ -187,10 +187,9 @@ class Autenticador {
     		require_once ('SesionOneLogin.class.php');
     		$this->sesionOneLogin = SesionOneLogin::singleton ();
     		return true;
-    	}
-
+    	}else{
     	return false;
-
+      }
     }
 
     function iniciarAutenticacionSSO(){
