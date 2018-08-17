@@ -181,7 +181,6 @@ class FormularioMenuUsuario {
 				if ($key[0] ['icon'] != '') {
 				  $icon= $key[0] ['icon'];
 					$menu .=  '<li><a title="'.$valor.'"; data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '">' . $icon . '</a><li>';
-
 				}else{
 				  $menu .= '<li><a title="'.$valor.'"; data-drilldown-item href="' . $this->CrearUrl ( $key [0] ) . '">' . $valor . '</a><li>';
 				}

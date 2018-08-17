@@ -97,11 +97,13 @@ padding: 0;
   height: auto;
   position: relative;
   overflow: visible;
+
 }
 
 .wrapper ul,li{
   list-style: none;
   padding: 0.5em;
+  text-align: center;
 }
 
 .wrapper a {
@@ -115,7 +117,7 @@ padding: 0;
 }
 
 [data-drilldown] li {
-  padding: 5px 0px;
+  padding: 10px 0px;
 }
 
 [data-drilldown-sub] {
