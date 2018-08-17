@@ -38,8 +38,8 @@
     top: 0px;
     left: 0px;
     width: 100%;
-     object-fit: cover;
-     padding-bottom: 1em;
+    object-fit: cover;
+    padding-bottom: 1em;
 }
 
 .indexBack img{
@@ -47,8 +47,10 @@
     }
 
 .formulario{
-background-image: url('../images/banner_index2.jpg');
-height: 27em;
+    background-image: url('../images/banner_index2.jpg');
+    height: 27em;
+    background-position: center;
+    background-size: cover;
 }
 
 @media screen and (min-width: 1900px) {
