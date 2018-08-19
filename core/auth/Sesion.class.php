@@ -52,7 +52,7 @@ class Sesion extends SesionBase {
         if ($this->sesionNivel > 0) {
 
             // Verificar si en el cliente existe y tenga registrada una cookie que identifique la sesion
-            $this->sesionId = $this->numeroSesion();
+        echo    $this->sesionId = $this->numeroSesion();
 
             if ($this->sesionId) {
                 $resultado = $this->abrirSesion($this->sesionId);

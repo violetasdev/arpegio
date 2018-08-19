@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-require_once ('core/log/logger.class.php');
-
 require_once ('plugin/onelogin/_toolkit_loader.php');
 
 //require_once ('plugin/onelogin/demo1/index.php');
@@ -18,7 +16,6 @@ class SesionOneLogin {
 	var $authnRequest;
 	var $sesionUsuario;
 	var $sesionUsuarioId;
-	var $logger;
 
 	/**
 	*
@@ -64,7 +61,6 @@ class SesionOneLogin {
 				),
 				'x509cert' =>$this->idpx509cert));
 				$this->authnRequest = new OneLogin_Saml2_Auth($settingsInfo);
-				$this->logger = new logger ();
 			}
 
 			public static function singleton() {
@@ -97,6 +93,7 @@ class SesionOneLogin {
 				} else {
 
 					$resultado = $this->crearSesion();
+
 				}
 				$resultado = $this->verificarRolesPagina($resultado['perfil'],$pagina);//Se verifica que la página pertenezca al perfil
 				// Si no tiene acceso a alguna página, se desloguea de OneLogin
@@ -146,6 +143,7 @@ class SesionOneLogin {
 				$url .= "/index.php?";
 
 				$valorCodificado = "pagina=indexAdm";
+				$valorCodificado.="&AuthNRequestID=".$this->authnRequest->getLastRequestID();
 
 				$enlace = $this->configurador->getVariableConfiguracion("enlace");
 				$cadena = $this->configurador->fabricaConexiones->crypto->codificar_url($valorCodificado, $enlace);
@@ -159,16 +157,80 @@ class SesionOneLogin {
 				);
 
 				$this->authnRequest->login($aplication_base_url);
+				$_REQUEST['AuthNRequestID'] = 	$this->authnRequest->getLastRequestID();
+   			$_SESSION['AuthNRequestID'] = 	$this->authnRequest->getLastRequestID();
 
 
-								echo "crear sesion";
-								exit;
+/*				$ssoBuiltUrl = 	$this->authnRequest->login(null, array(), false, false, true);
+				echo 	$this->authnRequest->getLastRequestID();
+				$_REQUEST['AuthNRequestID'] = 	$this->authnRequest->getLastRequestID();
+
+				$_SESSION['AuthNRequestID'] = 	$this->authnRequest->getLastRequestID();
+
+		     header('Pragma: no-cache');
+		     header('Cache-Control: no-cache, must-revalidate');
+		     header('Location: ' . $ssoBuiltUrl);
+		     exit();
+
+*/
+
 				$atributos = $this->authnRequest->getAttributes();
-				$registro = $_REQUEST;
-				$registro['opcion'] = 'INGRESO';
-				$this->logger->log_usuario($registro);
 
-				$this->sesionUsuario->crearSesion();
+				return $atributos;
+			}
+
+			// Fin del método crear_sesion
+
+			/**
+			* @METHOD registrar_sesion
+			*
+			* Registrar una sesión en la base de datos.
+			* @PARAM usuario_aplicativo
+			* @PARAM nivel_acceso
+			* @PARAM expiracion
+			* @PARAM conexion_id
+			*
+			* @return boolean
+			* @access public
+			*/
+			function registrarSesion() {
+				//Obtener datos de la sesion de OneLogin
+				$usuarioId=$_SESSION['samlNameId'];
+
+				echo "<<<". $this->authnRequest->getLastRequestID();
+				exit;
+
+					// 1. Identificador de sesion
+				$this->fecha = explode(" ", microtime());
+				$this->sesionId = $_SESSION['samlSessionIndex'];
+
+
+				    if (!$this->authnRequest->isAuthenticated()) {
+				        echo "<p>Not authenticated</p>";
+				        exit();
+				    }
+
+var_dump($_SESSION);
+				if (!empty($this->sesionId)) {
+echo "valido";
+					exit;
+						/**
+						 * Borra todas las sesiones que existan con el id del computador
+						 */
+						/* Actualizar la cookie, la sesión tiene un tiempo de 1 hora */
+
+						$this->sesionExpiracion = time() + $this->tiempoExpiracion * 60;
+						setcookie(self::APLICATIVO, $this->sesionId, $this->sesionExpiracion, "/");
+
+						// Insertar id_usuario
+						$this->resultado = $this->guardarValorSesion('idUsuario', $usuarioId, $this->sesionId, $this->sesionExpiracion);
+						if ($this->resultado) {
+								return $this->sesionId;
+						}
+				}
+				echo "no valido";
+									exit;
+
 				return $atributos;
 
 echo "termina crear sesion";
@@ -177,6 +239,105 @@ echo "termina crear sesion";
 
 			// Fin del método crear_sesion
 
+			/**
+	     * @METHOD guardarValorSesion
+	     * @PARAM variable
+	     * @PARAM valor
+	     *
+	     * @return boolean
+	     * @access public
+	     */
+	    function guardarValorSesion($variable, $valor, $sesion = '', $expiracion = '') {
+
+	        $totalArgumentos = func_num_args();
+	        if ($totalArgumentos == 0) {
+	            return FALSE;
+	        } else {
+	            if (strlen($sesion) != 32) {
+	                if (isset($_COOKIE [self::APLICATIVO])) {
+	                    $this->sesionId = $_COOKIE [self::APLICATIVO];
+	                } else {
+	                    return FALSE;
+	                }
+	            } else {
+	                $this->sesionId = $sesion;
+	            }
+
+	            // Si el valor de sesión existe entonces se actualiza, si no se crea un registro con el valor.
+
+	            $parametro [self::SESIONID] = $this->sesionId;
+	            $parametro ["variable"] = $variable;
+	            $parametro ["valor"] = $valor;
+	            $parametro [self::EXPIRACION] = $expiracion;
+	            $cadenaSql = $this->miSql->getCadenaSql("buscarValorSesion", $parametro);
+
+	            $resultado = $this->miConexion->ejecutarAcceso($cadenaSql, self::BUSCAR);
+
+	            if ($resultado) {
+
+	                $cadenaSql = $this->miSql->getCadenaSql("actualizarValorSesion", $parametro);
+	            } else {
+	                $cadenaSql = $this->miSql->getCadenaSql("insertarValorSesion", $parametro);
+	            }
+
+	            return $this->miConexion->ejecutarAcceso($cadenaSql, self::ACCEDER);
+	        }
+	    }
+
+	    // Fin del método guardar_valor_sesion
+	    function setValorSesion($variable, $valor) {
+
+	        return $this->guardarValorSesion($variable, $valor);
+	    }
+
+			// Fin del método guardar_valor_sesion
+
+	    /**
+	     * @METHOD borrarValorSesion
+	     * @PARAM variable
+	     * @PARAM valor
+	     *
+	     * @return boolean
+	     * @access public
+	     */
+	    function borrarValorSesion($variable, $sesion = "") {
+
+	        if (strlen($sesion) != 32) {
+	            if (isset($_COOKIE [self::APLICATIVO])) {
+	                $sesion = $_COOKIE [self::APLICATIVO];
+	            } else {
+	                return false;
+	            }
+	        }
+
+	        $parametro [self::SESIONID] = $sesion;
+	        $parametro ["dato"] = $variable;
+
+	        if ($variable != 'TODOS') {
+	            $cadenaSql = $this->miSql->getCadenaSql("borrarVariableSesion", $parametro);
+	        } else {
+	            $cadenaSql = $this->miSql->getCadenaSql("borrarSesion", $parametro);
+	        }
+
+	        return !$this->miConexion->ejecutarAcceso($cadenaSql);
+	    }
+
+	    // Fin del método borrar_valor_sesion
+
+	    /**
+	     *
+	     * @name borrar_sesion_expirada
+	     * @return void
+	     * @access public
+	     */
+	    function borrarSesionExpirada() {
+
+	        $cadenaSql = $cadenaSql = $this->miSql->getCadenaSql("borrarSesionesExpiradas");
+
+	        return !$this->miConexion->ejecutarAcceso($cadenaSql);
+	    }
+
+	    // Fin del método borrar_sesion_expirada
 			/**
 			*
 			* @name terminar_sesion_expirada

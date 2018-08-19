@@ -64,7 +64,9 @@ class Registrador
              */
 
              var_dump($_SESSION);
-             
+             var_dump($_REQUEST);
+
+
 
              $esteCampo = 'Agrupacionfiltros';
              $atributos ['id'] = $esteCampo;

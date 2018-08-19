@@ -45,21 +45,7 @@ class Entidad
         include_once $this->ruta . "entidad/procesarAjax.php";
     }
 
-    public function validarInformacion()
-    {
-        include_once $this->ruta . "entidad/validarInformacion.php";
-    }
-
-    public function cargarInformacion()
-    {
-        include_once $this->ruta . "entidad/registrarActualizar.php";
-    }
-
-    public function eliminar()
-    {
-        include_once $this->ruta . "entidad/eliminar.php";
-    }
-    public function action()
+  public function action()
     {
         $resultado = true;
 
@@ -74,17 +60,7 @@ class Entidad
         }
 
         switch ($_REQUEST['opcion']) {
-            case 'registrarReglaParticular':
-                $this->cargarInformacion();
-                break;
 
-            case 'actualizarReglaParticular':
-                $this->cargarInformacion();
-                break;
-
-            case 'eliminarRegla':
-                $this->eliminar();
-                break;
         }
 
         return $resultado;

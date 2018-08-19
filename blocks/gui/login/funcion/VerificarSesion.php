@@ -10,8 +10,6 @@ class VerificarSesion {
 	}
 
 	function procesarFormulario() {
-		echo "verificando sesion abierta";
-		exit;
 		$respuesta = $this->miSesionSso->verificarSesionAbierta();
 		return $respuesta;
 	}

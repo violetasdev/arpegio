@@ -1,5 +1,7 @@
 <?php
 namespace gestionAdm\indexAdm\frontera;
+include_once ("core/auth/SesionOneLogin.class.php");
+
 
 /**
  * IMPORTANTE: Este formulario está utilizando jquery.
@@ -12,6 +14,8 @@ class Registrador
     public $lenguaje;
     public $miFormulario;
     public $miSql;
+    public $miSesionSso;
+
     public function __construct($lenguaje, $formulario, $sql)
     {
         $this->miConfigurador = \Configurador::singleton();
@@ -23,6 +27,8 @@ class Registrador
         $this->miFormulario = $formulario;
 
         $this->miSql = $sql;
+
+        $this->miSesionSso = \SesionOneLogin::singleton();
     }
     public function seleccionarForm()
     {
@@ -71,8 +77,15 @@ class Registrador
             echo $this->miFormulario->agrupacion('inicio', $atributos);
             unset($atributos);
             {
-
+echo PHP_SESSION_ACTIVE ? true : false;
 var_dump($_SESSION);
+var_dump($_REQUEST);
+if(isset($_SESSION)){
+  if(!empty($_SESSION)){
+    $respuesta = $this->miSesionSso->registrarSesion();
+    exit;
+  }
+  }
 exit;
                 // ------------------Division para los botones-------------------------
                 $atributos['id'] = 'divMensaje';

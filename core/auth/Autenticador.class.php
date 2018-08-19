@@ -92,6 +92,7 @@ class Autenticador {
             		if($this->getPagina()=='index' || $this->getPagina()=='indexAdm'){
             			return true;
             		}
+
             		$resultado = $this->iniciarAutenticacionSSO();
             		if($resultado==true){
             			return true;
